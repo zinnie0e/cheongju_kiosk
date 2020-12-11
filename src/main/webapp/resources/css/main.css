@@ -1,0 +1,148 @@
+@charset "UTF-8";
+
+:root {
+	--full-width: 1080px;
+	--full-height: 1920px;
+	
+	--top-height: 300px;
+	
+	--contents-width: 980px;
+	--contents-height: 1100px;
+	
+	--contents2-width: 790px;
+}
+
+body {
+	width: var(--full-width);
+    height: var(--full-height);
+    
+	margin: 0;
+	padding: 0;
+}
+
+#div_top {
+	position:absolute;
+	width: var(--full-width);
+    height: var(--top-height);
+    
+    background-image: url("../image/temp_top.png");
+}
+
+#div_main {
+	position:absolute;
+	width: var(--full-width);
+    height: calc(var(--full-height) - var(--top-height));
+    top: var(--top-height);
+    
+    background-image: url("../image/temp_bg.png");
+}
+
+#div_contents {
+	position:absolute;
+	width: var(--contents-width);
+    height: var(--contents-height);
+}
+
+#div_contents2 {
+	position:absolute;
+	width: var(--contents2-width);
+    height: var(--contents-height);
+}
+
+#div_side {
+	position:absolute;
+	width: calc(var(--full-width) - var(--contents-width));
+    height: var(--contents-height);
+    left: var(--contents-width);
+    
+    /* background-color: #29293e; */
+}
+
+#div_side_detail {
+	position:absolute;
+	width: calc(var(--contents-width) - var(--contents2-width));
+    height: var(--contents-height);
+    left: var(--contents2-width);
+    
+    overflow: auto;
+    -webkit-scrollba: none;
+}
+
+#div_side_detail::-webkit-scrollbar {
+	display: none;
+}
+
+#div_side_top {
+	width: 100%;
+    height: 870px;
+}
+
+#div_side_bottom {
+	width: 100%;
+    height: 230px;
+    
+    background-image: url("../image/temp_side_bottom.png");
+}
+
+#img_shadow {
+	position:absolute;
+	width: var(--full-width);
+	height: 16px;
+	top: calc(var(--top-height) + var(--contents-height));
+}
+
+.div_main_side_top {
+	width: 100%;
+	height: 130px;
+}
+
+.div_main_side_mid {
+	width: 100%;
+	height: 85px;
+}
+
+
+.div_side_bottom {
+	width: 100%;
+	height: 85px;
+}
+
+#div_area0 {
+	position:absolute;
+	width: 100px;
+	height: 50px;
+	top: 230px;
+	left: 365px;
+}
+
+#div_area1 {
+	position:absolute;
+	width: 100px;
+	height: 50px;
+	top: 305px;
+	left: 200px;
+}
+
+#div_area2 {
+	position:absolute;
+	width: 100px;
+	height: 50px;
+	top: 340px;
+	left: 575px;
+}
+
+#div_area3 {
+	position:absolute;
+	width: 100px;
+	height: 50px;
+	top: 750px;
+	left: 210px;
+}
+
+#div_area4 {
+	position:absolute;
+	width: 100px;
+	height: 50px;
+	top: 780px;
+	left: 660px;
+}

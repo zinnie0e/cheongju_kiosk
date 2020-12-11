@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+:root {
+	--area1-0-flow-width: 50px;
+}
+
+.div_side_area1_0 {
+	width: 100px;
+	height: 130px;
+}
+
+.div_area1_0_side_detail {
+	width: 190px;
+	height: 110px;
+}
+
+#div_area1_0_flow {
+	position:absolute;
+	width: var(--area1-0-flow-width);
+	height: 180px;
+	top: 805px;
+	left: 695px;
+}
+
+.div_area1_0_flow {
+	width: var(--area1-0-flow-width);
+	height: 50px;
+	
+	margin-bottom: 10px;
+}
+
+#div_area1_0_pin {
+	position:absolute;
+	width: 50px;
+	height: 80px;
+}
