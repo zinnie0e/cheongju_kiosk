@@ -33,4 +33,13 @@
 	position:absolute;
 	width: 50px;
 	height: 80px;
+	
+	background-color: aqua;
+}
+
+#div_area1_0_shop {
+	position:absolute;
+	width: 790px;
+	height: 380px;
+	top: 720px;
 }

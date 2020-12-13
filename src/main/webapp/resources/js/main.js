@@ -8,14 +8,52 @@ function logNow(logContents){
 
 $(document).ready(function(){
 	initKiosk();
-	initJson("korean");
+	initJsonPromotion();
 });
 
 var global_json = null;
 function initJson(language) {
-	$.getJSON( "./resources/" + language + ".json", function(data){
-		global_json = data;
+	$.ajax({
+		async: false,
+		dataType: "json",
+		url: "./resources/" + language + ".json",
+		success: function (result) {
+			global_json = result;
+		}
 	});
+}
+
+var promotion_json = null;
+function initJsonPromotion() {
+	$.ajax({
+		async: false,
+		dataType: "json",
+		url: "./resources/temp_promotion.json",
+		success: function (result) {
+			promotion_json = result.promotion;
+			initPromotion(true);
+		}
+	});
+}
+
+var promotion_timer = null;
+var promotion_num = 0;
+function initPromotion(play) {
+	if(play){
+		$('#div_promotion').show();
+		$('#div_promotion').css('background-image', promotion_json[promotion_num]);
+		promotion_timer = setInterval(() => {
+			$('#div_promotion').css('background-image', promotion_json[promotion_num]);
+			
+			promotion_num++;
+			if(promotion_num >= promotion_json.length){
+				promotion_num = 0;
+			}
+		}, 6 * 1000);
+	} else {
+		clearInterval(promotion_timer);
+		$('#div_promotion').hide();
+	}
 }
 
 function initKiosk() {
@@ -26,11 +64,17 @@ function initKiosk() {
 	$('#div_side').hide();
 	$('#img_shadow').hide();
 	
+	
 	$('#div_main').attr('onclick', 'initMain();');
+	
+	initJson("korean");
+	initJsonPromotion();
 }
 
 function initMain() {
 	$('#div_main').removeAttr('onclick');
+	
+	initPromotion(false);
 	
 	$('#div_contents').show();
 	$('#div_side').show();
@@ -38,34 +82,24 @@ function initMain() {
 	
 	showSideBottom();
 	showMain();
-	showSideTop(0);
+	showSideTop(1);
 }
 
 function showSideBottom() {
 	var html_string = "";
 	
-	for(var i = 0; i < 2; i++){
-		html_string += '<div id="div_side' + (i + 10) + '" class="div_side_bottom" onclick="javascript:setSideBottom(' + i + ');"></div>';
-	}
+	html_string += '<div id="div_side_back" class="div_side_bottom" onclick="javascript:backPage(0);"></div>';
+	html_string += '<div id="div_side_home" class="div_side_bottom" onclick="javascript:history.go(0);"></div>';
 	
 	$('#div_side_bottom').html(html_string);
 }
 
-function setSideBottom(index_num) {
-	switch (index_num) {
-		case 0: {
-			alert("뒤로가기");
-			break;
-		}
-		case 1: {
-			alert("홈");
-			break;
-		}
-	}
-}
-
 function showMain() {
-	var html_string = "";
+	var html_string = '<div id="div_language">';
+	for(var i = 0; i < 4; i++){
+		html_string += '<div id="div_language' + i + '" class="div_language" onclick="javascript:setMainLanguage(' + i + ');"></div>';
+	}
+	html_string += '</div>';
 	
 	for(var i = 0; i < 5; i++){
 		html_string += '<div id="div_area' + i + '" onclick="javascript:setMainArea(' + i + ');"></div>';
@@ -105,20 +139,20 @@ function showSideTop(index_num) {
 	
 	switch (index_num) {
 		//메인
-		case 0: {
+		case 1: {
 			for(var i = 0; i < 3; i++){
-				html_string += '<div id="div_main_side' + i + '" class="div_main_side_top" onclick="javascript:setMainSide(' + i + ');"></div>';
+				html_string += '<div id="div_main_side' + i + '" class="div_main_side_top" onclick="javascript:setMainSide(this, ' + i + ');"></div>';
 			}
 			html_string += '<div style="width:100%; height:30px;"></div>';
 			for(var i = 3; i < 8; i++){
-				html_string += '<div id="div_main_side' + i + '" class="div_main_side_mid" onclick="javascript:setArea1(' + (i - 3) + ');"></div>';
+				html_string += '<div id="div_main_side' + i + '" class="div_main_side_mid" onclick="javascript:setArea1(this, ' + (i - 3) + ');"></div>';
 			}
 			
 			$('#div_side_top').css('background-image', 'url(./resources/image/temp_main_side.png)');
 			break;
 		}
 		//원더아리아
-		case 1: {
+		case 11: {
 			for(var i = 0; i < 6; i++){
 				html_string += '<div id="div_side_area1_0_' + i + '" class="div_side_area1_0" onclick="javascript:setSideArea1_0(' + i + ');"></div>';
 			}
@@ -138,18 +172,70 @@ function showSideTop(index_num) {
 	
 }
 
-function setMainSide(index_num) {
+function resetSide(){
+	$('.div_main_side_top').css('background-color', '');
+	$('.div_main_side_mid').css('background-color', '');
+}
+
+function setSide(document){
+	resetSide();
+	$(document).css('background-color', 'aqua');
+}
+
+function setMainSide(document, index_num) {
+	setSide(document);
 	switch (index_num) {
 		case 0: {
 			alert("이벤트");
 			break;
 		}
 		case 1: {
-			alert("운영시간");
+			$('#div_contents').html('');
+			$('#div_contents').css('background-image', 'url(./resources/image/temp_operating.png)');
 			break;
 		}
 		case 2: {
 			alert("주변관광지");
+			break;
+		}
+	}
+	
+	backPage(1);
+}
+
+function setMainLanguage(index_num) {
+	switch (index_num) {
+		case 0: {
+			alert("kr");
+			break;
+		}
+		case 1: {
+			alert("en");
+			break;
+		}
+		case 2: {
+			alert("ch");
+			break;
+		}
+		case 3: {
+			alert("jp");
+			break;
+		}
+	}
+}
+
+function backPage(current_depth){
+	switch (current_depth) {
+		case 0: {
+			history.go(0);
+			break;
+		}
+		case 1: {
+			$('#div_side_back').attr('onclick', 'initMain();');
+			break;
+		}
+		case 2: {
+			$('#div_side_back').attr('onclick', 'showArea1();');
 			break;
 		}
 	}

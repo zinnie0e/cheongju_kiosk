@@ -18,6 +18,7 @@
 <body>
 	<div id="div_top"></div>
 	<div id="div_main">
+		<div id="div_promotion"></div>
 		<div id="div_contents"></div>
 		<div id="div_side">
 			<div id="div_side_top"></div>

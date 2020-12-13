@@ -37,6 +37,12 @@ body {
     background-image: url("../image/temp_bg.png");
 }
 
+#div_promotion {
+	position:absolute;
+	width: var(--full-width);
+    height: 1580px;
+}
+
 #div_contents {
 	position:absolute;
 	width: var(--contents-width);
@@ -145,4 +151,20 @@ body {
 	height: 50px;
 	top: 780px;
 	left: 660px;
+}
+
+#div_language {
+	position:absolute;
+	width: 280px;
+	height: 55px;
+	top: 1020px;
+	left: 390px;
+}
+
+.div_language {
+	float: left;
+	width: 55px;
+	height: 55px;
+	
+	margin-right: 10px;
 }

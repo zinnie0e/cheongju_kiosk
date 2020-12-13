@@ -1,7 +1,7 @@
 {
-	"area1_0_shop_list" : [{"index":"0", "shop":"의류", "name":"이름", "flow":"1", "left":"265px", "top":"325px"},
-					{"index":"1", "shop":"의류", "name":"이름", "flow":"1", "left":"265px", "top":"325px"},
-					{"index":"2", "shop":"의류", "name":"이름", "flow":"1", "left":"265px", "top":"325px"},
+"area1_0_shop_list" : [{"index":"0", "shop":"의류", "name":"이름", "flow":"1", "left":"265px", "top":"325px"},
+					{"index":"1", "shop":"의류", "name":"이름", "flow":"1", "left":"315px", "top":"375px"},
+					{"index":"2", "shop":"의류", "name":"이름", "flow":"1", "left":"365px", "top":"425px"},
 					{"index":"3", "shop":"의류", "name":"이름", "flow":"1", "left":"265px", "top":"325px"},
 					{"index":"4", "shop":"의류", "name":"이름", "flow":"1", "left":"265px", "top":"325px"},
 					{"index":"5", "shop":"의류", "name":"이름", "flow":"1", "left":"265px", "top":"325px"},

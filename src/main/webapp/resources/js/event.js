@@ -2,7 +2,7 @@ function showArea1() {
 	var html_string = "";
 	
 	for(var i = 0; i < 5; i++){
-		html_string += '<div id="div_area1_' + i + '" onclick="javascript:setArea1(this, ' + i + ');"></div>';
+		html_string += '<div id="div_event_' + i + '" onclick="javascript:setArea1(this, ' + i + ');"></div>';
 	}
 	
 	$('#div_contents').html(html_string);
