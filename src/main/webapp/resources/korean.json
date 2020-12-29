@@ -1,4 +1,8 @@
 {
+	"area1_0_flow1" : [["1", "265px", "325px"], ["1", "265px", "325px"]],
+	"dayOfWeek" : ["일요일","월요일","화요일","수요일","목요일","금요일","토요일"],
+	"ticker_notice_ment" : ["문화제조창C 안내 키오스크가 개설되었습니다. 코로나19 바이러스 예방을 위해 마스크를 반드시 착용하여 주시기 바랍니다. "],
+
 	"btn_main_map" : ["url(./resources/image/main/btn_main_map_industry_ko.png)",
 					  "url(./resources/image/main/btn_main_map_culture_ko.png)",
 					  "url(./resources/image/main/btn_main_map_parking_ko.png)",
@@ -34,5 +38,5 @@
 	"industry_detail_bg" : "url(./resources/image/industry/industry_detail_bg_ko.png)",
 	"industry_floor" : ["url(./resources/image/industry/industry_1f_ko.png)",
 					    "url(./resources/image/industry/industry_2f_ko.png)",
-						"url(./resources/image/industry/industry_3f_ko.png)"]	
+						"url(./resources/image/industry/industry_3f_ko.png)"]
 }

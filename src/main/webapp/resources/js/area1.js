@@ -1,13 +1,13 @@
 function showArea1() {
-	var html_string = "";
 	showSideTop(1);
+	
+	var html_string = "";
 	for(var i = 0; i < 5; i++){
 		html_string += '<div id="div_area1_' + i + '" onclick="javascript:setArea1(this, ' + i + ');"></div>';
 	}
 	
 	$('#div_contents').html(html_string);
 	$('#div_contents').css('background-image', 'url(./resources/image/culture/temp_area1.png)');
-	
 	backPage(1);
 }
 

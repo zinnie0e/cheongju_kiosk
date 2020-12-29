@@ -9,7 +9,25 @@ function logNow(logContents){
 $(document).ready(function(){
 	initKiosk();
 	initJsonPromotion();
+	resetTimer();
+	startTimer();
 });
+
+var initSeconds = 60; // 타이머 초
+var remainSeconds;
+function resetTimer(){ // 타이머 초기화 함수
+	remainSeconds = initSeconds; 
+}
+
+function startTimer(){ // 타이머 시작 함수
+	logNow(remainSeconds);
+	if(remainSeconds > 0){
+		remainSeconds -= 1;
+		setTimeout("startTimer()",1000); //1초간격으로 재귀호출
+	}else{
+		history.go(0);
+	}
+}
 
 var global_json = null;
 function initJson(language) {
@@ -49,11 +67,67 @@ function initPromotion(play) {
 			if(promotion_num >= promotion_json.length){
 				promotion_num = 0;
 			}
-		}, 6 * 1000);
+		}, 15 * 1000);
 	} else {
 		clearInterval(promotion_timer);
 		$('#div_promotion').hide();
 	}
+}
+
+function getTemperature(){ //기온
+    $.getJSON( "./resources/apival/temperature.jsp", function( data ) {
+    	var maxtem; var mintem;
+    	var wea_info = 'url(./resources/image/main/weather_icon_';
+
+        if(data != undefined && !isNaN(data.mintem) && !isNaN(data.maxtem) && !isNaN(data.weaCode)) {
+        	if(data.mintem == '-999') mintem = '-'; else mintem = data.mintem + '°';
+        	if(data.maxtem == '-999') maxtem = '-'; else maxtem = data.maxtem + '°';
+        	
+        	switch(data.weaCode){
+        		case 1:
+        			wea_info += 'sunny.png)';
+        			break;
+        		case 2:
+        			wea_info += 'sunny-cloud.png)';
+        			break;
+        		case 3:
+        			wea_info += 'cloudy.png)';
+        			break;
+        		case 4:
+        			wea_info += 'rain.png)';
+        			break;
+        		case 5:
+        			wea_info += 'snow-rain.png)';
+        			break;
+        		case 6:
+        			wea_info += 'snow.png)';
+        			break;
+        	}
+        } else {
+        	logNow("날씨 데이터 오류");
+        }
+        document.getElementById("ticker_temperature_min").innerHTML = mintem;
+        document.getElementById("ticker_temperature_max").innerHTML = maxtem;
+        $('#ticker_temperature_icon').css('background-image', wea_info);
+    });
+}
+
+function setTime() { //날짜 및 시간
+	var d = new Date();
+    document.getElementById("ticker_time").innerHTML = leadZero(d.getHours(),2) + ':' + leadZero(d.getMinutes(),2);
+	document.getElementById("ticker_date").innerHTML = d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate() + ' ' + getDayOfWeek(d.getDay());
+}
+
+function getDayOfWeek(dow){
+    return global_json.dayOfWeek[dow];
+}
+
+//leading zero 만들기
+function leadZero(input,digits){
+    for(var cur = (input + '').length; cur < digits; cur++){
+        input = '0' + input;
+    }
+    return input;
 }
 
 function initKiosk() {
@@ -68,7 +142,11 @@ function initKiosk() {
 		language = "korean";
 	
 	$('#div_main').attr('onclick', 'initMain();');
-	
+
+	getTemperature();
+	initJson(language);
+	document.getElementById("ticker_notice_ment").innerHTML = global_json.ticker_notice_ment;
+	setTime();
 	initJson(language);
 	initJsonPromotion();
 }
@@ -91,7 +169,7 @@ function showSideBottom() {
 	var html_string = "";
 	
 	html_string += '<div id="div_side_back" class="div_side_bottom" onclick="javascript:backPage(0);"></div>';
-	html_string += '<div id="div_side_home" class="div_side_bottom" onclick="javascript:history.go(0);"></div>';
+	html_string += '<div id="div_side_home" class="div_side_bottom" onclick="javascript:initMain();"></div>';
 	
 	$('#div_side_bottom').html(html_string);
 }
@@ -204,8 +282,9 @@ function setSide(document){
 function setMainSide(document, index_num) {
 	setSide(document);
 	switch (index_num) {
-		case 0: {
-			alert("이벤트");
+		case 0: { 
+			//진행중 이벤트
+			initEvent();
 			break;
 		}
 		case 1: {
