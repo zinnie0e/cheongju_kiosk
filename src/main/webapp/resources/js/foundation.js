@@ -1,4 +1,4 @@
-//시청자 미디어 센터
+//청주시문화산업진흥재단
 function showArea1_4() {
 	showSideTop(1);
 	html_string = '<div id="div_contents"></div>';

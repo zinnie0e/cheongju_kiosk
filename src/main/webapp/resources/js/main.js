@@ -34,7 +34,7 @@ function initJson(language) {
 	$.ajax({
 		async: false,
 		dataType: "json",
-		url: "./resources/" + language + ".json",
+		url: "./resources/string/" + language + ".json",
 		success: function (result) {
 			global_json = result;
 		}
@@ -202,23 +202,23 @@ function showMain() {
 
 function setMainArea(index_num) {
 	switch (index_num) {
-		case 0: {
+		case 0: { //첨단문화산업단지
 			showArea0(language);
 			break;
 		}
-		case 1: {
+		case 1: { //문화제조창
 			showArea1();
 			break;
 		}
-		case 2: {
+		case 2: { //복합공용주차장
 			showArea2();
 			break;
 		}
-		case 3: {
+		case 3: { //국립현대미술관
 			showArea3();
 			break;
 		}
-		case 4: {
+		case 4: { //동부창고
 			showArea4();
 			break;
 		}

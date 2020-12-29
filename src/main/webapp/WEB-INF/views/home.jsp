@@ -5,11 +5,11 @@
 <head>
 	<link rel="stylesheet" href="./resources/css/main.css" type="text/css" />
 	<link rel="stylesheet" href="./resources/css/event.css" type="text/css" />
-	<link rel="stylesheet" href="./resources/css/area0.css" type="text/css" />
-	<link rel="stylesheet" href="./resources/css/area1.css" type="text/css" />
-	<link rel="stylesheet" href="./resources/css/area1_0.css" type="text/css" />
-	<link rel="stylesheet" href="./resources/css/area1_1.css" type="text/css" />
-	<link rel="stylesheet" href="./resources/css/area4.css" type="text/css" />
+	<link rel="stylesheet" href="./resources/css/industry.css" type="text/css" />
+	<link rel="stylesheet" href="./resources/css/culture.css" type="text/css" />
+	<link rel="stylesheet" href="./resources/css/culture_wonder.css" type="text/css" />
+	<link rel="stylesheet" href="./resources/css/culture_craft.css" type="text/css" />
+	<link rel="stylesheet" href="./resources/css/dongbu.css" type="text/css" />
 	
 	<!-- 슬라이더 라이브러리 -->
 	<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
@@ -21,16 +21,16 @@
 	
 	<script src="./resources/js/main.js"></script>
 	<script src="./resources/js/event.js"></script>
-	<script src="./resources/js/area0.js"></script>
-	<script src="./resources/js/area1.js"></script>
-	<script src="./resources/js/area1_0.js"></script>
-	<script src="./resources/js/area1_1.js"></script>
-	<script src="./resources/js/area1_2.js"></script>
-	<script src="./resources/js/area1_3.js"></script>
-	<script src="./resources/js/area1_4.js"></script>
-	<script src="./resources/js/area2.js"></script>
-	<script src="./resources/js/area3.js"></script>
-	<script src="./resources/js/area4.js"></script>
+	<script src="./resources/js/industry.js"></script>
+	<script src="./resources/js/culture.js"></script>
+	<script src="./resources/js/culture_wonder.js"></script>
+	<script src="./resources/js/culture_craft.js"></script>
+	<script src="./resources/js/culture_library.js"></script>
+	<script src="./resources/js/culture_media.js"></script>
+	<script src="./resources/js/foundation.js"></script>
+	<script src="./resources/js/parking.js"></script>
+	<script src="./resources/js/museum.js"></script>
+	<script src="./resources/js/dongbu.js"></script>
 	
 	<title>Home</title>
 </head>
