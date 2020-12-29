@@ -4,15 +4,37 @@
 	--event-width: 840px;
 }
 
-#div_event {
-	position:absolute;
-	width: var(--event-width);
-	height: var(--contents-height);
-	top: 160px;
-	left: 80px;
+.swiper-container {
+	width:860px; 
+	height:810px; 
+	margin-top: 185px;
 }
 
-#div_event_item {
-	width: var(--event-width);
-	height: 260px;
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+ }
+ 
+.div_event_item {
+	width: 860px;
+	height: 270px;
+	display: flex;
+    align-items: center;
+    float: left;
+
+	background-image: url("../image/main/event_list_bg.png");
 }

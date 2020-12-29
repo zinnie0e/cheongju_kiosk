@@ -159,7 +159,11 @@ body {
     
     /* background-color: #29293e; */
 }
-
+-webkit-scrollbar-button:end:increment {
+  display:block;
+  height:8px;
+  background-color: #000;
+} 
 #div_side_detail {
 	position:absolute;
 	width: calc(var(--contents-width) - var(--contents2-width));

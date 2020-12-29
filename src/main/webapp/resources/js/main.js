@@ -142,11 +142,12 @@ function initKiosk() {
 		language = "korean";
 	
 	$('#div_main').attr('onclick', 'initMain();');
-	
+
 	getTemperature();
 	initJson(language);
 	document.getElementById("ticker_notice_ment").innerHTML = global_json.ticker_notice_ment;
 	setTime();
+	initJson(language);
 	initJsonPromotion();
 }
 
