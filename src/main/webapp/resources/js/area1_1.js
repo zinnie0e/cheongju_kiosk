@@ -24,10 +24,12 @@ function showArea1_1() {
 }
 //한국공예관 메뉴 선택
 function showCraftMenu(menu) {
-			$('#div_culture_menu').remove();
-			html_string = '<div id="div_contents" onclick="javascript:showArea1_1();"><div id="div_contents3" onclick="alert("asd");"></div></div>';
-			$('#div_contents').html(html_string);
-			$('#div_contents3').css('background-image', global_json.culture_craft_detail[menu]);
+	$('#div_culture_menu').remove();
+	html_string = '<div id="div_contents" onclick="javascript:showArea1_1();"><div id="div_contents3" onclick="alert("asd");"></div></div>';
+	$('#div_contents').html(html_string);
+	$('#div_contents3').css('background-image', global_json.culture_craft_detail[menu]);
+	
+	backPage(4);
 }
 
 //한국공예관 데이터

@@ -2,6 +2,7 @@ function showArea0() {
 	initJsonArea0();
 	showSideTop(2);
 	industrySort();
+	
 	var html_string = '<div id="div_side_detail">'+
 					  '</div>'+
 					  '<div id="div_scroll_top"></div>'+
@@ -19,6 +20,7 @@ function showArea0() {
 	$('#div_scroll_bottom').css('background-image', 'url(./resources/image/industry/menu_industry_list_bottom.png)');
 	$('#div_contents').css('background-image', global_json.industry);
 	
+	showSideDetailArea0("all");
 	scrollCheck();	
 	
 	backPage(1);
@@ -93,6 +95,8 @@ function showSideDetailArea0(index_value) {
 	$('#div_side_detail').css('background-image', 'url(./resources/image/industry/menu_industry_list_bg2.png)');
 	$('.div_area0_side_detail').css('background-image', 'url(./resources/image/industry/menu_industry_list_bg.png)');
 	$('.div_area0_side_detail_list').css('background-image', 'url(./resources/image/industry/menu_industry_list_bg.png)');
+	
+	backPage(3);
 }
 
 //문화산업단지 기업 설명
@@ -159,6 +163,7 @@ function setSideDetailArea0(index, name) {
 
 	before = index;
 
+	backPage(3);
 }
 
 
@@ -313,12 +318,10 @@ function IsEnglish(ch){
 function scrollCheck() {
 	$('#div_area0_pin').hide();
 	$('#div_area0_industry').hide();
-	showSideDetailArea0("all");
 	$('#div_scroll_top').hide();
 	$("#div_side_detail").scroll(function(event){
 		var scrollTop = $("#div_side_detail").scrollTop();
 		var innerHeight = $('#div_side_detail').innerHeight();
-		logNow($('#div_side_detail').scrollTop());
 		if(scrollTop > 0) {
 			$('#div_scroll_top').show();
 		}
@@ -329,7 +332,6 @@ function scrollCheck() {
 			$('#div_scroll_bottom').show();
 		}
 		if(scrollTop + innerHeight >= $('#div_side_detail').prop('scrollHeight')) {
-			logNow("실핸");
 			$('#div_scroll_bottom').hide();
 		}
 	});

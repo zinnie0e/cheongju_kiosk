@@ -53,3 +53,12 @@
 	width: 650px;
 	height: 330px;
 }
+
+#div_shop_name {
+	position: relative;
+	top: 25px;
+	left: 15px;
+	width: 150px;
+	height: 50px;
+	color: white;
+}

@@ -198,7 +198,7 @@ function resetSide(){
 
 function setSide(document){
 	resetSide();
-	$(document).css('background-color', 'aqua');
+	//$(document).css('background-color', 'aqua');
 }
 
 function setMainSide(document, index_num) {
@@ -262,6 +262,18 @@ function backPage(current_depth){
 		}
 		case 2: {
 			$('#div_side_back').attr('onclick', 'showArea1();');
+			break;
+		}
+		case 3: {
+			$('#div_side_back').attr('onclick', 'setMainArea(0);');
+			break;
+		}
+		case 4: {
+			$('#div_side_back').attr('onclick', 'setArea1(this,1);');
+			break;
+		}
+		case 5: {
+			$('#div_side_back').attr('onclick', 'setArea1(this, 0)');
 			break;
 		}
 	}

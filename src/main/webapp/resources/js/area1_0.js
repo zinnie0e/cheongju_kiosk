@@ -1,7 +1,6 @@
 function showArea1_0() {
 	initJsonArea1_0();
 	showSideTop(11);
-	logNow(shop_json);
 	var html_string = '<div id="div_contents2">'+
 					  '<div id="div_side_detail">'+
 					  '</div>'+
@@ -29,6 +28,7 @@ function showArea1_0() {
 	scrollCheck();	
 }
 
+//매장 데이터 리스트
 var shop_json = null;
 function initJsonArea1_0() {
 	$.ajax({
@@ -70,6 +70,7 @@ function setSideArea1_0(index_num) {
 	}
 }
 
+//원더아리아 매장 리스트
 //ajax
 function showSideDetailArea1_0(index_value) {
 	var html_string = "";
@@ -78,64 +79,58 @@ function showSideDetailArea1_0(index_value) {
 		//ajax all
 		//ajax 변경 후 인수 i를 json_data로 변경해야 함
 		for(var i = 0; i < data.length; i++){
-			html_string += '<div id="div_area1_0_side_detail' + i + '" class="div_area1_0_side_detail" onclick="javascript:setSideDetailArea1_0(' + i + ');">' + data[i].name + '</div>';
+			html_string += '<div id="div_area1_0_side_detail' + i + '" class="div_area1_0_side_detail" onclick="javascript:setSideDetailArea1_0(' + i + ');"><div id="div_shop_name">' + data[i].name + '</div></div>';
 		}
-		$('#div_side_detail').html(html_string);	
+		$('#div_side_detail').html(html_string);
+		if($('#div_area1_0_side_detail').length >= 10) {
+			$('#div_scroll_bottom').hide();
+		}
 	} else {
 		for(var i = 0; i < data.length; i++){
 			if(data[i].shop == index_value)
-				html_string += '<div id="div_area1_0_side_detail' + i + '" class="div_area1_0_side_detail" onclick="javascript:setSideDetailArea1_0(' + i + ');">' + data[i].name + '</div>';
+				html_string += '<div id="div_area1_0_side_detail' + i + '" class="div_area1_0_side_detail" onclick="javascript:setSideDetailArea1_0(' + i + ');"><div id="div_shop_name">' + data[i].name + '</div></div>';
 		}
 		$('#div_side_detail').html(html_string);
+		if($('#div_area1_0_side_detail').length <= 10) {
+			$('#div_scroll_bottom').remove();
+		}
 	}
-	 /*else if(index_value == "의류"){
-	//ajax 의류
-	for(var i = 0; i < data.length; i++){
-		if(data[i].shop == "의류")
-			html_string += '<div id="div_area1_0_side_detail' + i + '" class="div_area1_0_side_detail" onclick="javascript:setSideDetailArea1_0(' + i + ');">' + data[i].name + '</div>';
-	}
-	$('#div_side_detail').html(html_string);
-} else if(index_value == "패션잡화"){
-	for(var i = 0; i < data.length; i++){
-		if(data[i].shop == "패션잡화")
-			html_string += '<div id="div_area1_0_side_detail' + i + '" class="div_area1_0_side_detail" onclick="javascript:setSideDetailArea1_0(' + i + ');">' + data[i].name + '</div>';
-	}
-	$('#div_side_detail').html(html_string);
-} else if(index_value == "카페"){
-	for(var i = 0; i < data.length; i++){
-		if(data[i].shop == "카페")
-			html_string += '<div id="div_area1_0_side_detail' + i + '" class="div_area1_0_side_detail" onclick="javascript:setSideDetailArea1_0(' + i + ');">' + data[i].name + '</div>';
-	}
-	$('#div_side_detail').html(html_string);
-} else if(index_value == "음식점"){
-	for(var i = 0; i < data.length; i++){
-		if(data[i].shop == "음식접")
-			html_string += '<div id="div_area1_0_side_detail' + i + '" class="div_area1_0_side_detail" onclick="javascript:setSideDetailArea1_0(' + i + ');">' + data[i].name + '</div>';
-	}
-	$('#div_side_detail').html(html_string);
-} else if(index_value == "도서"){
-	alert("도서");
-} else if(index_value == "편의시설"){
-	alert("편의시설");
-}*/
 	$('.div_area1_0_side_detail').css('background-image', 'url(./resources/image/culture/menu_culture_wonder_list_bg.png)');
 	$('#div_side_detail').css('background-image', 'url(./resources/image/culture/menu_culture_wonder_list_bg2.png)')
+	
+	backPage(5);
 }
 
-function setSideDetailArea1_0(i) {
-	logNow("setSideDetailArea1_0: " + i);
+//원더아리아 매장 설명
+var before = null;
+function setSideDetailArea1_0(index) {
 	
-	showArea1_0Flow(shop_json.area1_0_shop_list[i].flow);
+	$(document).ready(function () {
+		$('.div_side_area1_0').click(function() {
+			before = null;
+		});
+	});
+	
+	showArea1_0Flow(shop_json.area1_0_shop_list[index].flow);
 	var data = shop_json.area1_0_shop_list;
-	$('#div_area1_0_pin').css('top', data[i].top);
-	$('#div_area1_0_pin').css('left', data[i].left);
+	$('#div_area1_0_pin').css('top', data[index].top);
+	$('#div_area1_0_pin').css('left', data[index].left);
 	$('#div_area1_0_pin').show();
 	
 	$('#div_shop_info').css('background-image', 'url(./resources/image/culture/culture_wonder_detail_bg.png)');
+	$('#div_area1_0_side_detail' + index + '').css('background-image', 'url(./resources/image/culture/menu_culture_wonder_list_sellect_bg.png)');
+	if(!(before == null) || !(index == before)) {
+		$('#div_area1_0_side_detail' + before + '').css('background-image', 'url(./resources/image/culture/menu_culture_wonder_list_bg.png)');
+	}
+	if((index == before))
+		$('#div_area1_0_side_detail' + before + '').css('background-image', 'url(./resources/image/culture/menu_culture_wonder_list_sellect_bg.png)');
+	before = index;
+	
+	backPage(5);
 }
 
+//원더아리아 각 층별 이미지
 function showArea1_0Flow(index_num) {
-	logNow("showArea1_0Flow: " + index_num);
 	
 	if($('#div_area1_0_flow').val() == "close"){
 		//2,5층 json 데이터 변경
@@ -150,13 +145,12 @@ function showArea1_0Flow(index_num) {
 //스크롤 y축 값
 function scrollCheck() {
 	$('#div_area0_pin').hide();
-	$('#div_area0_industry').hide();
-	showSideDetailArea0("all");
+	//$('#div_area0_industry').hide();
+	//showSideDetailArea0("all");
 	$('#div_scroll_top').hide();
 	$("#div_side_detail").scroll(function(event){
 		var scrollTop = $("#div_side_detail").scrollTop();
 		var innerHeight = $('#div_side_detail').innerHeight();
-		logNow($('#div_side_detail').scrollTop());
 		if(scrollTop > 0) {
 			$('#div_scroll_top').show();
 		}
@@ -167,7 +161,6 @@ function scrollCheck() {
 			$('#div_scroll_bottom').show();
 		}
 		if(scrollTop + innerHeight >= $('#div_side_detail').prop('scrollHeight')) {
-			logNow("실핸");
 			$('#div_scroll_bottom').hide();
 		}
 	});
