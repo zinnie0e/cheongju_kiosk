@@ -1,3 +1,38 @@
 {
-	"area1_0_flow1" : [["1", "265px", "325px"], ["1", "265px", "325px"]]
+	"btn_main_map" : ["url(./resources/image/main/btn_main_map_industry_ko.png)",
+					  "url(./resources/image/main/btn_main_map_culture_ko.png)",
+					  "url(./resources/image/main/btn_main_map_parking_ko.png)",
+					  "url(./resources/image/main/btn_main_map_museum_ko.png)",
+					  "url(./resources/image/main/btn_main_map_dongbu_ko.png)"],
+
+	"event_bg" : "url(./resources/image/main/event_bg_ko.png)",
+	"event_categori_edu" : "url(./resources/image/main/event_categori_edu_ko.png)",
+	"event_categori_ev" : "url(./resources/image/main/event_categori_ev_ko.png)",
+	"event_categori_ex" : "url(./resources/image/main/event_categori_ex_ko.png)",
+	"event_categori_per" : "url(./resources/image/main/event_categori_per_ko.png)",
+	"main_language" : "url(./resources/image/main/main_language_ko.png)",
+	"museum" : "url(./resources/image/main/museum_ko.png)",
+	"parking" : "url(./resources/image/main/parking_ko.png)",
+	
+	"culture_craft" : "url(./resources/image/culture/culture_craft_ko.png)",
+	"btn_culture_craft" : ["url(./resources/image/culture/btn_culture_craft_1f_ko.png)",
+						   "url(./resources/image/culture/btn_culture_craft_3f_ko.png)",
+						   "url(./resources/image/culture/btn_culture_craft_4f_ko.png)",
+						   "url(./resources/image/culture/btn_culture_craft_5f_ko.png)"],
+	"culture_craft_detail" : ["url(./resources/image/culture/culture_craft_detail_1f_ko.png)",
+							  "url(./resources/image/culture/culture_craft_detail_3f_ko.png)",
+							  "url(./resources/image/culture/culture_craft_detail_4f_ko.png)",
+							  "url(./resources/image/culture/culture_craft_detail_5f_ko.png)"],
+							  
+	"culture" : "url(./resources/image/culture/culture_ko.png)",
+	"culture_media" : "url(./resources/image/culture/culture_media_ko.png)",
+	"culture_wonder_1f" : "url(./resources/image/culture/culture_wonder_1f_ko.png)",
+	"culture_wonder_detail" : "url(./resources/image/culture/culture_wonder_detail_ko.png)",
+	"culture_wonder" : "url(./resources/image/culture/culture_wonder_ko.png)",
+	
+	"industry" : "url(./resources/image/industry/industry_ko.png)",
+	"industry_detail_bg" : "url(./resources/image/industry/industry_detail_bg_ko.png)",
+	"industry_floor" : ["url(./resources/image/industry/industry_1f_ko.png)",
+					    "url(./resources/image/industry/industry_2f_ko.png)",
+						"url(./resources/image/industry/industry_3f_ko.png)"]	
 }

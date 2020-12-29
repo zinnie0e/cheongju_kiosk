@@ -64,10 +64,12 @@ function initKiosk() {
 	$('#div_side').hide();
 	$('#img_shadow').hide();
 	
+	if(language == null)
+		language = "korean";
 	
 	$('#div_main').attr('onclick', 'initMain();');
 	
-	initJson("korean");
+	initJson(language);
 	initJsonPromotion();
 }
 
@@ -95,24 +97,35 @@ function showSideBottom() {
 }
 
 function showMain() {
-	var html_string = '<div id="div_language">';
+	var html_string = '<div id="div_milestone">';
+	for(var i = 0; i < 5; i++){
+		html_string += '<div id="div_milestone' + i + '" class="div_milestone" onclick="javascript:setMainArea(' + i + ');"></div>';
+		html_string += '<div id="div_milestone_sub' + i + '" onclick="javascript:setMainArea(' + i + ');"></div>';
+	}
+	html_string += '</div>';
+	
+	html_string += '<div id="div_language">';
 	for(var i = 0; i < 4; i++){
 		html_string += '<div id="div_language' + i + '" class="div_language" onclick="javascript:setMainLanguage(' + i + ');"></div>';
 	}
 	html_string += '</div>';
 	
-	for(var i = 0; i < 5; i++){
-		html_string += '<div id="div_area' + i + '" onclick="javascript:setMainArea(' + i + ');"></div>';
-	}
-	
 	$('#div_contents').html(html_string);
-	$('#div_contents').css('background-image', 'url(./resources/image/temp_main.png)');
+	if(language == null)
+		language = "korean";
+	$('#div_contents').css('background-image', 'url(./resources/image/main/main_map.png)');
+	$('#div_language').css('background-image', global_json.main_language);
+	$('#div_milestone0').css('background-image', global_json.btn_main_map[0]);
+	$('#div_milestone1').css('background-image', global_json.btn_main_map[1]);
+	$('#div_milestone2').css('background-image', global_json.btn_main_map[2]);
+	$('#div_milestone3').css('background-image', global_json.btn_main_map[3]);
+	$('#div_milestone4').css('background-image', global_json.btn_main_map[4]);
 }
 
 function setMainArea(index_num) {
 	switch (index_num) {
 		case 0: {
-			alert("area0");
+			showArea0(language);
 			break;
 		}
 		case 1: {
@@ -120,15 +133,15 @@ function setMainArea(index_num) {
 			break;
 		}
 		case 2: {
-			alert("area2");
+			showArea2();
 			break;
 		}
 		case 3: {
-			alert("area3");
+			showArea3();
 			break;
 		}
 		case 4: {
-			alert("area4");
+			showArea4();
 			break;
 		}
 	}
@@ -160,7 +173,13 @@ function showSideTop(index_num) {
 			$('#div_side_top').css('background-image', 'url(./resources/image/temp_area1_0_side_top.png)');
 			break;
 		}
+		//첨단문화산업단지
 		case 2: {
+			for(var i = 0; i <= 6; i++){
+				html_string += '<div id="div_side_area0_' + i + '" class="div_side_area0" onclick="javascript:setSideArea0(' + i + ');"></div>';
+			}
+			
+			$('#div_side_top').css('background-image', 'url(./resources/image/industry_side_top.png)');
 			break;
 		}
 		case 3: {
@@ -190,8 +209,10 @@ function setMainSide(document, index_num) {
 			break;
 		}
 		case 1: {
+			showSideTop(1);
 			$('#div_contents').html('');
 			$('#div_contents').css('background-image', 'url(./resources/image/temp_operating.png)');
+			$('#div_main_side1').css('background-image', 'url(./resources/image/temp_operating_sel.png)');
 			break;
 		}
 		case 2: {
@@ -203,25 +224,30 @@ function setMainSide(document, index_num) {
 	backPage(1);
 }
 
+var language = null;
 function setMainLanguage(index_num) {
+	
+	html_string = '<div id="div_main_language"></div>';
 	switch (index_num) {
 		case 0: {
-			alert("kr");
+			language = "korean";
 			break;
 		}
 		case 1: {
-			alert("en");
+			language = "english";
 			break;
 		}
 		case 2: {
-			alert("ch");
+			language = "chinese";
 			break;
 		}
 		case 3: {
-			alert("jp");
+			language = "japanese";
 			break;
 		}
 	}
+	initJson(language);
+	initMain();
 }
 
 function backPage(current_depth){

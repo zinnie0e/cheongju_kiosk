@@ -1,0 +1,6 @@
+{
+"area1_1_menu_list" : [{"index":"0", "name":"뮤지엄숍", "comment":"뮤지엄숍은", "flow":"1"},
+					{"index":"1", "name":"갤러리", "comment":"60여 년의 역사", "flow":"3"},
+					{"index":"2", "name":"공예스튜디오", "comment":"공예스튜디오는", "flow":"4"},
+					{"index":"3", "name":"공연장", "comment":"300석 규모의", "flow":"5"}]
+}

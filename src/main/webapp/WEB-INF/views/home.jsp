@@ -3,15 +3,27 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <html>
 <head>
+	<meta http-ｅquiv="Content-Type" content="text/html;charset=UTF-8">
 	<link rel="stylesheet" href="./resources/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="./resources/css/area0.css" type="text/css" />
 	<link rel="stylesheet" href="./resources/css/area1.css" type="text/css" />
 	<link rel="stylesheet" href="./resources/css/area1_0.css" type="text/css" />
+	<link rel="stylesheet" href="./resources/css/area1_1.css" type="text/css" />
+	<link rel="stylesheet" href="./resources/css/area4.css" type="text/css" />
 	
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	
 	<script src="./resources/js/main.js"></script>
+	<script src="./resources/js/area0.js"></script>
 	<script src="./resources/js/area1.js"></script>
 	<script src="./resources/js/area1_0.js"></script>
+	<script src="./resources/js/area1_1.js"></script>
+	<script src="./resources/js/area1_2.js"></script>
+	<script src="./resources/js/area1_3.js"></script>
+	<script src="./resources/js/area1_4.js"></script>
+	<script src="./resources/js/area2.js"></script>
+	<script src="./resources/js/area3.js"></script>
+	<script src="./resources/js/area4.js"></script>
 	
 	<title>Home</title>
 </head>
