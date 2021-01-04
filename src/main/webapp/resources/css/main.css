@@ -195,6 +195,7 @@ body {
 }
 
 #div_side_bottom {
+	position: absolute;
 	width: 100%;
     height: 260px;
 }
@@ -213,14 +214,14 @@ body {
 
 .div_main_side_mid {
 	width: 100%;
-	height: 85px;
+	height: 84px;
 }
 
 
 .div_side_bottom {
 	width: 100%;
-	height: 130px;
-}
+	height: 84px;
+} 
 
 #div_area0 {
 	position:absolute;
@@ -264,22 +265,26 @@ body {
 
 #div_language {
 	position:absolute;
-	width: 251px;
-	height: 55px;
+	width: 250px;
+	height: 60px;
 	top: 1020px;
 	left: 390px;
 }
 
-#div_language0 {
-	margin-left: 5px;
+#div_language_container {
+	position:absolute;
+	width: 252px;
+	height: 42px;
+	top: 9px;
+	left: 10px;
 }
 
 .div_language {
 	float: left;
-	width: 51px;
-	height: 60px;
+	width: 43px;
+	height: 42px;
 	
-	margin-right: 10px;
+	margin-right: 19px;
 }
 
 #div_milestone0 {

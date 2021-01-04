@@ -15,10 +15,8 @@ function showArea1_1() {
 	$('#div_contents').html(html_string);
 	$('#div_contents3').hide();
 	$('#div_contents').css('background-image', 'url(' + global_json.culture_craft + ')');
-	$('#div_main_side4').css('background-image', 'url(./resources/image/culture/culture_craft_sel.png)');
-	
-
 }
+
 //한국공예관 메뉴 선택
 function showCraftMenu(menu) {
 	$('#div_culture_menu').remove();
