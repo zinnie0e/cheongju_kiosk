@@ -10,7 +10,7 @@ function showArea0() {
 					  '<div id="div_area0_industry"><div id="div_industry_detail"></div></div>'+
 					  '<div id="div_area0_flow">';
 	
-	for(var i = 0; i <= 3; i++){
+	for(var i = 0; i < 3; i++){
 		html_string += '<div id="div_area0_flow' + i + '" class="div_area0_flow" onclick="javascript:showArea0_Flow(' + i + ')"></div>';
 	}
 	html_string += '</div>'+
@@ -54,24 +54,31 @@ function initJsonArea0() {
 function setSideArea0(i) {
 	switch (i) {
 	case 0:
+		setIndustrySide(1);
 		showSideDetailArea0("0");
 		break;
 	case 1:
+		setIndustrySide(2);
 		showSideDetailArea0("1");
 		break;
 	case 2:
+		setIndustrySide(3);
 		showSideDetailArea0("2");
 		break;
 	case 3:
+		setIndustrySide(4);
 		showSideDetailArea0("3");
 		break;
 	case 4:
+		setIndustrySide(5);
 		showSideDetailArea0("4");
 		break;
 	case 5:
+		setIndustrySide(6);
 		showSideDetailArea0("5");
 		break;
 	case 6:
+		setIndustrySide(7);
 		showSideDetailArea0("6");
 		break;
 	default:
@@ -130,51 +137,88 @@ function setSideDetailArea0(index, name) {
 	}
 	logNow(data.busi1);
 	logNow(data.busi2);
-	var busi = "-";
+	var busi = [];
 	if(data.busi1) {
-		busi = data.busi1;
+		busi[0] = data.busi1;
 	}
 	if(data.busi2) {
-		busi += "/" + data.busi2;
+		busi[1] = data.busi2;
 	}
 	if(data.busi3) {
-		busi += "/" + data.busi3;
+		busi[2] = data.busi3;
 	}
 	if(data.busi4) {
-		busi += "/" + data.busi4;
+		busi[3] = data.busi4;
 	}
 	if(data.busi5) {
-		busi += "/" + data.busi5;
+		busi[4] = data.busi5;
+	}
+	logNow(busi);
+	var infolist = [];
+	logNow(language);
+	if(language == "korean") {
+		infolist[0] = "대표자";
+		infolist[1] = "사업분야";
+		infolist[2] = "아이템";
+	} else if(language == "english") {
+		infolist[0] = "Representative";
+		infolist[1] = "Business Area";
+		infolist[2] = "Item";
+	} else if(language == "chinese") {
+		infolist[0] = "대표자";
+		infolist[1] = "사업분야";
+		infolist[2] = "아이템";
+	} else if(language == "japanese") {
+		infolist[0] = "대표자";
+		infolist[1] = "사업분야";
+		infolist[2] = "아이템";
 	}
 	
 	html_string = 
-		'<div id="div_industry_detail0" class="div_industry_name">' + data.name + '</div>'+
-		'<div id="div_industry_detail1" class="div_industry_unit">첨단문화산업단지' + data.room + '호</div>'+
+		'<div id="div_industry_detail0" class="div_industry_name"><b>' + data.name + '</b></div>'+
+		'<div id="div_industry_detail1" class="div_industry_unit">첨단문화산업단지 <b>' + data.room + '호</b></div>'+
 		'<div id="div_industry_logo">'+
 			'<img src="">'+
 		'</div>'+
 			'<div id="div_industry_info">'+
-				'<div id="div_ceo">' + data.owner + '</div>'+
-				'<div id="div_business">' + busi + '</div>'+
-				'<div id="div_item">' + "c" + '</div>'+
-				'<div id="div_phone">'+ 
-					'<div id="div_phone_image">'+
-						'<img src="./resources/image/industry/industry_detail_icon_tel.png">'+
-					'</div>'+
-					'<p id="p_value">' + data.tel + '</p>'+
-				'</div>'+					
-				'<div id="div_mail">'+
+				'<div id="div_ceo">' + infolist[0] + '</div>'+
+				'<div id="div_ceo_value">' + data.owner + '</div>';
+				
+				if(busi){
+					html_string += '<div id="div_business">' + infolist[1] + '</div>';
+					for(var i = 0; i < busi.length; i++)
+						html_string += '<div id="div_business_value' + i + '">' + busi[i] + '</div>';
+				}
+				if(data.item)
+					html_string += '<div id="div_item">' + infolist[2] + '</div>'+
+								   '<div id="div_item_value">' + data.item + '</div>';
+				if(data.tel) {
+					html_string += 
+						'<div id="div_phone">'+ 
+						'<div id="div_phone_image">'+
+							'<img src="./resources/image/industry/industry_detail_icon_tel.png">'+
+						'</div>'+
+						'<p id="p_phone_value">' + data.tel + '</p>'+
+					'</div>';		
+				}
+				if(data.email) {
+				html_string +=
+					'<div id="div_mail">'+
 					'<div id="div_mail_image">'+
 						'<img src="./resources/image/industry/industry_detail_icon_mail.png">'+
 					'</div>'+
-					'<p id="p_value">' + data.email + '</p>'+
-				'</div>'+
-				'<div id="div_website">'+
+					'<p id="p_email_value">' + data.email + '</p>'+
+				'</div>';
+				}
+				if(data.homepage) {
+				html_string +=
+					'<div id="div_website">'+
 					'<div id="div_phone_website">'+
 						'<img src="./resources/image/industry/industry_detail_icon_web.png">'+
 					'</div>'+
-					'<p id="p_value">' + data.homepage + '</p>'+
-				'</div>'+
+					'<p id="p_homepage_value">' + data.homepage + '</p>'+
+				'</div>';
+				}
 			'</div>';
 	/*showArea0_Flow(industry_json.industry_kor[i].flow);
 	$('#div_area0_pin').css('top', industry_json.industry_kor[i].top);
@@ -344,5 +388,34 @@ function IsEnglish(ch){
 	    	{}
 	    else
 	    	return [ i, true ];
+	}
+}
+
+function setIndustrySide(index){
+	switch(index){
+		case 0: 
+			$('#div_side_top').css('background-image', 'url('+ global_json.side_industry_top[0] +')');
+			break;
+		case 1: 
+			$('#div_side_top').css('background-image', 'url('+ global_json.side_industry_top[1] +')');
+			break;
+		case 2: 
+			$('#div_side_top').css('background-image', 'url('+ global_json.side_industry_top[2] +')');
+			break;
+		case 3: 
+			$('#div_side_top').css('background-image', 'url('+ global_json.side_industry_top[3] +')');
+			break;
+		case 4: 
+			$('#div_side_top').css('background-image', 'url('+ global_json.side_industry_top[4] +')');
+			break;
+		case 5: 
+			$('#div_side_top').css('background-image', 'url('+ global_json.side_industry_top[5] +')');
+			break;
+		case 6: 
+			$('#div_side_top').css('background-image', 'url('+ global_json.side_industry_top[6] +')');
+			break;
+		case 7: 
+			$('#div_side_top').css('background-image', 'url('+ global_json.side_industry_top[7] +')');
+			break;
 	}
 }

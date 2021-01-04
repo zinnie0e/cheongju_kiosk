@@ -44,26 +44,32 @@ function initJsonArea1_0() {
 function setSideArea1_0(index_num) {
 	switch (index_num) {
 		case 0: {
+			setWonderSide(1);
 			showSideDetailArea1_0("의류");
 			break;
 		}
 		case 1: {
+			setWonderSide(2);
 			showSideDetailArea1_0("패션잡화");
 			break;
 		}
 		case 2: {
+			setWonderSide(3);
 			showSideDetailArea1_0("카페");
 			break;
 		}
 		case 3: {
+			setWonderSide(4);
 			showSideDetailArea1_0("음식점");
 			break;
 		}
 		case 4: {
+			setWonderSide(5);
 			showSideDetailArea1_0("도서");
 			break;
 		}
 		case 5: {
+			setWonderSide(6);
 			showSideDetailArea1_0("편의시설");
 			break;
 		}
@@ -131,14 +137,36 @@ function setSideDetailArea1_0(index) {
 
 //원더아리아 각 층별 이미지
 function showArea1_0Flow(index_num) {
-	
-	if($('#div_area1_0_flow').val() == "close"){
 		//2,5층 json 데이터 변경
 		$('#div_contents2').css('background-image', 'url(' + global_json.culture_wonder_floor[index_num] + ')');
 		$('#div_area1_0_flow').css('top', '575px');
 		$('#div_area1_0_flow').val("open");
-	} else {
 //		$('#div_contents2').css('background-image', 'url(./resources/image/temp_area1_0_flow' + index_num + '.png)');
-	}
 }
-
+
+
+function setWonderSide(index){
+	switch(index){
+		case 0: 
+			$('#div_side_top').css('background-image', 'url('+ global_json.side_wonder_top[0] +')');
+			break;
+		case 1: 
+			$('#div_side_top').css('background-image', 'url('+ global_json.side_wonder_top[1] +')');
+			break;
+		case 2: 
+			$('#div_side_top').css('background-image', 'url('+ global_json.side_wonder_top[2] +')');
+			break;
+		case 3: 
+			$('#div_side_top').css('background-image', 'url('+ global_json.side_wonder_top[3] +')');
+			break;
+		case 4: 
+			$('#div_side_top').css('background-image', 'url('+ global_json.side_wonder_top[4] +')');
+			break;
+		case 5: 
+			$('#div_side_top').css('background-image', 'url('+ global_json.side_wonder_top[5] +')');
+			break;
+		case 6: 
+			$('#div_side_top').css('background-image', 'url('+ global_json.side_wonder_top[6] +')');
+			break;
+	}
+}

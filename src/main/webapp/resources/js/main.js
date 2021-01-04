@@ -12,7 +12,7 @@ $(document).ready(function(){
 	initJsonPromotion();
 	resetTimer();
 	startTimer();
-	getPollution();
+	
 });
 
 var initSeconds = 10000000; // 타이머 초
@@ -161,6 +161,7 @@ function initKiosk() {
 
 function initTicker(){
 	initWeather();
+	getPollution();
 	initTime();
 	document.getElementById("ticker_finedust").innerHTML = global_json.ticker_finedust;
 	document.getElementById("ticker_notice_ment").innerHTML = global_json.ticker_notice_ment;
@@ -203,7 +204,7 @@ function showSideTop(index_num) {
 				html_string += '<div id="div_main_side' + i + '" class="div_main_side_mid" onclick="javascript:setArea1(this, ' + (i - 3) + ');"></div>';
 			}
 			
-			$('#div_side_top').css('background-image', 'url('+ global_json.side_top[0] +')');
+			setSide(0);
 			break;
 		}
 		//원더아리아
@@ -211,8 +212,7 @@ function showSideTop(index_num) {
 			for(var i = 0; i < 6; i++){
 				html_string += '<div id="div_side_area1_0_' + i + '" class="div_side_area1_0" onclick="javascript:setSideArea1_0(' + i + ');"></div>';
 			}
-			
-			$('#div_side_top').css('background-image', 'url(./resources/image/temp_area1_0_side_top.png)');
+			setWonderSide(0);
 			break;
 		}
 		//첨단문화산업단지
@@ -220,8 +220,7 @@ function showSideTop(index_num) {
 			for(var i = 0; i <= 6; i++){
 				html_string += '<div id="div_side_area0_' + i + '" class="div_side_area0" onclick="javascript:setSideArea0(' + i + ');"></div>';
 			}
-			
-			$('#div_side_top').css('background-image', 'url(./resources/image/industry_side_top.png)');
+			setIndustrySide(0);
 			break;
 		}
 		case 3: {
@@ -236,9 +235,11 @@ function showSideTop(index_num) {
 function showSideBottom() {
 	$('#div_side_bottom').css('background-image', 'url('+ global_json.side_bottom +')');
 	var html_string = "";
-	
-	html_string += '<div id="div_side_back" class="div_side_bottom" onclick="javascript:backPage(0);"></div>';
-	html_string += '<div id="div_side_home" class="div_side_bottom" onclick="javascript:initMain();"></div>';
+	html_string += 
+		'<div style="width: 100%; height:168px; margin-top:30px;">'+
+			'<div id="div_side_back" class="div_side_bottom" onclick="javascript:backPage(0);"></div>'+
+			'<div id="div_side_home" class="div_side_bottom" onclick="javascript:initMain();"></div>'+
+		'</div>';
 	
 	$('#div_side_bottom').html(html_string);
 }
@@ -251,11 +252,11 @@ function showMain() {
 	}
 	html_string += '</div>';
 	
-	html_string += '<div id="div_language">';
+	html_string += '<div id="div_language"><div id="div_language_container">';
 	for(var i = 0; i < 4; i++){
-		html_string += '<div id="div_language' + i + '" class="div_language" onclick="javascript:setMainLanguage(' + i + ');"></div>';
+		html_string += '<div class="div_language" onclick="javascript:setMainLanguage(' + i + ');"></div>';
 	}
-	html_string += '</div>';
+	html_string += '</div></div>';
 	
 	$('#div_contents').html(html_string);
 	if(language == null) language = "korean";
@@ -293,32 +294,54 @@ function setMainArea(index_num) {
 	}
 }
 
-function resetSide(){
-	$('.div_main_side_top').css('background-color', '');
-	$('.div_main_side_mid').css('background-color', '');
-}
-
-function setSide(document){
-	//resetSide();
-	//$(document).css('background-color', 'aqua');
+function setSide(index){
+	switch(index){
+		case 0: 
+			$('#div_side_top').css('background-image', 'url('+ global_json.side_top[0] +')');
+			break;
+		case 1: 
+			$('#div_side_top').css('background-image', 'url('+ global_json.side_top[1] +')');
+			break;
+		case 2: 
+			$('#div_side_top').css('background-image', 'url('+ global_json.side_top[2] +')');
+			break;
+		case 3: 
+			$('#div_side_top').css('background-image', 'url('+ global_json.side_top[3] +')');
+			break;
+		case 4: 
+			$('#div_side_top').css('background-image', 'url('+ global_json.side_top[4] +')');
+			break;
+		case 5: 
+			$('#div_side_top').css('background-image', 'url('+ global_json.side_top[5] +')');
+			break;
+		case 6: 
+			$('#div_side_top').css('background-image', 'url('+ global_json.side_top[6] +')');
+			break;
+		case 7: 
+			$('#div_side_top').css('background-image', 'url('+ global_json.side_top[7] +')');
+			break;
+		case 8: 
+			$('#div_side_top').css('background-image', 'url('+ global_json.side_top[8] +')');
+			break;
+	}
 }
 
 function setMainSide(document, index_num) {
-	setSide(document);
 	switch (index_num) {
 		case 0: { 
 			//진행중 이벤트
+			setSide(1);
 			initEvent();
 			break;
 		}
 		case 1: {
-			showSideTop(1);
+			setSide(2);
 			$('#div_contents').html('');
 			$('#div_contents').css('background-image', 'url('+ global_json.hours +')');
-			//$('#div_main_side1').css('background-image', 'url(./resources/image/temp_operating_sel.png)');
 			break;
 		}
 		case 2: {
+			setSide(3);
 			$('#div_contents').html('');
 			$('#div_contents').css('background-image', 'url(./resources/image/main/tour.png)');
 			break;

@@ -8,8 +8,7 @@
 
 .div_side_area0 {
 	width: 100px;
-	height: 119.5px;
-	margin-bottom: 1px;
+	height: 120px;
 }
 
 .div_area0_side_detail {
@@ -89,7 +88,7 @@
 	position:absolute;
 	width: 250px;
 	height: 30px;
-	top: 75px;
+	top: 78px;
 	left: 75px;
 }
 
@@ -117,21 +116,92 @@
 
 #div_ceo {
 	position: relative;
-	left: 170px;
+	left: 75px;
+	width: 80px;
+	height: 20px;
 	
-	margin-bottom: 17px;
+	margin-bottom: 15px;
 }
 
 #div_business {
 	position: relative;
-	left: 170px;
+	left: 75px;
+	width: 100px;
+	height: 20px;
 	
 	margin-bottom: 15px;
 }
 
 #div_item {
 	position: relative;
-	left: 170px;
+	left: 75px;
+	width: 80px;
+	height: 20px;
+}
+
+#div_ceo_value {
+	position: absolute;
+	top: 0px;
+	left: 200px;
+	
+	margin-bottom: 15px;
+}
+
+#div_business_value0 {
+	position: absolute;
+	top: 36px;
+	left: 200px;
+	border: 3px solid red;
+	
+	margin-bottom: 15px;
+	
+}
+#div_business_value1 {
+	position: absolute;
+	top: 36px;
+	left: 245px;
+	border: 3px solid red;
+	
+	margin-bottom: 15px;
+}
+#div_business_value2 {
+	position: absolute;
+	top: 36px;
+	left: 290px;
+	border: 3px solid red;
+	
+	margin-bottom: 15px;
+	margin-right: 5px;
+}
+#div_business_value3 {
+	position: absolute;
+	top: 36px;
+	left: 335px;
+	border: 3px solid red;
+	
+	margin-bottom: 15px;
+}
+#div_business_value4 {
+	position: absolute;
+	top: 36px;
+	left: 380px;
+	border: 3px solid red;
+	
+	margin-bottom: 15px;
+}
+#div_business_value5 {
+	position: absolute;
+	top: 36px;
+	left: 200px;
+	border: 3px solid red;
+	
+	margin-bottom: 15px;
+}
+
+#div_item_value {
+	position: absolute;
+	top: 71px;
+	left: 200px;
 }
 
 #div_phone {
@@ -142,25 +212,38 @@
 }
 
 #div_mail {
-	position: absolute;
 	float: left;
 	top: 125px;
 	left: 240px;
 }
 
 #div_website {
-	position: absolute;
 	float: left;
 	top: 125px;
 	left: 455px;
 }
 
-#p_value {
+#p_phone_value {
 	position: absolute;
 	margin-top: -2px;
+	margin-right: 25px;
 	top: 0px;
 	left: 25px;
-	width: 130px;
+	width: 110px;
+}
+#p_email_value {
+	margin-top: -2px;
+	margin-right: 25px;
+	top: 0px;
+
+	width: 150px;
+}
+#p_homepage_value {
+	margin-top: -2px;
+	margin-right: 25px;
+	top: 0px;
+
+	width: 150px;
 }
 
 #div_industry_logo {
