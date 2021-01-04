@@ -11,20 +11,20 @@
 
 #div_culture_menu {
 	position:absolute;
-	width: var(--area1-0-flow-width);
-	height: 690px;
-	top: 334px;
-	left: 533px;
+	width: 410px;
+	height: 720px;
+	top: 340px;
+	left: 530px;
 }
 
 .div_culture_menu {
-	width: var(--area1-0-flow-width);
+	width: 410px;
 	height: 156px;
 	
 	margin-bottom: 24px;
 }
 
-#div_contents3 {
+#div_craft_detail {
 	position:absolute;
 	top: 160px;
 	left: 40px;

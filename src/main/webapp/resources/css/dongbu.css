@@ -1,18 +1,92 @@
 @charset "UTF-8";
 
 :root {
-	--area4-flow-width: 50px;
+	--area4-flow-width: 240px;
 }
 #div_area4_flow {
 	position:absolute;
-	width: var(--area4-flow-width);
-	height: 532px;
-	top: 468px;
-	left: 892px;
+	width: 240px;
+	height: 120px;
+	top: 890px;
+	left: 710px;
 }
 
 .div_area4_flow {
-	width: var(--area4-flow-width);
+	width: 50px;
 	height: 50px;
-	margin-bottom: 19px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	float: left;
+}
+
+#div_dongbu_detail{
+	position:absolute;
+	width: 900px;
+	height: 890px;
+	top: 150px;
+	left: 45px;
+}
+
+#div_area4_building0{ /* 36동 */
+	position:absolute;
+	width: 73px;
+	height: 125px;
+	top: 660px;
+	left: 349px;
+}
+
+#div_area4_building1{ /* 37동 */
+	position:absolute;
+	width: 69px;
+	height: 120px;
+	top: 621px;
+	left: 763px;
+}
+
+#div_area4_building2{ /* 38동 */
+	position:absolute;
+	width: 63px;
+	height: 120px;
+	top: 668px;
+	left: 700px;
+}
+
+#div_area4_building3{ /* Out */
+	position:absolute;
+	width: 155px;
+	height: 48px;
+	top: 606px;
+	left: 472px;
+}
+
+#div_area4_building4{ /* 6동 */
+	position:absolute;
+	width: 73px;
+	height: 120px;
+	top: 611px;
+	left: 627px;
+}
+
+#div_area4_building5{ /* 8동 */
+	position:absolute;
+	width: 73px;
+	height: 102px;
+	top: 654px;
+	left: 554px;
+}
+
+#div_area4_building6{ /* 34동 */
+	position:absolute;
+	width: 63px;
+	height: 116px;
+	top: 756px;
+	left: 495px;
+}
+
+#div_area4_building7{ /* 35동 */
+	position:absolute;
+	width: 73px;
+	height: 125px;
+	top: 699px;
+	left: 422px;
 }

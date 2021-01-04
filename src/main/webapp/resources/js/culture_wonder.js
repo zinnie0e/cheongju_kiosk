@@ -141,4 +141,4 @@ function showArea1_0Flow(index_num) {
 //		$('#div_contents2').css('background-image', 'url(./resources/image/temp_area1_0_flow' + index_num + '.png)');
 	}
 }
-
+

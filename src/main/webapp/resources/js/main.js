@@ -90,6 +90,7 @@ function getPollution(){
 	});
 	
 }
+
 function initWeather(){ //기온 + 날씨
     $.getJSON( "./resources/apival/temperature.jsp", function( data ) {
         if(data != undefined && !isNaN(data.temperature) && !isNaN(data.weaCode)) {

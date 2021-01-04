@@ -5,6 +5,7 @@
 	--full-height: 1920px;
 	
 	--top-height: 300px;
+	--promotion-height: 1528px;
 	
 	--contents-width: 980px;
 	--contents-height: 1100px;
@@ -51,7 +52,7 @@ body {
 
 #ticker_temperature{
 	position: relative;
-	width: 150px;
+	width: 140px;
     height: 45px;
     float: left;
     
@@ -63,7 +64,7 @@ body {
     line-height: 45px;
 }
 
-#ticker_temperature_min{
+/* #ticker_temperature_min{
 	
 	width: 70px;
     height: 45px;
@@ -74,10 +75,10 @@ body {
 	width: 70px;
     height: 45px;
     color: #ff5e3c;
-}
+} */
 
 #ticker_finedust{
-	width: 120px;
+	width: 130px;
 	height: 45px;
 	margin-left: 40px;
 	float: left;
@@ -117,7 +118,8 @@ body {
     background-image: url("../image/main/top_notice_bg.png");
 }
 
-#ticker_notice_ment{
+#ticker_notice p{
+	width: 1000px;
 	margin-left: 85px;
 	margin-right: 30px;
 	
@@ -136,7 +138,16 @@ body {
 #div_promotion {
 	position:absolute;
 	width: var(--full-width);
-    height: 1580px;
+    height: var(--promotion-height);
+}
+
+#div_bottom{
+	position:absolute;
+	width: var(--full-width);
+    height: calc(var(--full-height) - var(--top-height) - var(--promotion-height));
+    top: var(--promotion-height);
+    
+    background-image: url("../image/main/bottom.png");
 }
 
 #div_contents {
@@ -180,14 +191,12 @@ body {
 
 #div_side_top {
 	width: 100%;
-    height: 870px;
+    height: 840px;
 }
 
 #div_side_bottom {
 	width: 100%;
-    height: 230px;
-    
-    background-image: url("../image/temp_side_bottom.png");
+    height: 260px;
 }
 
 #img_shadow {
@@ -210,7 +219,7 @@ body {
 
 .div_side_bottom {
 	width: 100%;
-	height: 85px;
+	height: 130px;
 }
 
 #div_area0 {

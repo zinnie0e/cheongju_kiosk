@@ -5,34 +5,18 @@
 	--area1-height: 405px;
 }
 
-#div_area1_0 {
+#div_area1{
 	position:absolute;
-	width: var(--area1-width);
-	height: var(--area1-height);
-	top: 170px;
+	width: 870px;
+	height: 910px;
+	top: 167px;
 	left: 80px;
 }
 
-#div_area1_1 {
-	position:absolute;
-	width: var(--area1-width);
-	height: var(--area1-height);
-	top: 170px;
-	left: 520px;
-}
-
-#div_area1_2 {
-	position:absolute;
-	width: var(--area1-width);
-	height: var(--area1-height);
-	top: 620px;
-	left: 520px;
-}
-
-#div_area1_3 {
-	position:absolute;
-	width: var(--area1-width);
-	height: var(--area1-height);
-	top: 620px;
-	left: 80px;
+.div_area1{
+	width: 385px;
+	height: 405px;
+	margin-right: 50px;
+	margin-bottom: 50px;
+	float: left;
 }
