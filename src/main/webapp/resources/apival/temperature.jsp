@@ -20,9 +20,7 @@
 invokeNextVal();
 %>
 {
-	"val" : <%= temperature %>,
-	"maxtem" : <%= maxtemperature %>,
-	"mintem" : <%= mintemperature %>,
+	"temperature" : <%= temperature %>,
 	"clouds" : <%= clouds %>,
 	"rain" : <%= rain %>,
 	"weaCode" : <%= weaCode %>,
@@ -37,10 +35,10 @@ private static Random rndTemp = null;
 private static final long CHECK_INTERVAL = 100L;
 private static long lastCheckTime = 0;
 
+// 요일
+private static String day = null;
 // 온도
 private static String temperature = null;
-private static String maxtemperature = null;
-private static String mintemperature = null;
 // 날씨
 private static String clouds = null;
 private static String rain = null;
@@ -67,22 +65,14 @@ private String checkNow(){
 		HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
 		
 		conn.connect();
-		
-		
 		//inputStream을  문자열로
 		InputStream is = conn.getInputStream();
-		//InputStreamReader isr = new InputStreamReader(is);
-		//BufferedReader br = new BufferedReader(isr);
-		//String result = br.lines().collect(Collectors.joining("\n"));
-		
 		
 		// 출력
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 		Document doc = dBuilder.parse(is);
 				
-		//optional, but recommended
-		//read this - http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
 		doc.getDocumentElement().normalize();
 				
 		NodeList nList = doc.getElementsByTagName("body");// body 태그가 데이터임
@@ -95,8 +85,8 @@ private String checkNow(){
 				
 				// temp 온도
 				temperature = eElement.getElementsByTagName("temp").item(0).getFirstChild().getNodeValue();
-				maxtemperature = eElement.getElementsByTagName("tmx").item(0).getFirstChild().getNodeValue();
-				mintemperature = eElement.getElementsByTagName("tmn").item(0).getFirstChild().getNodeValue();
+				/* maxtemperature = eElement.getElementsByTagName("tmx").item(0).getFirstChild().getNodeValue();
+				mintemperature = eElement.getElementsByTagName("tmn").item(0).getFirstChild().getNodeValue(); */
 				
 				// sky 구름
 				clouds = eElement.getElementsByTagName("sky").item(0).getFirstChild().getNodeValue();
@@ -146,10 +136,7 @@ private String checkNow(){
 				/* weatherDetail = eElement.getElementsByTagName("wfKor").item(0).getFirstChild().getNodeValue(); */
 			}
 		}
-		// close
 		conn.disconnect();
-		//br.close();
-		//isr.close();
 		is.close();
 	}catch(IOException ioe){
 		ioe.printStackTrace();
@@ -164,7 +151,6 @@ private String checkNow(){
 		saxe.printStackTrace();
 		return "SAXException Raised" + saxe.getMessage();
 	}
-	
 	return "ok";
 }
 %>

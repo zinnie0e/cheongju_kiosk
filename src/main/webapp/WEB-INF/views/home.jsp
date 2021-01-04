@@ -42,8 +42,8 @@
 				<div id="ticker_right" style="width: 640px; height: 100%; float: left;">
 					<div id="ticker_date"></div>
 					<div id="ticker_bottom" style="width: 600px; height: 45px; margin-left: 40px; margin-top:20px;">
-						<div id="ticker_temperature"><a id="ticker_temperature_min"></a><a style="height:45px;">&nbsp;/&nbsp;</a><a id="ticker_temperature_max"></a></div>
-						<div id="ticker_finedust">미세먼지</div>
+						<div id="ticker_temperature"></div>
+						<div id="ticker_finedust"></div>
 						<div id="ticker_finedust_icon"></div>
 					</div>
 				</div>
@@ -59,6 +59,7 @@
 			<div id="div_side_top"></div>
 			<div id="div_side_bottom"></div>
 		</div>
+		<div id="div_bottom"></div>
 	</div>
 	<img id="img_shadow" src="./resources/image/shadow.png"></img>
 </body>

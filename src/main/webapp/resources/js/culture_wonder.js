@@ -10,13 +10,13 @@ function showArea1_0() {
 					  '<div id="div_area1_0_shop"><div id="div_shop_info"></div></div>'+
 					  '<div id="div_area1_0_flow">';
 	for(var i = 0; i < 3; i++){
-		html_string += '<div id="div_area1_0_flow' + i + '" class="div_area1_0_flow" onclick="javascript:showArea1_0Flow(' + i + ');"></div>';
+		html_string += '<div class="div_area1_0_flow" onclick="javascript:showArea1_0Flow(' + i + ');"></div>';
 	}
 	html_string += '</div></div>';
 	
 	$('#div_contents').html(html_string);
 	
-	$('#div_contents2').css('background-image', global_json.culture_wonder);
+	$('#div_contents2').css('background-image', 'url(' + global_json.culture_wonder + ')');
 	
 	showSideDetailArea1_0("all");
 	
@@ -134,11 +134,11 @@ function showArea1_0Flow(index_num) {
 	
 	if($('#div_area1_0_flow').val() == "close"){
 		//2,5층 json 데이터 변경
-		$('#div_contents2').css('background-image', global_json.culture_wonder_1f);
-		$('#div_area1_0_flow').css('top', '460px');
+		$('#div_contents2').css('background-image', 'url(' + global_json.culture_wonder_floor[index_num] + ')');
+		$('#div_area1_0_flow').css('top', '575px');
 		$('#div_area1_0_flow').val("open");
 	} else {
 //		$('#div_contents2').css('background-image', 'url(./resources/image/temp_area1_0_flow' + index_num + '.png)');
 	}
 }
-
+

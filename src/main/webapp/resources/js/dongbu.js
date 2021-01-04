@@ -1,24 +1,32 @@
 function showArea4() {
-	var html_string = "";
-	var flow = [0, 38, 37, 36, 35, 34, 8, 6, "parking"];
 	showSideTop(1);
+	$('#div_contents').css('background-image', 'url('+ global_json.dongbu +')');
 	
+	var html_string = "";
 	html_string += '<div id="div_area4_flow">';
-	for(var i in flow){
-		html_string += '<div id=div_area4_flow' + i + ' class="div_area4_flow" onclick="javascript:showArea4Flow(' + flow[i] + ');"></div>';
+	for(var i = 0; i < 8; i++){ //버튼
+		html_string += '<div class="div_area4_flow" onclick="javascript:showArea4Flow(' + i + ');"></div>';
+	}
+	html_string += '</div>';
+	for(var i = 0; i < 8; i++){ //건물
+		html_string += '<div id="div_area4_building'+ i +'" onclick="javascript:showArea4Flow(' + i + ');"></div>';
 	}
 	$('#div_contents').html(html_string);
-	$('#div_contents').css('background-image', 'url(./resources/image/dongbu/dongbu.png)');
 	
 	backPage(1);
 }
 
-function showArea4Flow(flow) {
+function showArea4Flow(index) {
+	//index
+	//0:36동, 1:37동, 2:38동, 3:Out, 4:6동, 5:8동, 6:34동, 7:35동
 	$('#div_area4_flow').hide();
-	if(flow == 0)
-		$('#div_contents').css('background-image', 'url(./resources/image/dongbu/dongbu_out.png)');
-	else
-		$('#div_contents').css('background-image', 'url(./resources/image/dongbu/dongbu_' + flow + '.png)');
-	html_string = '<div id="div_contents" onclick="javascript:showArea4();">';
+	
+	html_string = 
+		'<div id="div_contents" onclick="javascript:showArea4();" style="background-color: rgba(0, 0, 0, 0.7);">'+
+			'<div id="div_dongbu_detail" onclick="javascript:event.stopPropagation();resetTimer();"></div>'
+		'<div>';
 	$('#div_contents').html(html_string);
+	
+	$('#div_dongbu_detail').css('background-image', 'url('+ global_json.dongbu_detail[index] +')');
+	backPage(7);
 }

@@ -4,6 +4,21 @@
 	--event-width: 840px;
 }
 
+#div_event_container {
+	position: absolute;
+	width:860px; 
+	height:810px; 
+	top: 185px;
+	left: 60px;
+	
+	overflow: auto;
+	-webkit-scrollba: none;
+}
+
+#div_event_container::-webkit-scrollbar {
+	display: none;
+}
+
 .swiper-container {
 	width:860px; 
 	height:810px; 
@@ -11,8 +26,6 @@
 }
 
 .swiper-slide {
-    text-align: center;
-    font-size: 18px;
 
     /* Center slide text vertically */
     display: -webkit-box;
@@ -33,8 +46,132 @@
 	width: 860px;
 	height: 270px;
 	display: flex;
-    align-items: center;
     float: left;
 
 	background-image: url("../image/main/event_list_bg.png");
+}
+
+#div_event_up{
+	position: absolute;
+	width: 35px;
+	height: 35px;
+	top: 150px;
+	left: 475px;
+	outline: none;
+	background-image: url("../image/main/btn_event_up.png");
+}
+
+#div_event_down{
+	position: absolute;
+	width: 35px;
+	height: 35px;
+	top: 995px;
+	left: 475px;
+	outline: none;
+	background-image: url("../image/main/btn_event_down.png");
+}
+
+#event_poster{
+	position: absolute;
+	width: 106px;
+	height: 152px;
+	border: 2px solid #e3e3e3
+}
+
+#event_poster img{
+	width: 106px;
+	height: 152px;
+	object-fit: cover;
+}
+
+#event_cate{
+	float: left;
+}
+
+#event_title{
+	position: absolute;
+	width: 454px;
+	height: 25px;
+	left: 145px;
+	color: #424f7b;
+	font-weight: bold;
+	font-size: 21px;
+}
+
+.event_sub_info{
+	margin-bottom: 15px;
+	font-size: 17px;
+	height: 22px;
+}
+
+.event_info_text{
+	font-weight: bold;
+	width: 95px;
+	float: left;
+}
+
+.event_info_body{
+	position: absolute;
+	width: 454px;
+	height: 22px;
+	left: 95px;
+}
+
+#div_event_detail{
+	position: absolute;
+	width: 900px;
+	height: 890px;
+	top: 150px;
+	left: 45px;
+	background-image: url("../image/main/event_detail_bg.png");
+}
+
+#event_poster_detail{
+	position: absolute;
+	width: 278px;
+	height: 395px;
+	top: 145px;
+	left: 40px;
+	border: 2px solid #e2e2e2
+}
+
+#event_poster_detail img{
+	width: 278px;
+	height: 395px;
+	object-fit: cover;
+}
+
+#event_cate_detail{
+	margin-top: 5px;
+	float: left;
+}
+
+#event_title_detail{
+	position: absolute;
+	width: 690px;
+	height: 30px;
+	left: 130px;
+	color: #424f7b;
+	font-weight: bold;
+	font-size: 21px;
+}
+
+.event_sub_info_detail{
+	margin-bottom: 10px;
+	font-size: 17px;
+	height: 20px;
+}
+
+.event_info_text_detail{
+	font-weight: bold;
+	width: 105px;
+	float: left;
+	color: #3a3a90;
+}
+
+.event_info_body_detail{
+	position: absolute;
+	width: 372px;
+	height: 20px;
+	left: 125px;
 }
