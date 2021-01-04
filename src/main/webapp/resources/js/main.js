@@ -11,6 +11,7 @@ $(document).ready(function(){
 	initJsonPromotion();
 	resetTimer();
 	startTimer();
+	getPollution();
 });
 
 var initSeconds = 60; // 타이머 초
@@ -73,7 +74,21 @@ function initPromotion(play) {
 		$('#div_promotion').hide();
 	}
 }
-
+function getPollution(){
+	$.getJSON( "./resources/apival/pollution.jsp", function( pollutionData ) {
+		logNow(pollutionData);
+		poll_info = 'url(./resources/image/main/dust_icon_';
+		var compare = pollutionData.compare;
+		if(compare == 1)
+			poll_info += "good.png";
+		else if(compare == 2)
+			poll_info += "ordinary.png";
+		else if (compare == 3)
+			poll_info += "bad.png";
+		$('#ticker_finedust_icon').css('background-image', poll_info);
+	});
+	
+}
 function getTemperature(){ //기온
     $.getJSON( "./resources/apival/temperature.jsp", function( data ) {
     	var maxtem; var mintem;
@@ -144,6 +159,7 @@ function initKiosk() {
 	$('#div_main').attr('onclick', 'initMain();');
 
 	getTemperature();
+	
 	initJson(language);
 	document.getElementById("ticker_notice_ment").innerHTML = global_json.ticker_notice_ment;
 	setTime();
@@ -295,7 +311,10 @@ function setMainSide(document, index_num) {
 			break;
 		}
 		case 2: {
-			alert("주변관광지");
+			showSideTop(1);
+			$('#div_contents').html('');
+			$('#div_contents').css('background-image', 'url(./resources/image/main/tour.png)');
+			$('#div_main_side2').css('background-image', 'url(./resources/image/temp_operating_sel.png)');
 			break;
 		}
 	}
@@ -356,4 +375,28 @@ function backPage(current_depth){
 			break;
 		}
 	}
+}
+
+//스크롤 동작 체크
+function scrollCheck() {
+	$('#div_area0_pin').hide();
+	$('#div_area0_industry').hide();
+	$('#div_scroll_top').hide();
+	$("#div_side_detail").scroll(function(){
+		resetTimer();
+		var scrollTop = $("#div_side_detail").scrollTop();
+		var innerHeight = $('#div_side_detail').innerHeight();
+		if(scrollTop > 0) {
+			$('#div_scroll_top').show();
+		}
+		if(scrollTop == 0) {
+			$('#div_scroll_top').hide();
+		}
+		if(scrollTop + innerHeight <= $('#div_side_detail').prop('scrollHeight')) {
+			$('#div_scroll_bottom').show();
+		}
+		if(scrollTop + innerHeight >= $('#div_side_detail').prop('scrollHeight')) {
+			$('#div_scroll_bottom').hide();
+		}
+	});
 }

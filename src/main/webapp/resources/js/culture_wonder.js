@@ -142,26 +142,3 @@ function showArea1_0Flow(index_num) {
 	}
 }
 
-//스크롤 y축 값
-function scrollCheck() {
-	$('#div_area0_pin').hide();
-	//$('#div_area0_industry').hide();
-	//showSideDetailArea0("all");
-	$('#div_scroll_top').hide();
-	$("#div_side_detail").scroll(function(event){
-		var scrollTop = $("#div_side_detail").scrollTop();
-		var innerHeight = $('#div_side_detail').innerHeight();
-		if(scrollTop > 0) {
-			$('#div_scroll_top').show();
-		}
-		if(scrollTop == 0) {
-			$('#div_scroll_top').hide();
-		}
-		if(scrollTop + innerHeight <= $('#div_side_detail').prop('scrollHeight')) {
-			$('#div_scroll_bottom').show();
-		}
-		if(scrollTop + innerHeight >= $('#div_side_detail').prop('scrollHeight')) {
-			$('#div_scroll_bottom').hide();
-		}
-	});
-}

@@ -169,3 +169,13 @@
 	width: 200px;
 	height: 60px;
 }
+#div_area0_map_flow {
+	position: absolute;
+	top: 470px;
+	left: 70px;
+}
+
+.div_area0_map_flow {
+	width: 200px;
+	height: 140px;
+}
