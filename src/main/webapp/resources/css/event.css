@@ -85,6 +85,7 @@
 }
 
 #event_cate{
+	margin-top: 5px;
 	float: left;
 }
 
@@ -94,7 +95,7 @@
 	height: 25px;
 	left: 145px;
 	color: #424f7b;
-	font-weight: bold;
+	font-weight: 700;
 	font-size: 21px;
 }
 
@@ -105,16 +106,17 @@
 }
 
 .event_info_text{
-	font-weight: bold;
-	width: 95px;
+	font-weight: 700;
+	width: 110px;
 	float: left;
+	text-align: center;
 }
 
 .event_info_body{
 	position: absolute;
 	width: 454px;
 	height: 22px;
-	left: 95px;
+	left: 145px;
 }
 
 #div_event_detail{
@@ -152,7 +154,7 @@
 	height: 30px;
 	left: 130px;
 	color: #424f7b;
-	font-weight: bold;
+	font-weight: 700;
 	font-size: 21px;
 }
 
@@ -163,7 +165,7 @@
 }
 
 .event_info_text_detail{
-	font-weight: bold;
+	font-weight: 700;
 	width: 105px;
 	float: left;
 	color: #3a3a90;

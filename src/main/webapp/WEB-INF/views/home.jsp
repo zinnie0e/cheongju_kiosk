@@ -3,6 +3,10 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <html>
 <head>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+
 	<link rel="stylesheet" href="./resources/css/main.css" type="text/css" />
 	<link rel="stylesheet" href="./resources/css/event.css" type="text/css" />
 	<link rel="stylesheet" href="./resources/css/industry.css" type="text/css" />
@@ -35,32 +39,34 @@
 	<title>Home</title>
 </head>
 <body onclick="javascript:resetTimer();">
-	<div id="div_top">
-		<div id="ticker_top" style="position:absolute; width: 1000px; height: 110px; margin-top: 60px; margin-left: 40px;">
-			<div id="ticker_left" style="width: 75%; height: 100%; float: left;">
-				<div id="ticker_temperature_icon"></div>
-				<div id="ticker_right" style="width: 640px; height: 100%; float: left;">
-					<div id="ticker_date"></div>
-					<div id="ticker_bottom" style="width: 600px; height: 45px; margin-left: 40px; margin-top:20px;">
-						<div id="ticker_temperature"></div>
-						<div id="ticker_finedust"></div>
-						<div id="ticker_finedust_icon"></div>
+	<div id="kiosk_root" class="font_kr">
+		<div id="div_top">
+			<div id="ticker_top" style="position:absolute; width: 1000px; height: 110px; margin-top: 60px; margin-left: 40px;">
+				<div id="ticker_left" style="width: 70%; height: 100%; float: left;">
+					<div id="ticker_temperature_icon"></div>
+					<div id="ticker_right" style="width: 590px; height: 100%; float: left;">
+						<div id="ticker_date"></div>
+						<div id="ticker_bottom" style="width: 550px; height: 45px; margin-left: 40px; margin-top:20px;">
+							<div id="ticker_temperature"></div>
+							<div id="ticker_finedust"></div>
+							<div id="ticker_finedust_icon"></div>
+						</div>
 					</div>
 				</div>
+				<div id="ticker_time"></div>
 			</div>
-			<div id="ticker_time"></div>
+			<div id="ticker_notice"><p><MARQUEE id="ticker_notice_ment" behavior="scroll"></MARQUEE></p></div>
 		</div>
-		<div id="ticker_notice"><p><MARQUEE id="ticker_notice_ment" behavior="scroll"></MARQUEE></p></div>
-	</div>
-	<div id="div_main">
-		<div id="div_promotion"></div>
-		<div id="div_contents"></div>
-		<div id="div_side">
-			<div id="div_side_top"></div>
-			<div id="div_side_bottom"></div>
+		<div id="div_main">
+			<div id="div_promotion"></div>
+			<div id="div_contents"></div>
+			<div id="div_side">
+				<div id="div_side_top"></div>
+				<div id="div_side_bottom"></div>
+			</div>
+			<div id="div_bottom"></div>
 		</div>
-		<div id="div_bottom"></div>
+		<img id="img_shadow" src="./resources/image/shadow.png"></img>
 	</div>
-	<img id="img_shadow" src="./resources/image/shadow.png"></img>
 </body>
 </html>

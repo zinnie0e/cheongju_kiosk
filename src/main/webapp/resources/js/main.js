@@ -15,7 +15,7 @@ $(document).ready(function(){
 	
 });
 
-var initSeconds = 10000000; // 타이머 초
+var initSeconds = 60; // 타이머 초
 var remainSeconds;
 function resetTimer(){ // 타이머 초기화 함수
 	remainSeconds = initSeconds; 
@@ -72,12 +72,12 @@ function initPromotion(play) {
 		}, 15 * 1000);
 	} else {
 		clearInterval(promotion_timer);
-		$('#div_promotion').hide();
+		$("#div_promotion").addClass("blurEffect");
+		$('#div_promotion').html('<div id="div_promotion" style="background-color: rgba(0, 0, 0, 0.8);"></div>');
 	}
 }
-function getPollution(){
+function initPollution(){
 	$.getJSON( "./resources/apival/pollution.jsp", function( pollutionData ) {
-		logNow(pollutionData);
 		poll_info = 'url(./resources/image/main/dust_icon_';
 		var compare = pollutionData.compare;
 		if(compare == 1)
@@ -161,10 +161,31 @@ function initKiosk() {
 
 function initTicker(){
 	initWeather();
-	getPollution();
+	initPollution();
 	initTime();
+	document.getElementById("ticker_notice_ment").innerHTML = initNotice();
 	document.getElementById("ticker_finedust").innerHTML = global_json.ticker_finedust;
-	document.getElementById("ticker_notice_ment").innerHTML = global_json.ticker_notice_ment;
+}
+
+function initNotice(){
+	var notice_ment = "";
+	
+	var sendData = {language: getAbbOfLanguage(language)}
+	$.ajax({
+		type: "POST",
+		contentType: "application/json; charset=utf-8;",
+		dataType: "json",
+		async: false,
+		url: SETTING_URL + "/notice/select_notice",
+		data : JSON.stringify(sendData),
+		success: function (result) {
+			for(var i = 0 ; i < result.length ; i++){
+				notice_ment += result[i]["notice"];
+				if(i != result.length - 1) notice_ment += "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;";
+			}
+		}
+	});
+	return notice_ment;
 }
 
 function hideMainAll(){
@@ -192,26 +213,24 @@ function initMain() {
 
 function showSideTop(index_num) {
 	var html_string = "";
-	
 	switch (index_num) {
 		//메인
 		case 1: {
 			for(var i = 0; i < 3; i++){
-				html_string += '<div id="div_main_side' + i + '" class="div_main_side_top" onclick="javascript:setMainSide(this, ' + i + ');"></div>';
+				html_string += '<div class="div_main_side_top" onclick="javascript:setMainSide(this, ' + i + ');"></div>';
 			}
 			html_string += '<div style="width:100%; height:30px;"></div>';
 			for(var i = 3; i < 8; i++){
-				html_string += '<div id="div_main_side' + i + '" class="div_main_side_mid" onclick="javascript:setArea1(this, ' + (i - 3) + ');"></div>';
+				html_string += '<div class="div_main_side_mid" onclick="javascript:showCulture(' + (i - 3) + ');"></div>';
 			}
 			
-			/*$('#div_side_top').css('background-image', 'url('+ global_json.side_top[0] +')');*/
 			setSide(0);
 			break;
 		}
 		//원더아리아
 		case 11: {
 			for(var i = 0; i < 6; i++){
-				html_string += '<div id="div_side_area1_0_' + i + '" class="div_side_area1_0" onclick="javascript:setSideArea1_0(' + i + ');"></div>';
+				html_string += '<div class="div_side_area1_0" onclick="javascript:setSideArea1_0(' + i + ');"></div>';
 			}
 			setWonderSide(0);
 			break;
@@ -219,7 +238,7 @@ function showSideTop(index_num) {
 		//첨단문화산업단지
 		case 2: {
 			for(var i = 0; i <= 6; i++){
-				html_string += '<div id="div_side_area0_' + i + '" class="div_side_area0" onclick="javascript:setSideArea0(' + i + ');"></div>';
+				html_string += '<div class="div_side_area0" onclick="javascript:setSideArea0(' + i + ');"></div>';
 			}
 			setIndustrySide(0);
 			break;
@@ -228,9 +247,7 @@ function showSideTop(index_num) {
 			break;
 		}
 	}
-	
 	$('#div_side_top').html(html_string);
-	
 }
 
 function showSideBottom() {
@@ -277,19 +294,19 @@ function setMainArea(index_num) {
 			break;
 		}
 		case 1: { //문화제조창
-			showArea1();
+			showCultureList();
 			break;
 		}
 		case 2: { //복합공용주차장
-			showArea2();
+			showParking();
 			break;
 		}
 		case 3: { //국립현대미술관
-			showArea3();
+			showMuseum();
 			break;
 		}
 		case 4: { //동부창고
-			showArea4();
+			showDongbu();
 			break;
 		}
 	}
@@ -358,15 +375,23 @@ function setMainLanguage(index_num) {
 	switch (index_num) {
 		case 0: 
 			language = "korean";
+			$("#kiosk_root").removeClass("font_jp");
+            $("#kiosk_root").addClass("font_kr");
 			break;
 		case 1: 
 			language = "english";
+			$("#kiosk_root").removeClass("font_jp");
+            $("#kiosk_root").addClass("font_kr");
 			break;
 		case 2: 
 			language = "chinese";
+			 $("#kiosk_root").removeClass("font_kr");
+             $("#kiosk_root").addClass("font_jp");
 			break;
 		case 3: 
 			language = "japanese";
+			 $("#kiosk_root").removeClass("font_kr");
+             $("#kiosk_root").addClass("font_jp");
 			break;
 	}
 	initJson(language);
@@ -397,7 +422,7 @@ function backPage(current_depth){
 			break;
 		}
 		case 2: {
-			$('#div_side_back').attr('onclick', 'showArea1();');
+			$('#div_side_back').attr('onclick', 'showCultureList();');
 			break;
 		}
 		case 3: {
@@ -405,11 +430,11 @@ function backPage(current_depth){
 			break;
 		}
 		case 4: {
-			$('#div_side_back').attr('onclick', 'setArea1(this,1);');
+			$('#div_side_back').attr('onclick', 'showCulture(1);');
 			break;
 		}
 		case 5: {
-			$('#div_side_back').attr('onclick', 'setArea1(this, 0)');
+			$('#div_side_back').attr('onclick', 'showCulture(0)');
 			break;
 		}
 		case 6: { //진행중 이벤트
@@ -417,7 +442,7 @@ function backPage(current_depth){
 			break;
 		}
 		case 7: { //동부창고
-			$('#div_side_back').attr('onclick', 'showArea4()');
+			$('#div_side_back').attr('onclick', 'showDongbu()');
 			break;
 		}
 	}

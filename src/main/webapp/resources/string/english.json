@@ -1,7 +1,6 @@
 {
 	"dayOfWeek" : ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
 	"ticker_finedust" : "Fine Dust",
-	"ticker_notice_ment" : "Culture & Art Factory kiosk is now open. Please wear a mask to prevent the spread of coronavirus (COVID-19).",
 	
 	"side_top":["./resources/image/main/main_menu_0_en.png",
 				"./resources/image/main/main_menu_1_en.png",
@@ -45,7 +44,6 @@
 					  "./resources/image/main/btn_main_map_dongbu_en.png"],
 	
 	"industry" : "./resources/image/industry/industry_en.png",
-	"industry_detail_bg" : "./resources/image/industry/industry_detail_bg_en.png",
 	"industry_floor" : ["./resources/image/industry/industry_1f_en.png",
 						"./resources/image/industry/industry_2f_en.png",
 						"./resources/image/industry/industry_3f_en.png"],				  

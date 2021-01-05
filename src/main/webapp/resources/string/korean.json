@@ -1,7 +1,6 @@
 {
 	"dayOfWeek" : ["일요일","월요일","화요일","수요일","목요일","금요일","토요일"],
 	"ticker_finedust" : "미세먼지",
-	"ticker_notice_ment" : "문화제조창C 안내 키오스크가 개설되었습니다. 코로나19 바이러스 예방을 위해 마스크를 반드시 착용하여 주시기 바랍니다. ",
 	
 	"side_top":["./resources/image/main/main_menu_0_ko.png",
 				"./resources/image/main/main_menu_1_ko.png",
@@ -45,16 +44,20 @@
 					  "./resources/image/main/btn_main_map_dongbu_ko.png"],
 	
 	"industry" : "./resources/image/industry/industry_ko.png",
-	"industry_detail_bg" : "./resources/image/industry/industry_detail_bg_ko.png",
 	"industry_floor" : ["./resources/image/industry/industry_1f_ko.png",
 						"./resources/image/industry/industry_2f_ko.png",
 						"./resources/image/industry/industry_3f_ko.png"],				  
-					  
+	"industry_map" : ["./resources/image/industry/industry_map_1f.png",
+								"./resources/image/industry/industry_map_2f.png",
+								"./resources/image/industry/industry_map_3f.png"],
 	"culture" : "./resources/image/culture/culture_ko.png",
 	"culture_wonder" : "./resources/image/culture/culture_wonder_ko.png",
 	"culture_wonder_floor" : ["./resources/image/culture/culture_wonder_1f_ko.png",
 								"./resources/image/culture/culture_wonder_2f_ko.png",
 								"./resources/image/culture/culture_wonder_5f_ko.png"],
+	"culture_wonder_map" : ["./resources/image/culture/wonder_map_1f.png",
+								"./resources/image/culture/wonder_map_2f.png",
+								"./resources/image/culture/wonder_map_5f.png"],								
 	"culture_craft" : "./resources/image/culture/culture_craft_ko.png",
 	"culture_craft_detail" : ["./resources/image/culture/culture_craft_1f_ko.png",
 						   	"./resources/image/culture/culture_craft_3f_ko.png",

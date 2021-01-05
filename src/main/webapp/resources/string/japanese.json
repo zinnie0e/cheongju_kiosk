@@ -1,7 +1,6 @@
 {
 	"dayOfWeek" : ["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],
 	"ticker_finedust" : "PM2.5",
-	"ticker_notice_ment" : "文化製造廠Cの案内キオスクが開設されました。コロナウイルス感染予防のため、必ずマスクを着用してください。",
 	
 	"side_top":["./resources/image/main/main_menu_0_jp.png",
 				"./resources/image/main/main_menu_1_jp.png",
@@ -45,7 +44,6 @@
 					  "./resources/image/main/btn_main_map_dongbu_jp.png"],
 	
 	"industry" : "./resources/image/industry/industry_jp.png",
-	"industry_detail_bg" : "./resources/image/industry/industry_detail_bg_jp.png",
 	"industry_floor" : ["./resources/image/industry/industry_1f_jp.png",
 						"./resources/image/industry/industry_2f_jp.png",
 						"./resources/image/industry/industry_3f_jp.png"],				  

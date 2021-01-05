@@ -1,10 +1,10 @@
-function showArea1() {
+function showCultureList() {
 	showSideTop(1);
 	
 	var html_string = "";
 	html_string += '<div id="div_area1">';
 	for(var i = 0; i < 4; i++){
-		html_string += '<div class="div_area1" onclick="javascript:setArea1(this, ' + i + ');"></div>';
+		html_string += '<div id="div_area1_'+ i +'" onclick="javascript:showCulture(' + i + ');"></div>';
 	}
 	html_string += '</div>';
 	
@@ -13,8 +13,7 @@ function showArea1() {
 	backPage(1);
 }
 
-function setArea1(document, index_num) {
-	setSide(document);
+function showCulture(index_num) {
 	switch (index_num) {
 		case 0: {
 			//원더아리아
@@ -23,29 +22,25 @@ function setArea1(document, index_num) {
 		}
 		case 1: {
 			//한국공예관
-			showArea1_1();
-			setSide(5);
+			showCraft();
 			break;
 		}
 		case 2: {
-			//미디어재단
-			showArea1_3();
-			setSide(6);
+			//열린도서관
+			showLibrary();
 			break;
 		}
 		case 3: {
-			//열린도서관
-			showArea1_2();
-			setSide(7);
+			//미디어센터
+			showMedia();
 			break;
 		}
 		case 4: {
 			//산업진흥재단
-			showArea1_4();
-			setSide(8);
+			showFoundation();
 			break;
 		}
 	}
-	
-	backPage(2);
+	if(index_num != 4) backPage(2);
+	else backPage(1);
 }

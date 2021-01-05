@@ -1,7 +1,6 @@
 {
 	"dayOfWeek" : ["星期天","星期一","星期二","星期三","星期四","星期五","星期六"],
 	"ticker_finedust" : "吸尘",
-	"ticker_notice_ment" : "文化制造窗C信息亭被打开了， 请戴上口罩以防止Corona 19病毒。",
 	
 	"side_top": ["./resources/image/main/main_menu_0_ch.png",
 				"./resources/image/main/main_menu_1_ch.png",
@@ -45,7 +44,6 @@
 					  "./resources/image/main/btn_main_map_dongbu_ch.png"],
 	
 	"industry" : "./resources/image/industry/industry_ch.png",
-	"industry_detail_bg" : "./resources/image/industry/industry_detail_bg_ch.png",
 	"industry_floor" : ["./resources/image/industry/industry_1f_ch.png",
 						"./resources/image/industry/industry_2f_ch.png",
 						"./resources/image/industry/industry_3f_ch.png"],				  

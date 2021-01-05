@@ -13,10 +13,32 @@
 	left: 80px;
 }
 
-.div_area1{
+
+
+#div_area1_0{
+	position:absolute;
 	width: 385px;
 	height: 405px;
-	margin-right: 50px;
-	margin-bottom: 50px;
-	float: left;
+}
+
+#div_area1_1{
+	position:absolute;
+	width: 385px;
+	height: 405px;
+	left: 435px;
+}
+
+#div_area1_3{
+	position:absolute;
+	width: 385px;
+	height: 405px;
+	top: 455px;
+}
+
+#div_area1_2{
+	position:absolute;
+	width: 385px;
+	height: 405px;
+	top: 455px;
+	left: 435px;
 }

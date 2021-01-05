@@ -26,11 +26,11 @@ function MsToFulldate(milisecond){
 	return full_date;
 }
 
-function getEventPeriod(start_time, end_time){
-	return start_time.substring(0,4) + '.' + start_time.substring(4,6) + '.' + start_time.substring(6,8) + ' - ' + 
-			end_time.substring(0,4) + '.' + end_time.substring(4,6) + '.' + end_time.substring(6,8) + ' / ' + 
-			parseInt(start_time.substring(8,10)) + ':' + start_time.substring(10,12) + ' ~ ' + 
-			parseInt(end_time.substring(8,10)) + ':' + end_time.substring(10,12);
+function getEventPeriod(per_date, per_time){
+	return per_date.substring(0,4) + '.' + per_date.substring(4,6) + '.' + per_date.substring(6,8) + ' - ' + 
+			per_date.substring(8,12) + '.' + per_date.substring(12,14) + '.' + per_date.substring(14,16) + ' / ' + 
+			parseInt(per_time.substring(0,2)) + ':' + per_time.substring(2,4) + ' ~ ' + 
+			parseInt(per_time.substring(4,6)) + ':' + per_time.substring(6,8);
 }
 
 function initEvent(){ //이벤트 리스트 초기화
@@ -39,62 +39,27 @@ function initEvent(){ //이벤트 리스트 초기화
 	$('#div_contents').html('');
 	$('#div_contents').css('background-image', 'url('+ global_json.event_bg +')');
 	
-	/*var html_string = "";
-	html_string += '<div id="div_event_container">';
-	for(var i = 0 ; i < parseInt(event_json.length) ; i++){
-		html_string +=
-			'<div id="div_event_list'+ i +'" class="div_event_item" onclick="javascript:event.stopPropagation();showEvent(' + i + ');">'+ 
-				'<div style="position: absolute; width:734px; height: 156px; top: 58px; left: 62px;">'+
-					'<div id="event_poster"><img src="./external_image/poster/'+ event_json[i]["poster"] +'"></img></div>'+
-					'<div style="position: absolute; width:599px; height: 156px; left: 135px;">'+
-						'<div style="position: absolute; width:599px; height: 25px;">'+
-							'<div id="event_cate"><img src="'+ global_json.event_categori[event_json[i]["event_cate"]] +'"></img></div>'+
-							'<div id="event_title">'+ event_json[i]["title"] +'</div>'+
-						'</div>'+
-						'<div style="bottom">'+
-							'<div class="event_sub_info">'+
-								'<div class="event_info_text">행사기간</div>'+
-								'<div id="event_period"></div>'+
-							'</div>'+
-							'<div class="event_sub_info">'+
-								'<div class="event_info_text">행사장소</div>'+
-								'<div id="event_place"></div>'+
-							'</div>'+
-							'<div class="event_sub_info">'+
-								'<div class="event_info_text">행사문의</div>'+
-								'<div id="event_tel"></div>'+
-							'</div>'+
-						'</div>'+
-					'</div>'+
-				'</div>'+
-			'</div>';
-	}
-	html_string += '</div>';
-	$('#div_contents').html(html_string);
-	$("#div_event_container").scroll(function(event){
-	});*/
-	
 	var html_string = "";
 	html_string += 
 		'<div id="div_event_up"></div>'+
 		'<div class="swiper-container"><div class="swiper-wrapper">';
 	for(var i = 0 ; i < parseInt(event_json.length) ; i++){
-		var start_time = MsToFulldate(event_json[i]["start_time"]);
-		var end_time = MsToFulldate(event_json[i]["end_time"]);
+		var per_date = event_json[i]["start_date"].toString() + event_json[i]["end_date"].toString();
+		var per_time = event_json[i]["start_time"].toString() + event_json[i]["end_time"].toString();
 		html_string +=
 			'<div class="swiper-slide">'+
 				'<div id="div_event_list'+ i +'" class="div_event_item" onclick="javascript:event.stopPropagation();showEvent('+ i +', ' + event_json[i]["uid"] + ');">'+ 
 					'<div style="position: absolute; width:734px; height: 156px; top: 58px; left: 62px;">'+
 						'<div id="event_poster"><img src="./external_image/poster/poster_s/'+ event_json[i]["poster"] +'"></img></div>'+
 						'<div style="position: absolute; width:599px; height: 156px; left: 135px;">'+
-							'<div style="position: absolute; width:599px; height: 25px;">'+
+							'<div style="position: absolute; width:599px; height: 30px;">'+
 								'<div id="event_cate"><img src="'+ global_json.event_categori[event_json[i]["event_cate"]] +'"></img></div>'+
 								'<div id="event_title">'+ event_json[i]["title"] +'</div>'+
 							'</div>'+
-							'<div style="position: absolute; width:584px; height: 111px; top:60px; left: 15px;">'+
+							'<div style="position: absolute; width:599px; height: 111px; top:60px;">'+
 								'<div class="event_sub_info">'+
 									'<div class="event_info_text">'+ global_json.event_info_title[0] +'</div>'+
-									'<div class="event_info_body">'+ getEventPeriod(start_time, end_time) +'</div>'+
+									'<div class="event_info_body">'+ getEventPeriod(per_date, per_time) +'</div>'+
 								'</div>'+
 								'<div class="event_sub_info">'+
 									'<div class="event_info_text">'+ global_json.event_info_title[1] +'</div>'+
@@ -116,6 +81,8 @@ function initEvent(){ //이벤트 리스트 초기화
 		
 	$('#div_contents').html(html_string);
 	
+	if(language == "japanese") $('.event_info_text').css('letter-spacing', '-2');
+	
 	var isLoop = true;
 	if($('.swiper-slide').length < 3) isLoop = false;
 	var swiper = new Swiper('.swiper-container',{ 
@@ -124,18 +91,24 @@ function initEvent(){ //이벤트 리스트 초기화
 		direction: 'vertical',
 		loop: isLoop,
 		invert: false,
-		 navigation: {
+		cssMode: true,
+		//draggable : true,
+		//grabCursor: true,
+		navigation: {
 			 nextEl: '#div_event_down',
 		     prevEl: '#div_event_up',
-		 },
+		},
+		 
 	});
+	//http://dohoons.com/test/flick/
+	//swiper.allowTouchMove;
 }
 
 function showEvent(i, uid){ //각 이벤트 상세 내용
 	$('#div_contents').html('');
 	
-	var start_time = MsToFulldate(event_json[i]["start_time"]);
-	var end_time = MsToFulldate(event_json[i]["end_time"]);
+	var per_date = event_json[i]["start_date"].toString() + event_json[i]["end_date"].toString();
+	var per_time = event_json[i]["start_time"].toString() + event_json[i]["end_time"].toString();
 	
 	var html_string = "";
 	html_string += 
@@ -149,7 +122,7 @@ function showEvent(i, uid){ //각 이벤트 상세 내용
 				'<div style="position: absolute; width:497px; height: 90px; top:160px; left: 365px;">'+
 					'<div class="event_sub_info_detail">'+
 						'<div class="event_info_text_detail">'+ global_json.event_info_title[0] +'</div>'+
-						'<div class="event_info_body_detail">'+ getEventPeriod(start_time, end_time) +'</div>'+
+						'<div class="event_info_body_detail">'+ getEventPeriod(per_date, per_time) +'</div>'+
 					'</div>'+
 					'<div class="event_sub_info_detail">'+
 						'<div class="event_info_text_detail">'+ global_json.event_info_title[1] +'</div>'+
@@ -192,6 +165,8 @@ function showEvent(i, uid){ //각 이벤트 상세 내용
 			'</div>';
 	}
 	$('#div_detail_contents').html(html_string);
+	
+	if(language == "japanese") $('.event_info_text_detail').css('letter-spacing', '-2');
 	
 	backPage(6);
 }

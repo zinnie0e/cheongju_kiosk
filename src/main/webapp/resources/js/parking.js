@@ -1,4 +1,4 @@
-function showArea2() {
+function showParking() {
 	var html_string = "";
 	showSideTop(1);
 	$('#div_contents').html(html_string);
