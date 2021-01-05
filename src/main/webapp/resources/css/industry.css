@@ -9,6 +9,7 @@
 .div_side_area0 {
 	width: 100px;
 	height: 120px;
+	margin-bottom: 1px;
 }
 
 .div_area0_side_detail {
@@ -23,13 +24,22 @@
 	text-align: left;
 }
 
+#div_industry_map {
+	position: absolute;
+	top: 80px;
+	width: 790px;
+	height: 592px;
+}
+
 #div_industry_name {
 	position: relative;
-	top: 25px;
+	top: 35px;
 	left: 15px;
 	width: 150px;
 	height: 50px;
-	color: white;
+	color: #ffffff;
+	margin-top: 1;
+	font-family:Noto Sans CJK KR Medium;
 }
 
 #div_industry_detail {
@@ -78,17 +88,19 @@
 
 .div_industry_name {
 	position:absolute;
-	width: 250px;
+	width: auto;
 	height: 30px;
 	top: 35px;
 	left: 75px;
+	font-size: 20px;
 }
 
 .div_industry_unit {
 	position:absolute;
-	width: 250px;
+	float: left;
+	width: auto;
 	height: 30px;
-	top: 78px;
+	top: 70px;
 	left: 75px;
 }
 
@@ -124,7 +136,7 @@
 }
 
 #div_business {
-	position: relative;
+	position: absolute;
 	left: 75px;
 	width: 100px;
 	height: 20px;
@@ -147,74 +159,51 @@
 	margin-bottom: 15px;
 }
 
-#div_business_value0 {
+#div_busi {
 	position: absolute;
-	top: 36px;
 	left: 200px;
-	border: 3px solid red;
-	
-	margin-bottom: 15px;
-	
+	width : auto;
+	height : 20px;
 }
-#div_business_value1 {
-	position: absolute;
-	top: 36px;
-	left: 245px;
+
+#div_business_value {
 	border: 3px solid red;
-	
-	margin-bottom: 15px;
-}
-#div_business_value2 {
-	position: absolute;
-	top: 36px;
-	left: 290px;
-	border: 3px solid red;
-	
+	float: left;
+	width: auto;
 	margin-bottom: 15px;
 	margin-right: 5px;
-}
-#div_business_value3 {
-	position: absolute;
-	top: 36px;
-	left: 335px;
-	border: 3px solid red;
 	
-	margin-bottom: 15px;
 }
-#div_business_value4 {
+
+#div_info_bottom {
 	position: absolute;
-	top: 36px;
-	left: 380px;
-	border: 3px solid red;
-	
-	margin-bottom: 15px;
-}
-#div_business_value5 {
-	position: absolute;
-	top: 36px;
-	left: 200px;
-	border: 3px solid red;
-	
-	margin-bottom: 15px;
+	float: left;
+	top: 125px;
+	left: 75px;
+	height: 20px;
+	width: 800px;;
 }
 
 #div_item_value {
-	position: absolute;
+	float: left;
 	top: 71px;
 	left: 200px;
 }
 
+.div_img {
+	width: 18px;
+	height: 18px;
+	margin-right: 10px;
+}
+
 #div_phone {
-	position: absolute;
 	float: left;
-	top: 125px;
-	left: 80px;
 }
 
 #div_mail {
 	float: left;
 	top: 125px;
-	left: 240px;
+	left: 220px;
 }
 
 #div_website {
@@ -224,26 +213,23 @@
 }
 
 #p_phone_value {
-	position: absolute;
-	margin-top: -2px;
+	float: left;
+	width: auto;
+	margin-top: 0px;
 	margin-right: 25px;
-	top: 0px;
-	left: 25px;
-	width: 110px;
 }
-#p_email_value {
-	margin-top: -2px;
-	margin-right: 25px;
-	top: 0px;
 
-	width: 150px;
+#p_email_value {
+	float: left;
+	width: auto;
+	margin-top: 0px;
+	margin-right: 25px;
 }
 #p_homepage_value {
-	margin-top: -2px;
+	float: left;
+	width: auto;
+	margin-top: 0px;
 	margin-right: 25px;
-	top: 0px;
-
-	width: 150px;
 }
 
 #div_industry_logo {

@@ -2,6 +2,7 @@ function showArea1_0() {
 	initJsonArea1_0();
 	showSideTop(11);
 	var html_string = '<div id="div_contents2">'+
+					  '<div id="div_flow_map"></div>'+
 					  '<div id="div_side_detail">'+
 					  '</div>'+
 					  '<div id="div_scroll_top"></div>'+
@@ -116,15 +117,23 @@ function setSideDetailArea1_0(index) {
 			before = null;
 		});
 	});
-	
 	showArea1_0Flow(shop_json.area1_0_shop_list[index].flow);
 	var data = shop_json.area1_0_shop_list;
+	var flow = parseInt(data[index].flow)+1;
 	$('#div_area1_0_pin').css('top', data[index].top);
 	$('#div_area1_0_pin').css('left', data[index].left);
 	$('#div_area1_0_pin').show();
-	
+	$('#div_area1_0_pin').css('background-image', 'url(./resources/image/poi/point_arrival.png)');
+	html_string = '<div id="div_wonder_logo"></div>'+
+				  '<div id="div_wonder_name"><b>' + data[index].name + '</b></div>'+
+				  '<div id="div_wonder_flow">문화제조창 원더아리아 <b>' + flow + '층</b></div>';
+	$('#div_shop_info').html(html_string);
+	logNow(index);
+	logNow(data[index].logo);
 	$('#div_shop_info').css('background-image', 'url(./resources/image/culture/culture_wonder_detail_bg.png)');
+	$('#div_wonder_logo').css('background-image', 'url(' + data[index].logo + ')');
 	$('#div_area1_0_side_detail' + index + '').css('background-image', 'url(./resources/image/culture/menu_culture_wonder_list_sellect_bg.png)');
+	$('#div_flow_map').css('background-image', 'url(' + global_json.culture_wonder_map[data[index].flow] + ')');
 	if(!(before == null) || !(index == before)) {
 		$('#div_area1_0_side_detail' + before + '').css('background-image', 'url(./resources/image/culture/menu_culture_wonder_list_bg.png)');
 	}

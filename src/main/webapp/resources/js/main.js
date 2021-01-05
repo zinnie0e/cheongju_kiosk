@@ -22,7 +22,6 @@ function resetTimer(){ // 타이머 초기화 함수
 }
 
 function startTimer(){ // 타이머 시작 함수
-	logNow(remainSeconds);
 	if(remainSeconds > 0){
 		remainSeconds -= 1;
 		setTimeout("startTimer()",1000); //1초간격으로 재귀호출
@@ -77,7 +76,6 @@ function initPromotion(play) {
 }
 function getPollution(){
 	$.getJSON( "./resources/apival/pollution.jsp", function( pollutionData ) {
-		logNow(pollutionData);
 		poll_info = 'url(./resources/image/main/dust_icon_';
 		var compare = pollutionData.compare;
 		if(compare == 1)
@@ -203,7 +201,6 @@ function showSideTop(index_num) {
 			for(var i = 3; i < 8; i++){
 				html_string += '<div id="div_main_side' + i + '" class="div_main_side_mid" onclick="javascript:setArea1(this, ' + (i - 3) + ');"></div>';
 			}
-			
 			setSide(0);
 			break;
 		}

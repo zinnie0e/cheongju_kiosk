@@ -24,21 +24,25 @@ function setArea1(document, index_num) {
 		case 1: {
 			//한국공예관
 			showArea1_1();
+			setSide(5);
 			break;
 		}
 		case 2: {
 			//미디어재단
 			showArea1_3();
+			setSide(6);
 			break;
 		}
 		case 3: {
 			//열린도서관
 			showArea1_2();
+			setSide(7);
 			break;
 		}
 		case 4: {
 			//산업진흥재단
 			showArea1_4();
+			setSide(8);
 			break;
 		}
 	}
