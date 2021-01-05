@@ -9,6 +9,7 @@
 .div_side_area0 {
 	width: 100px;
 	height: 120px;
+	margin-bottom: 1px;
 }
 
 .div_area0_side_detail {
@@ -23,13 +24,22 @@
 	text-align: left;
 }
 
+#div_industry_map {
+	position: absolute;
+	top: 80px;
+	width: 790px;
+	height: 592px;
+}
+
 #div_industry_name {
 	position: relative;
-	top: 25px;
+	top: 35px;
 	left: 15px;
 	width: 150px;
 	height: 50px;
-	color: white;
+	color: #ffffff;
+	margin-top: 1;
+	font-family:Noto Sans CJK KR Medium;
 }
 
 #div_industry_detail {
@@ -78,17 +88,19 @@
 
 .div_industry_name {
 	position:absolute;
-	width: 250px;
+	width: auto;
 	height: 30px;
 	top: 35px;
 	left: 75px;
+	font-size: 20px;
 }
 
 .div_industry_unit {
 	position:absolute;
-	width: 250px;
+	float: left;
+	width: auto;
 	height: 30px;
-	top: 75px;
+	top: 70px;
 	left: 75px;
 }
 
@@ -116,50 +128,108 @@
 
 #div_ceo {
 	position: relative;
-	left: 170px;
+	left: 75px;
+	width: 80px;
+	height: 20px;
 	
-	margin-bottom: 17px;
+	margin-bottom: 15px;
 }
 
 #div_business {
-	position: relative;
-	left: 170px;
+	position: absolute;
+	left: 75px;
+	width: 100px;
+	height: 20px;
 	
 	margin-bottom: 15px;
 }
 
 #div_item {
 	position: relative;
-	left: 170px;
+	left: 75px;
+	width: 80px;
+	height: 20px;
+}
+
+#div_ceo_value {
+	position: absolute;
+	top: 0px;
+	left: 200px;
+	
+	margin-bottom: 15px;
+}
+
+#div_busi {
+	position: absolute;
+	left: 200px;
+	width : auto;
+	height : 20px;
+}
+
+#div_business_value {
+	border: 3px solid red;
+	float: left;
+	width: auto;
+	margin-bottom: 15px;
+	margin-right: 5px;
+	
+}
+
+#div_info_bottom {
+	position: absolute;
+	float: left;
+	top: 125px;
+	left: 75px;
+	height: 20px;
+	width: 800px;;
+}
+
+#div_item_value {
+	float: left;
+	top: 71px;
+	left: 200px;
+}
+
+.div_img {
+	width: 18px;
+	height: 18px;
+	margin-right: 10px;
 }
 
 #div_phone {
-	position: absolute;
 	float: left;
-	top: 125px;
-	left: 80px;
 }
 
 #div_mail {
-	position: absolute;
 	float: left;
 	top: 125px;
-	left: 240px;
+	left: 220px;
 }
 
 #div_website {
-	position: absolute;
 	float: left;
 	top: 125px;
 	left: 455px;
 }
 
-#p_value {
-	position: absolute;
-	margin-top: -2px;
-	top: 0px;
-	left: 25px;
-	width: 130px;
+#p_phone_value {
+	float: left;
+	width: auto;
+	margin-top: 0px;
+	margin-right: 25px;
+}
+
+#p_email_value {
+	float: left;
+	width: auto;
+	margin-top: 0px;
+	margin-right: 25px;
+}
+#p_homepage_value {
+	float: left;
+	width: auto;
+	margin-top: 0px;
+	margin-right: 25px;
 }
 
 #div_industry_logo {
