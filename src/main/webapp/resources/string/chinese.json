@@ -34,7 +34,11 @@
 						"./resources/image/main/event_categori_per_ch.png", 
 						"./resources/image/main/event_categori_edu_ch.png"],
 	"event_info_title": ["期间", "地点", "查询"],
+	
+	"main_poi1": ["./resources/image/poi/poi_point_me_ch.png", "523", "419"],
+	"main_poi2": ["./resources/image/poi/poi_point_me_ch.png", "450", "240"],
 	"hours": "./resources/image/main/hours_ch.png",
+	"tour" : "./resources/image/main/tour_ch.png",
 	
 	"main_language" : "./resources/image/main/main_language_ch.png",
 	"btn_main_map" : ["./resources/image/main/btn_main_map_industry_ch.png",
@@ -53,6 +57,8 @@
 	"culture_wonder_floor" : ["./resources/image/culture/culture_wonder_1f_ch.png",
 								"./resources/image/culture/culture_wonder_2f_ch.png",
 								"./resources/image/culture/culture_wonder_5f_ch.png"],
+	"culture_wonder_detail" : "文化制造厂 Wonder Aria",										
+								
 	"culture_craft" : "./resources/image/culture/culture_craft_ch.png",
 	"culture_craft_detail" : ["./resources/image/culture/culture_craft_1f_ch.png",
 						   	"./resources/image/culture/culture_craft_3f_ch.png",

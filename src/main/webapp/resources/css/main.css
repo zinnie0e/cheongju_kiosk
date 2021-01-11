@@ -28,11 +28,19 @@ body {
 /* @import url(https://fonts.googleapis.com/earlyaccess/notosanskr.css);
 @import url(https://fonts.googleapis.com/earlyaccess/notosansjp.css); */
 
+@font-face {
+	font-family: "msyhbd";
+	src: url('./resources/font/MicrosoftYaHei-Bold-01.ttf') format("truetype");
+}
+
 .font_jp { /* 일본어 사용시 일본어 글꼴 */
     font-family: 'Noto Sans JP', sans-serif;
 }
 .font_kr { /* 한국어 사용시 한국어 글꼴 */
     font-family: 'Noto Sans KR', sans-serif;
+}
+.font_ch {
+	font-family: msyhbd;
 }
 
 #kiosk_root {
@@ -254,6 +262,12 @@ body {
 	width: 100%;
 	height: 84px;
 } 
+
+#div_main_poi {
+	position: absolute;
+	width: 70px;
+	height: 97px;
+}
 
 #div_area0 {
 	position:absolute;

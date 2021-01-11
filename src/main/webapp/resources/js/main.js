@@ -12,7 +12,7 @@ $(document).ready(function(){
 	initJsonPromotion();
 	resetTimer();
 	startTimer();
-	
+
 });
 
 var initSeconds = 60; // 타이머 초
@@ -63,7 +63,6 @@ function initPromotion(play) {
 		$('#div_promotion').css('background-image', promotion_json[promotion_num]);
 		promotion_timer = setInterval(() => {
 			$('#div_promotion').css('background-image', promotion_json[promotion_num]);
-			
 			promotion_num++;
 			if(promotion_num >= promotion_json.length){
 				promotion_num = 0;
@@ -71,6 +70,7 @@ function initPromotion(play) {
 		}, 15 * 1000);
 	} else {
 		clearInterval(promotion_timer);
+		$('#div_promotion').css('background-image', promotion_json[1]);
 		$("#div_promotion").addClass("blurEffect");
 		$('#div_promotion').html('<div id="div_promotion" style="background-color: rgba(0, 0, 0, 0.8);"></div>');
 	}
@@ -79,7 +79,7 @@ function initPollution(){
 	$.getJSON( "./resources/apival/pollution.jsp", function( pollutionData ) {
 		poll_info = 'url(./resources/image/main/dust_icon_';
 		var compare = pollutionData.compare;
-		if(compare == 1)
+		if(compare == 1 || compare == null)
 			poll_info += "good.png";
 		else if(compare == 2)
 			poll_info += "ordinary.png";
@@ -153,7 +153,6 @@ function initKiosk() {
 	
 	initJson(language);
 	initTicker();
-	initJsonPromotion();
 	
 	$('#div_main').attr('onclick', 'initMain();');
 }
@@ -199,6 +198,7 @@ function initMain() {
 	$('#div_main').removeAttr('onclick');
 	
 	initPromotion(false);
+	
 	initTicker();
 	
 	$('#div_contents').show();
@@ -266,7 +266,7 @@ function showMain() {
 		html_string += '<div id="div_milestone' + i + '" class="div_milestone" onclick="javascript:setMainArea(' + i + ');"></div>';
 		html_string += '<div id="div_milestone_sub' + i + '" onclick="javascript:setMainArea(' + i + ');"></div>';
 	}
-	html_string += '</div>';
+	html_string += '</div><div id="div_main_poi"></div>';
 	
 	html_string += '<div id="div_language"><div id="div_language_container">';
 	for(var i = 0; i < 4; i++){
@@ -276,6 +276,17 @@ function showMain() {
 	
 	$('#div_contents').html(html_string);
 	if(language == null) language = "korean";
+	
+	kioskNum = window.location.href.slice(-1);
+	if(kioskNum == 1) {
+		$('#div_main_poi').css('top', global_json.main_poi1[1]+"px");
+		$('#div_main_poi').css('left', global_json.main_poi1[2]+"px");
+		$('#div_main_poi').css('background-image', 'url(' + global_json.main_poi1[0] + ')');
+	} else if(kioskNum == 2) {
+		$('#div_main_poi').css('top', global_json.main_poi2[1]+"px");
+		$('#div_main_poi').css('left', global_json.main_poi2[2]+"px");
+		$('#div_main_poi').css('background-image', 'url(' + global_json.main_poi2[0] + ')');
+	}
 	$('#div_contents').css('background-image', 'url(./resources/image/main/main_map.png)');
 	$('#div_language').css('background-image', 'url(' + global_json.main_language + ')');
 	$('#div_milestone0').css('background-image', 'url(' + global_json.btn_main_map[0] + ')');
@@ -283,6 +294,7 @@ function showMain() {
 	$('#div_milestone2').css('background-image', 'url(' + global_json.btn_main_map[2] + ')');
 	$('#div_milestone3').css('background-image', 'url(' + global_json.btn_main_map[3] + ')');
 	$('#div_milestone4').css('background-image', 'url(' + global_json.btn_main_map[4] + ')');
+	
 }
 
 function setMainArea(index_num) {
@@ -359,7 +371,7 @@ function setMainSide(document, index_num) {
 		case 2: {
 			setSide(3);
 			$('#div_contents').html('');
-			$('#div_contents').css('background-image', 'url(./resources/image/main/tour.png)');
+			$('#div_contents').css('background-image', 'url('+ global_json.tour +')');
 			break;
 		}
 	}
@@ -384,7 +396,7 @@ function setMainLanguage(index_num) {
 		case 2: 
 			language = "chinese";
 			 $("#kiosk_root").removeClass("font_kr");
-             $("#kiosk_root").addClass("font_jp");
+             //$("#kiosk_root").addClass("font_ch");
 			break;
 		case 3: 
 			language = "japanese";
@@ -451,10 +463,15 @@ function scrollCheck() {
 	$('#div_area0_pin').hide();
 	$('#div_area0_industry').hide();
 	$('#div_scroll_top').hide();
+	if($('#div_side_detail').children().length < 12) {
+		$('#div_scroll_bottom').hide();
+		$('#div_scroll_top').hide();
+	}
 	$("#div_side_detail").scroll(function(){
 		resetTimer();
 		var scrollTop = $("#div_side_detail").scrollTop();
 		var innerHeight = $('#div_side_detail').innerHeight();
+
 		if(scrollTop > 0) {
 			$('#div_scroll_top').show();
 		}
@@ -467,5 +484,16 @@ function scrollCheck() {
 		if(scrollTop + innerHeight >= $('#div_side_detail').prop('scrollHeight')) {
 			$('#div_scroll_bottom').hide();
 		}
+
+		
 	});
+	
+}
+
+//스크롤 화살표 동작
+function scrollMove(index) {
+	if(index=="up")
+		$("#div_side_detail").scrollTop($("#div_side_detail").scrollTop()-100);
+	else if(index=="down")
+		$("#div_side_detail").scrollTop($("#div_side_detail").scrollTop()+100);
 }

@@ -34,7 +34,11 @@
 						"./resources/image/main/event_categori_per_en.png", 
 						"./resources/image/main/event_categori_edu_en.png"],
 	"event_info_title": ["Duration", "location", "Inquiry"],
+	
+	"main_poi1": ["./resources/image/poi/poi_point_me_en.png", "523", "419"],
+	"main_poi2": ["./resources/image/poi/poi_point_me_en.png", "450", "240"],
 	"hours": "./resources/image/main/hours_en.png",
+	"tour" : "./resources/image/main/tour_en.png",
 
 	"main_language" : "./resources/image/main/main_language_en.png",
 	"btn_main_map" : ["./resources/image/main/btn_main_map_industry_en.png",
@@ -53,6 +57,8 @@
 	"culture_wonder_floor" : ["./resources/image/culture/culture_wonder_1f_en.png",
 								"./resources/image/culture/culture_wonder_2f_en.png",
 								"./resources/image/culture/culture_wonder_5f_en.png"],
+	"culture_wonder_detail" : "Culture & Art Factory Wonder Aria",								
+								
 	"culture_craft" : "./resources/image/culture/culture_craft_en.png",
 	"culture_craft_detail" : ["./resources/image/culture/culture_craft_1f_en.png",
 						   	"./resources/image/culture/culture_craft_3f_en.png",
