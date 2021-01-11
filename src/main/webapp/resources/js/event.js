@@ -35,7 +35,11 @@ function getEventPeriod(per_date, per_time){
 
 function initEvent(){ //이벤트 리스트 초기화
 	initJsonEvent();
-	logNow(event_json);
+	
+	$('#div_contents').bind("touchMove",function(e){
+		//e.preventDefault();
+	});  
+	
 	$('#div_contents').html('');
 	$('#div_contents').css('background-image', 'url('+ global_json.event_bg +')');
 	
@@ -50,7 +54,7 @@ function initEvent(){ //이벤트 리스트 초기화
 			'<div class="swiper-slide">'+
 				'<div id="div_event_list'+ i +'" class="div_event_item" onclick="javascript:event.stopPropagation();showEvent('+ i +', ' + event_json[i]["uid"] + ');">'+ 
 					'<div style="position: absolute; width:734px; height: 156px; top: 58px; left: 62px;">'+
-						'<div id="event_poster"><img src="./external_image/poster/poster_s/'+ event_json[i]["poster"] +'"></img></div>'+
+						'<div id="event_poster"><img src="./external_image/promotion/'+ event_json[i]["poster"] +'" width="106px" height="152px"></img></div>'+
 						'<div style="position: absolute; width:599px; height: 156px; left: 135px;">'+
 							'<div style="position: absolute; width:599px; height: 30px;">'+
 								'<div id="event_cate"><img src="'+ global_json.event_categori[event_json[i]["event_cate"]] +'"></img></div>'+
@@ -76,7 +80,7 @@ function initEvent(){ //이벤트 리스트 초기화
 			'</div>';
 	}
 	html_string += 
-		'</div></div>'+
+		'</div><div class="swiper-pagination"></div></div>'+
 		'<div id="div_event_down"></div>';
 		
 	$('#div_contents').html(html_string);
@@ -84,32 +88,33 @@ function initEvent(){ //이벤트 리스트 초기화
 	if(language == "japanese") $('.event_info_text').css('letter-spacing', '-2');
 	
 	var isLoop = true;
-	if($('.swiper-slide').length < 3) isLoop = false;
+	if($('.swiper-slide').length < 3) {
+		isLoop = false;
+		$('#div_event_up').hide();
+		$('#div_event_down').hide();
+	}
 	var swiper = new Swiper('.swiper-container',{ 
 		slidesPerView: 3,
+		//slidesPerGroup: 10,
 	    spaceBetween: 0,
 		direction: 'vertical',
-		loop: isLoop,
-		invert: false,
-		cssMode: true,
-		//draggable : true,
-		//grabCursor: true,
+		loop: true,
+		//loopedSlides: 3,
+		//invert: true,
+		cssMode: true, //false 마우스 드래그, true 터치 슬라이드
 		navigation: {
 			 nextEl: '#div_event_down',
 		     prevEl: '#div_event_up',
 		},
-		 
 	});
-	//http://dohoons.com/test/flick/
-	//swiper.allowTouchMove;
+	backPage(1);
 }
+
 
 function showEvent(i, uid){ //각 이벤트 상세 내용
 	$('#div_contents').html('');
-	
 	var per_date = event_json[i]["start_date"].toString() + event_json[i]["end_date"].toString();
 	var per_time = event_json[i]["start_time"].toString() + event_json[i]["end_time"].toString();
-	
 	var html_string = "";
 	html_string += 
 		'<div id="div_contents" onclick="javascript:initEvent();" style="background-color: rgba(0, 0, 0, 0.7);">'+
@@ -118,7 +123,9 @@ function showEvent(i, uid){ //각 이벤트 상세 내용
 					'<div id="event_cate_detail"><img src="'+ global_json.event_categori[event_json[i]["event_cate"]] +'"></img></div>'+
 					'<div id="event_title_detail">'+ event_json[i]["title"] +'</div>'+
 				'</div>'+
-				'<div id="event_poster_detail"><img src="./external_image/poster/'+ event_json[i]["poster"] +'"></img></div>'+
+				'<div id="event_poster_detail"><img src="./external_image/promotion/'+ event_json[i]["poster"] +'" width="282px" height="399px"></img></div>'+
+				//'<div id="event_poster_detail"><img src="./external_image/promotion/temp_promotion.png" width="282px" height="399px"></img></div>'+
+				
 				'<div style="position: absolute; width:497px; height: 90px; top:160px; left: 365px;">'+
 					'<div class="event_sub_info_detail">'+
 						'<div class="event_info_text_detail">'+ global_json.event_info_title[0] +'</div>'+
@@ -142,7 +149,6 @@ function showEvent(i, uid){ //각 이벤트 상세 내용
 	var event_detail_json = null;
 	
 	var sendData = {language: getAbbOfLanguage(language), event_uid: uid};
-	logNow(sendData);
 	$.ajax({
 		type: "POST",
 		contentType: "application/json; charset=utf-8;",
@@ -151,7 +157,6 @@ function showEvent(i, uid){ //각 이벤트 상세 내용
 		url: SETTING_URL + "/event/select_event_detail_list",
 		data : JSON.stringify(sendData),
 		success: function (result) {
-			logNow(result);
 			event_detail_json = result;
 		}
 	});

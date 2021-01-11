@@ -3,5 +3,6 @@ function showFoundation() {
 	setSide(8);
 	html_string = '<div id="div_contents"></div>';
 	$('#div_contents').css('background-image', 'url('+ global_json.foundation +')');
+	//$('#div_contents').css('background-image', 'url(./resources/image/main/foundation_ko.png)');
 	$('#div_contents').html(html_string);
 }

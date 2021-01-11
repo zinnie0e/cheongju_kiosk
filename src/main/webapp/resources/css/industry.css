@@ -24,22 +24,35 @@
 	text-align: left;
 }
 
+#div_industry_pin {
+	position:absolute;
+	width: 50px;
+	height: 70px;
+}
+
 #div_industry_map {
+	text-align: center;
 	position: absolute;
-	top: 80px;
+	top: 180px;
 	width: 790px;
-	height: 592px;
+	height: 492px;
 }
 
 #div_industry_name {
-	position: relative;
-	top: 35px;
-	left: 15px;
-	width: 150px;
-	height: 50px;
+	position:relative;
+	line-height:30px;
+	vertical-align:middle;
+	width: 180px;
+	height: 100px;
 	color: #ffffff;
-	margin-top: 1;
 	font-family:Noto Sans CJK KR Medium;
+}
+
+#mul {
+	position:absolute;
+	left:20px;
+	top:50%;
+	transform: translate(0, -50%)
 }
 
 #div_industry_detail {
@@ -172,7 +185,8 @@
 	width: auto;
 	margin-bottom: 15px;
 	margin-right: 5px;
-	
+	padding-left: 10px;
+	padding-right: 10px;	
 }
 
 #div_info_bottom {

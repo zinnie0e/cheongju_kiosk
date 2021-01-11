@@ -34,7 +34,11 @@
 						"./resources/image/main/event_categori_per_jp.png", 
 						"./resources/image/main/event_categori_edu_jp.png"],
 	"event_info_title": ["デュレーション", "ロケーション", "問い合わせ"],
+	
+	"main_poi1": ["./resources/image/poi/poi_point_me_jp.png", "523", "419"],
+	"main_poi2": ["./resources/image/poi/poi_point_me_jp.png", "450", "240"],
 	"hours": "./resources/image/main/hours_jp.png",
+	"tour" : "./resources/image/main/tour_jp.png",
 	
 	"main_language" : "./resources/image/main/main_language_jp.png",
 	"btn_main_map" : ["./resources/image/main/btn_main_map_industry_jp.png",
@@ -53,6 +57,8 @@
 	"culture_wonder_floor" : ["./resources/image/culture/culture_wonder_1f_jp.png",
 								"./resources/image/culture/culture_wonder_2f_jp.png",
 								"./resources/image/culture/culture_wonder_5f_jp.png"],
+	"culture_wonder_detail" : "文化製造窓 ワンダーアリア",
+	
 	"culture_craft" : "./resources/image/culture/culture_craft_jp.png",
 	"culture_craft_detail" : ["./resources/image/culture/culture_craft_1f_jp.png",
 						   	"./resources/image/culture/culture_craft_3f_jp.png",

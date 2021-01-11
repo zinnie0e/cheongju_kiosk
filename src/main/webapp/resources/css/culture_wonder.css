@@ -22,6 +22,19 @@
 	height: 592px;
 }
 
+#div_asst_flow {
+	position: absolute;
+	top: 420px;
+	left: 75px;
+}
+
+.div_asst_flow {
+	top: 571px;
+	left: 75px;
+	width: 60px;
+	height: 51px;
+	margin-bottom: 100px;
+}
 #div_area1_0_flow {
 	position:absolute;
 	width: 180px;
@@ -60,12 +73,20 @@
 }
 
 #div_shop_name {
-	position: relative;
-	top: 35px;
-	left: 15px;
-	width: 150px;
-	height: 50px;
+	position:relative;
+	line-height:30px;
+	vertical-align:middle;
+	width: 180px;
+	height: 100px;
 	color: #ffffff;
+	font-family:Noto Sans CJK KR Medium;
+}
+
+#mul {
+	position:absolute;
+	left:20px;
+	top:50%;
+	transform: translate(0, -50%)
 }
 
 #div_wonder_logo {
