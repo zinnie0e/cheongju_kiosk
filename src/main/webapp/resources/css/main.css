@@ -180,6 +180,7 @@ body {
 	position:absolute;
 	width: var(--full-width);
     height: var(--promotion-height);
+    background-size: cover;
 }
 
 #div_bottom{
