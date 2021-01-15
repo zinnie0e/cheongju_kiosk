@@ -1,5 +1,6 @@
 const IS_DEBUG = true;
 var SETTING_URL = "http://localhost:9090";
+//var SETTING_URL = "http://guruiot.iptime.org:10000/kioskserver";
 
 function logNow(logContents){
     if(IS_DEBUG){
@@ -15,13 +16,14 @@ $(document).ready(function(){
 
 });
 
-var initSeconds = 10000; // 타이머 초
+var initSeconds = 60; // 타이머 초
 var remainSeconds;
 function resetTimer(){ // 타이머 초기화 함수
 	remainSeconds = initSeconds; 
 }
 
 function startTimer(){ // 타이머 시작 함수
+	logNow(remainSeconds);
 	if(remainSeconds > 0){
 		remainSeconds -= 1;
 		setTimeout("startTimer()",1000); //1초간격으로 재귀호출
@@ -63,6 +65,8 @@ function initPromotion(play) {
 		$('#div_promotion').show();
 		$('#div_promotion').css('background-image', 'url(./external_image/promotion/'+ promotion_json[promotion_num]["poster"] +')');
 		promotion_timer = setInterval(() => {
+			resetTimer();
+			promotion_num++;
 			$('#div_promotion').css('background-image', 'url(./external_image/promotion/'+ promotion_json[promotion_num]["poster"] +')');
 			promotion_num++;
 			if(promotion_num >= promotion_json.length){
