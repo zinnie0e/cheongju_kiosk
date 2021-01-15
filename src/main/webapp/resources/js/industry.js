@@ -5,9 +5,7 @@ function showArea0() {
 		initJsonCHJP();
 	showSideTop(2);
 	
-	
-	var html_string = '<div id="div_industry_map"></div>'+
-		'<div id="div_industry_pin"></div>'+
+	var html_string = '<div id="div_industry_map"><div id="div_industry_pin"></div></div>'+
 		'<div id="div_side_detail">'+
 					  '</div>'+
 					  '<div id="div_scroll_top" onclick="javascript:scrollMove(\'up\')"></div>'+
@@ -123,12 +121,13 @@ function showSideDetailArea0(index_value) {
 		if($('#div_area0_side_detail').length >= 10) {
 			$('#div_scroll_bottom').hide();
 		}
-	} else if(language == "korean"){
+	} else// if(language == "korean")
+		{
 		industrySort(flow);
-		koreanList(index_value);
-	} else if(language == "english" || language == "chinese" || language == "japanese") {
-		industrySort(flow);
-		englishList(index_value);
+		viewList(index_value);
+	//} else if(language == "english" || language == "chinese" || language == "japanese") {
+	//	industrySort(flow);
+	//	englishList(index_value);
 	}
 	if($('#div_side_detail').children().length < 12) {
 		$('#div_scroll_bottom').hide();
@@ -192,6 +191,7 @@ function setSideDetailArea0(index, name) {
 	}
 	var infolist = [];
 	var complex = [];
+	// 각 언어별 정의
 	if(language == "korean") {
 		infolist[0] = "대표자";
 		infolist[1] = "사업분야";
@@ -221,12 +221,14 @@ function setSideDetailArea0(index, name) {
 		'<div id="div_industry_detail0" class="div_industry_name"><b>' + data.name + '</b></div>'+
 		'<div id="div_industry_detail1" class="div_industry_unit">' + complex[0] + ' <b>' + data.room + ' '; 
 		if(data.room.slice(-1) != "층") html_string += complex[1];
-		html_string += '</b></div>'+
-		'<div id="div_industry_logo">'+
-			'<img src="">'+
-		'</div>'+
+		html_string += '</b></div>';
+		if(data.logo)
+		html_string += '<div id="div_industry_logo">';
+		// 산업단지 기업 설명 데이터 출력 부분
+		html_string +=
+			'</div>'+
 			'<div id="div_industry_info">';
-				if(data.owner){
+				if(data.owner != '' && data.owner != ' ' && data.owner != null){
 					html_string +=
 						'<div id="div_ceo">' + infolist[0] + '</div>'+
 						'<div id="div_ceo_value">' + data.owner + '</div>';
@@ -237,21 +239,21 @@ function setSideDetailArea0(index, name) {
 						html_string += '<div id="div_business_value">' + busi[i] + '</div>';
 					html_string += '</div>';
 				}
-				if(data.item)
+				if(data.item != '' && data.item != ' ' && data.item != null)
 					html_string += '<div id="div_item">' + infolist[2] + '</div>'+
 								   '<div id="div_item_value">' + data.item + '</div>';
 				html_string += '<div id=div_info_bottom>';
-				if(data.tel) {
+				if(data.tel != '' && data.tel != ' ' && data.tel != null) {
 					html_string += 
 					'<div id="div_phone" class="div_img"></div>'+ 
 						'<p id="p_phone_value">' + data.tel + '</p>';
 				}
-				if(data.email) {
+				if(data.email != '' && data.email != ' ' && data.email != null) {
 				html_string +=
 					'<div id="div_mail" class="div_img"></div>'+
 						'<p id="p_email_value">' + data.email + '</p>';
 				}
-				if(data.homepage) {
+				if(data.homepage != '' && data.homepage != ' ' && data.homepage != null) {
 				html_string +=
 					'<div id="div_website" class="div_img"></div>'+
 					'<p id="p_homepage_value">' + data.homepage + '</p>';
@@ -261,17 +263,21 @@ function setSideDetailArea0(index, name) {
 	
 	var top = "";
 	var left = "";
-	if(data.flow == 1) {
-		top = Number(data.image_x) + Number(100);
-		left = data.image_y-24;
+	
+	// poi 좌표 값 보정
+	left = Number(data.image_x)-Number(25);
+	top = data.image_y-70;
+	/*if(data.flow == 1) {
+		left = Number(data.image_x)-Number(25);
+		top = data.image_y-70;
 	} else if(data.flow == 2) {
-		top = Number(data.image_x)+Number(115);
-		left = data.image_y-26;
+		left = Number(data.image_x)-Number(25);
+		top = data.image_y-70;
 	} else if(data.flow == 3) {
-		top = Number(data.image_x)+Number(110);
-		left = data.image_y-26;
-	}
-			
+		left = Number(data.image_x)-Number(25);
+		top = data.image_y-70;
+	}*/
+	
 	$('#div_industry_detail').html(html_string);
 	$('#div_industry_pin').show();
 	$('#div_industry_pin').css('top', top + 'px');
@@ -280,13 +286,17 @@ function setSideDetailArea0(index, name) {
 	$('#div_area0_pin').show();
 	$('#div_area0_flow').css('top', '575px');
 	$('#div_industry_detail').css('background-image', 'url(./resources/image/industry/industry_detail_bg.png)');
+	$('#div_industry_logo').css('background-image', 'url(./external_image/com_logo/' + data.logo + ')');
 	$('#div_phone').css('background-image', 'url(./resources/image/industry/industry_detail_icon_tel.png)');
 	$('#div_industry_pin').css('background-image', 'url(./resources/image/poi/point_arrival.png)');
 	$('#div_mail').css('background-image', 'url(./resources/image/industry/industry_detail_icon_mail.png)');
 	$('#div_website').css('background-image', 'url(./resources/image/industry/industry_detail_icon_web.png)');
 	$('#div_contents').css('background-image', 'url(' + global_json.industry_floor[data.flow-1] + ')');
 	$('#div_area0_side_detail' + index + '').css('background-image', 'url(./resources/image/industry/menu_industry_list_sellect_bg.png)');
-	$('#div_industry_map').css('background-image', 'url(./resources/image/industry/industry_map_' + data.flow + 'f.png)');
+	logNow(global_json.industry_floor[data.flow-1]);
+	logNow(data.flow);
+	$('#div_industry_map').css('background-image', 'url( ' + global_json.industry_map[data.flow-1] + ' )');
+	// 기업 선택 시 기업리스트 해당 기업 백그라운드 변경, 다른 기업 클릭 시 전환
 	if(!(before == null) || !(index == before)) {
 		$('#div_area0_side_detail' + before + '').css('background-image', 'url(./resources/image/industry/menu_industry_list_bg.png)');
 	}
@@ -307,9 +317,11 @@ function showArea0_Flow(flow){
 	$('#div_area0_industry').hide();
 	$('#div_industry_pin').hide();
 	$('#div_contents').css('background-image', 'url(' + global_json.industry_floor[flow] + ')');
-	$('#div_industry_map').css('background-image', 'url(./resources/image/industry/industry_map_' + (flow+1) + 'f.png)');
+	$('#div_industry_map').css('background-image', 'url( ' + global_json.industry_map[flow] + ' )');
 	$('#div_area0_flow').css('top', '575px');
+	$("#div_side_detail").scrollTop(0)
 	
+	//층별 이미지 클릭 시 해당 층 리스트 출력
 	for(var i = 0; i < industry_json.length; i++){
 		if(industry_json[i].flow == (flow+1)){
 			html_string += '<div id="div_area0_side_detail' + i + '" class="div_area0_side_detail" onclick="javascript:setSideDetailArea0(' + i + ',' + '\'' + industry_json[i].name + '\');">' + '<div id="div_industry_name"><div id="mul">' + industry_json[i].name + '</div></div></div>';
@@ -318,6 +330,7 @@ function showArea0_Flow(flow){
 	
 	$('#div_side_detail').html(html_string);
 	html_string = "";
+	
 	//기업 리스트 11개 이하 스크롤 제거
 	if($('.div_area0_side_detail_list').length <= 11 && $('.div_area0_side_detail').length <= 11) {
 		$('#div_scroll_top').hide();
@@ -333,6 +346,7 @@ function showArea0_Flow(flow){
 		$('#div_scroll_bottom').show();
 		
 	}
+	$('#div_area0_map_flow').hide();
 	$('#div_side_detail').css('overflow', 'auto');
 	$('#div_side_top').css('background-image', 'url('+ global_json.side_industry_top[0] +')');
 	$('.div_area0_side_detail_list').css('background-image', 'url(./resources/image/industry/menu_industry_list_bg.png)');
@@ -340,17 +354,8 @@ function showArea0_Flow(flow){
 	backPage(3);
 }
 
-//한국어 기업 리스트
-function koreanList(index_value) {
-	html_string = "";
-	for(var i = 0; i < sort_list[index_value].length; i++){
-		html_string += '<div id="div_area0_side_detail' + i + '" class="div_area0_side_detail_list" onclick="javascript:setSideDetailArea0(' + i + ',' + '\'' + sort_list[index_value][i] + '\');">' + '<div id="div_industry_name"><div id="mul">' + sort_list[index_value][i] + '</div></div></div>';
-	}
-	$('.div_area0_side_detail_list').css('background-image', 'url(./resources/image/industry/menu_industry_list_bg.png)');
-	$('#div_side_detail').html(html_string);
-}
-//영어 기업 리스트
-function englishList(index_value) {
+//all 제외 기업 리스트 출력
+function viewList(index_value) {
 	html_string = "";
 	for(var i = 0; i < sort_list[index_value].length; i++){
 		html_string += '<div id="div_area0_side_detail' + i + '" class="div_area0_side_detail_list" onclick="javascript:setSideDetailArea0(' + i + ',' + '\'' + sort_list[index_value][i] + '\');">' + '<div id="div_industry_name"><div id="mul">' + sort_list[index_value][i] + '</div></div></div>';
@@ -380,7 +385,6 @@ function industrySort(flow) {
 
 			var fullName = compare[i][1]+sortResult[i];
 			
-			
 			//ㄱㄴ
 			if(compare[i][0] < "b2e4"){
 				sort_list["0"].push(fullName);
@@ -409,8 +413,6 @@ function industrySort(flow) {
 			else{
 				sort_list["6"].push(fullName);
 			}
-					//}
-			//}
 		}
 		for(var i=0; i < 7; i++) {
 			sort_list[i].sort();
@@ -468,6 +470,7 @@ function industrySort(flow) {
 				for(var j=0; j < test_list.length; j++){
 					if(test_list[j] == industry_json[i].en){
 						com = (test_list[j].substring(0,1)).toLowerCase();
+						//ABC
 						if(com < "d"){
 							if(industry_json[i].en == "K.H"){
 							}
@@ -567,29 +570,6 @@ function separation(name) {
 	}
 
 	return division;
-}
-
-//한글 자음모음 분리
-function getConstantVowel(kor) {
-    const f = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ',
-               'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ',
-               'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
-    const s = ['ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ',
-               'ㅖ', 'ㅗ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅛ', 'ㅜ',
-               'ㅝ', 'ㅞ', 'ㅟ', 'ㅠ', 'ㅡ', 'ㅢ', 'ㅣ'];
-    const t = ['', 'ㄱ', 'ㄲ', 'ㄳ', 'ㄴ', 'ㄵ', 'ㄶ',
-               'ㄷ', 'ㄹ', 'ㄺ', 'ㄻ', 'ㄼ', 'ㄽ', 'ㄾ',
-               'ㄿ', 'ㅀ', 'ㅁ', 'ㅂ', 'ㅄ', 'ㅅ', 'ㅆ',
-               'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
-
-    const ga = 44032;
-    let uni = kor.charCodeAt(0);
-
-    uni = uni - ga;
-
-    let fn = parseInt(uni / 588);
-
-    return f[fn];
 }
 
 //알파벳 검사

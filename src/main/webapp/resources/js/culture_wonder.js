@@ -11,7 +11,8 @@ function showArea1_0() {
 		'<div id="div_flow_map"></div>'+
 		'<div id="div_scroll_top" onclick="javascript:scrollMove(\'up\')"></div>'+
 		'<div id="div_scroll_bottom" onclick="javascript:scrollMove(\'down\')"></div>'+
-		'<div id="div_area1_0_pin"></div>'+
+		// 원더아리아 핀 표시 : div_area1_0_pin 주석 모두 풀기 
+		//'<div id="div_area1_0_pin"></div>'+
 		'<div id="div_area1_0_shop"><div id="div_shop_info"></div></div>'+
 		'<div id="div_area1_0_flow">';
 	for(var i = 0; i < 3; i++){
@@ -25,7 +26,7 @@ function showArea1_0() {
 	showSideDetailArea1_0("all");
 	
 	$('#div_area1_0_flow').val("close");
-	$('#div_area1_0_pin').hide();
+	//$('#div_area1_0_pin').hide();
 	$('#div_flow_map').hide();
 	$('#div_area1_0_shop').hide();
 	$('#div_area1_0_shop').css('background-image', '');
@@ -136,32 +137,49 @@ function setSideDetailArea1_0(index) {
 	});
 
 	var flow = parseInt(shop_json[index].flow)+1;
+	var start_time = shop_json[index].start_time;
+	var end_time = shop_json[index].end_time;
 	if(flow == 3) flow = 5;
 
-	$('#div_area1_0_pin').css('top', shop_json[index].image_x + 'px');
-	$('#div_area1_0_pin').css('left', shop_json[index].image_y + 'px');
-	$('#div_area1_0_pin').show();
+	//$('#div_area1_0_pin').css('top', shop_json[index].image_x + 'px');
+	//$('#div_area1_0_pin').css('left', shop_json[index].image_y + 'px');
+	//$('#div_area1_0_pin').show();
 	$('#div_flow_map').show();
-	$('#div_area1_0_pin').css('background-image', 'url(./resources/image/poi/point_arrival.png)');
+	//$('#div_area1_0_pin').css('background-image', 'url(./resources/image/poi/point_arrival.png)');
 	$('#div_area1_0_shop').show();
-	
 	html_string = '<div id="div_wonder_logo"></div>'+
 				  '<div id="div_wonder_name"><b>' + shop_json[index].name + '</b></div>'+
-				  '<div id="div_wonder_flow">' + global_json.culture_wonder_detail + ' <b>' + flow + '층</b></div>';
-	
+				  '<div id="div_wonder_info_img">'+
+				  '<div class="div_wonder_img"><img src="./resources/image/culture/wonder_icon1.png"></img></div>';
+				  if(shop_json[index].start_time != '' && shop_json[index].start_time != ' ' && shop_json[index].start_time != null)
+					  html_string += '<div class="div_wonder_img"><img src="./resources/image/culture/wonder_icon2.png"></img></div>';
+				  if(shop_json[index].tel != '' && shop_json[index].tel != ' ' && shop_json[index].tel != null)
+					  html_string += '<div class="div_wonder_img"><img src="./resources/image/culture/wonder_icon3.png"></img></div>';
+				  html_string += '</div>'+
+				  '<div id="div_wonder_info">'+
+				  '<div class="div_wonder_info">' + global_json.culture_wonder_detail + ' <b>' + flow;
+				  if(language == "korean") html_string += "층";
+				  else html_string +="F";			
+				  html_string += '</b></div>';
+	if(shop_json[index].start_time != '' && shop_json[index].start_time != ' ' && shop_json[index].start_time != null)
+	  html_string += '<div class="div_wonder_info">' + start_time.substring(0,2) + ':' + start_time.substring(2,4) + ' ~ ' + end_time.substring(0, 2) + ':' + end_time.substring(2,4) + '</div>';
+	if(shop_json[index].tel != '' && shop_json[index].tel != ' ' && shop_json[index].tel != null)
+	  html_string += '<div class="div_wonder_info">' + shop_json[index].tel + '</b></div>';
+	  html_string += '</div>';	
 	$('#div_shop_info').html(html_string);
+	$('#div_asst_flow').hide();
 	$('#div_area1_0_flow').css('top', '575px');
 	$('#div_contents2').css('background-image', 'url(' + global_json.culture_wonder_floor[shop_json[index].flow] + ')');
-	$('#div_flow_map').css('background-image', 'url(./resources/image/culture/wonder_map_' + shop_json[index].flow + 'f.png)');
 	$('#div_shop_info').css('background-image', 'url(./resources/image/culture/culture_wonder_detail_bg.png)');
+	$('#div_flow_map').css('background-image', 'url(' + global_json.culture_wonder_shop[shop_json[index].uid-1] + ')');
 	$('#div_wonder_logo').css('background-image', 'url(./resources/image/poi/wonder_logo_L/' + shop_json[index].logo +')');
-	$('#div_area1_0_side_detail' + index + '').css('background-image', 'url(./resources/image/culture/menu_culture_wonder_list_sellect_bg.png)');
-	
+	$('#div_area1_0_side_detail' + index).css('background-image', 'url(./resources/image/culture/menu_culture_wonder_list_sellect_bg.png)');
 	if(!(before == null) || !(index == before)) {
 		$('#div_area1_0_side_detail' + before + '').css('background-image', 'url(./resources/image/culture/menu_culture_wonder_list_bg.png)');
 	}
-	if((index == before))
+	if((index == before)){
 		$('#div_area1_0_side_detail' + before + '').css('background-image', 'url(./resources/image/culture/menu_culture_wonder_list_sellect_bg.png)');
+	}
 	before = index;
 	
 	backPage(5);
@@ -169,18 +187,44 @@ function setSideDetailArea1_0(index) {
 
 //원더아리아 각 층별 이미지
 function showArea1_0Flow(index_num) {
+
+
 	$('#div_contents2').css('background-image', 'url(' + global_json.culture_wonder_floor[index_num] + ')');
-	$('#div_flow_map').css('background-image', 'url(./resources/image/culture/wonder_map_' + index_num + 'f.png)');
+	$('#div_flow_map').css('background-image', 'url(' + global_json.culture_wonder_floor_detail[index_num] + ')');
 	
 	html_string = "";
-
+	//층별 이미지 클릭 시 해당 층 리스트 출력
+	for(var i = 0; i < shop_json.length; i++)
+		if(shop_json[i].flow == (index_num))
+			html_string += '<div id="div_area1_0_side_detail'+i+'" class="div_area1_0_side_detail" onclick="javascript:setSideDetailArea1_0(' + i + ');">' + '<div id="div_shop_name"><div id="mul">' + shop_json[i].name + '</div></div></div>';
+	$('#div_side_detail').html(html_string);
+	
+	//매장 리스트 11개 이하 스크롤 제거
+	if($('.div_area1_0_side_detail').length <= 11) {
+		$('#div_scroll_top').hide();
+		$('#div_scroll_bottom').hide();
+		$('#div_side_detail').css('overflow', 'hidden'); 
+	}
+	else {
+		html_string +=
+			'<div id="div_scroll_top" onclick="javascript:scrollMove(\'up\')"></div>'+
+			'<div id="div_scroll_bottom" onclick="javascript:scrollMove(\'down\')"></div>'+
+		$('div_side_detail').html(html_string);
+		$('#div_scroll_top').hide();
+		$('#div_scroll_bottom').show();
+		
+	}
+	
 	$('.div_area1_0_side_detail').css('background-image', 'url(./resources/image/culture/menu_culture_wonder_list_bg.png)');
-	$('#div_flow_map').css('background-image', 'url(./resources/image/culture/wonder_map_' + index_num + 'f.png)');
+	$('#div_side_top').css('background-image', 'url('+ global_json.side_wonder_top[0] +')');
 	$('#div_area1_0_flow').css('top', '575px');
 	$('#div_area1_0_flow').val("open");
+	$('#div_asst_flow').hide();
 	$('#div_area1_0_shop').hide();
-	$('#div_area1_0_pin').hide();
+	//$('#div_area1_0_pin').hide();
 	$('#div_flow_map').show();
+	
+	backPage(5);
 }
 
 

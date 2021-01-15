@@ -8,14 +8,14 @@ function logNow(logContents){
 }
 
 $(document).ready(function(){
-	initKiosk();
 	initJsonPromotion();
+	initKiosk();
 	resetTimer();
 	startTimer();
 
 });
 
-var initSeconds = 60; // 타이머 초
+var initSeconds = 10000; // 타이머 초
 var remainSeconds;
 function resetTimer(){ // 타이머 초기화 함수
 	remainSeconds = initSeconds; 
@@ -45,12 +45,13 @@ function initJson(language) {
 var promotion_json = null;
 function initJsonPromotion() {
 	$.ajax({
-		async: false,
+		type: "POST",
 		dataType: "json",
-		url: "./resources/temp_promotion.json",
+		url: SETTING_URL + "/event/select_event_promotion",
+		async: false,
 		success: function (result) {
-			promotion_json = result.promotion;
-			initPromotion(true);
+			promotion_json = result;
+			
 		}
 	});
 }
@@ -60,9 +61,9 @@ var promotion_num = 0;
 function initPromotion(play) {
 	if(play){
 		$('#div_promotion').show();
-		$('#div_promotion').css('background-image', promotion_json[promotion_num]);
+		$('#div_promotion').css('background-image', 'url(./external_image/promotion/'+ promotion_json[promotion_num]["poster"] +')');
 		promotion_timer = setInterval(() => {
-			$('#div_promotion').css('background-image', promotion_json[promotion_num]);
+			$('#div_promotion').css('background-image', 'url(./external_image/promotion/'+ promotion_json[promotion_num]["poster"] +')');
 			promotion_num++;
 			if(promotion_num >= promotion_json.length){
 				promotion_num = 0;
@@ -70,7 +71,7 @@ function initPromotion(play) {
 		}, 15 * 1000);
 	} else {
 		clearInterval(promotion_timer);
-		$('#div_promotion').css('background-image', promotion_json[1]);
+		$('#div_promotion').css('background-image', promotion_json[promotion_num]);
 		$("#div_promotion").addClass("blurEffect");
 		$('#div_promotion').html('<div id="div_promotion" style="background-color: rgba(0, 0, 0, 0.8);"></div>');
 	}
@@ -148,6 +149,7 @@ function leadZero(input,digits){
 
 function initKiosk() {
 	hideMainAll();
+	initPromotion(true);
 	
 	if(language == null) language = "korean";
 	
@@ -396,7 +398,7 @@ function setMainLanguage(index_num) {
 		case 2: 
 			language = "chinese";
 			 $("#kiosk_root").removeClass("font_kr");
-             //$("#kiosk_root").addClass("font_ch");
+             $("#kiosk_root").addClass("font_ch");
 			break;
 		case 3: 
 			language = "japanese";

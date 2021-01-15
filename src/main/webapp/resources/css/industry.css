@@ -117,7 +117,6 @@
 	left: 75px;
 }
 
-
 #div_scroll_top {
 	position:absolute;
 	left: 790px;
@@ -252,6 +251,7 @@
 	left: 375px;
 	width: 200px;
 	height: 60px;
+	background-size: 200px 60px;
 }
 #div_area0_map_flow {
 	position: absolute;
@@ -262,4 +262,8 @@
 .div_area0_map_flow {
 	width: 200px;
 	height: 140px;
+}
+
+#div_area0_map_flow1 {
+	margin-bottom: 30px;
 }
