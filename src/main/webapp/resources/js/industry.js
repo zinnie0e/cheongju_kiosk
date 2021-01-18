@@ -236,7 +236,8 @@ function setSideDetailArea0(index, name) {
 				if(busi.length){
 					html_string += '<div id="div_business">' + infolist[1] + '</div><div id="div_busi">';
 					for(var i = 0; i < busi.length; i++)
-						html_string += '<div id="div_business_value">' + busi[i] + '</div>';
+						if(busi[i] != null)
+							html_string += '<div id="div_business_value">' + busi[i] + '</div>';
 					html_string += '</div>';
 				}
 				if(data.item != '' && data.item != ' ' && data.item != null)
@@ -293,8 +294,6 @@ function setSideDetailArea0(index, name) {
 	$('#div_website').css('background-image', 'url(./resources/image/industry/industry_detail_icon_web.png)');
 	$('#div_contents').css('background-image', 'url(' + global_json.industry_floor[data.flow-1] + ')');
 	$('#div_area0_side_detail' + index + '').css('background-image', 'url(./resources/image/industry/menu_industry_list_sellect_bg.png)');
-	logNow(global_json.industry_floor[data.flow-1]);
-	logNow(data.flow);
 	$('#div_industry_map').css('background-image', 'url( ' + global_json.industry_map[data.flow-1] + ' )');
 	// 기업 선택 시 기업리스트 해당 기업 백그라운드 변경, 다른 기업 클릭 시 전환
 	if(!(before == null) || !(index == before)) {

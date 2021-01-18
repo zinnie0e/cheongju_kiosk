@@ -115,6 +115,7 @@ function showEvent(i, uid){ //각 이벤트 상세 내용
 	$('#div_contents').html('');
 	var per_date = event_json[i]["start_date"].toString() + event_json[i]["end_date"].toString();
 	var per_time = event_json[i]["start_time"].toString() + event_json[i]["end_time"].toString();
+	
 	var html_string = "";
 	html_string += 
 		'<div id="div_contents" onclick="javascript:initEvent();" style="background-color: rgba(0, 0, 0, 0.7);">'+
@@ -145,7 +146,6 @@ function showEvent(i, uid){ //각 이벤트 상세 내용
 		'</div>';
 	
 	$('#div_contents').html(html_string);
-	
 	var event_detail_json = null;
 	
 	var sendData = {language: getAbbOfLanguage(language), event_uid: uid};
@@ -164,7 +164,7 @@ function showEvent(i, uid){ //각 이벤트 상세 내용
 	html_string = "";
 	for(var k = 0 ; k < parseInt(event_detail_json.length) ; k++){
 		html_string +=
-			'<div class="event_sub_info_detail">'+
+			'<div id="event_sub_info_detail'+k+'"class="event_sub_info_detail">'+
 				'<div class="event_info_text_detail">'+ event_detail_json[k]["detail_title"] +'</div>'+
 				'<div class="event_info_body_detail">'+ event_detail_json[k]["detail_body"] +'</div>'+
 			'</div>';
@@ -172,6 +172,11 @@ function showEvent(i, uid){ //각 이벤트 상세 내용
 	$('#div_detail_contents').html(html_string);
 	
 	if(language == "japanese") $('.event_info_text_detail').css('letter-spacing', '-2');
-	
+	for(var i=0; i < $('.event_info_body_detail').length; i++){
+		if($('.event_info_body_detail')[i].innerHTML.length > 42){
+			$('#event_sub_info_detail'+(i-3)).css('margin-bottom', '40px');
+		}
+	}
+		
 	backPage(6);
 }

@@ -169,11 +169,14 @@
 	width: 105px;
 	float: left;
 	color: #3a3a90;
+	height: auto;
 }
 
 .event_info_body_detail{
 	position: absolute;
 	width: 372px;
-	height: 20px;
+	height: auto;
 	left: 125px;
+	
+	word-break: break-all;
 }

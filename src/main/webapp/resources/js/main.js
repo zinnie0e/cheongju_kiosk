@@ -23,7 +23,6 @@ function resetTimer(){ // 타이머 초기화 함수
 }
 
 function startTimer(){ // 타이머 시작 함수
-	logNow(remainSeconds);
 	if(remainSeconds > 0){
 		remainSeconds -= 1;
 		setTimeout("startTimer()",1000); //1초간격으로 재귀호출
@@ -65,13 +64,12 @@ function initPromotion(play) {
 		$('#div_promotion').show();
 		$('#div_promotion').css('background-image', 'url(./external_image/promotion/'+ promotion_json[promotion_num]["poster"] +')');
 		promotion_timer = setInterval(() => {
-			resetTimer();
-			promotion_num++;
-			$('#div_promotion').css('background-image', 'url(./external_image/promotion/'+ promotion_json[promotion_num]["poster"] +')');
-			promotion_num++;
-			if(promotion_num >= promotion_json.length){
-				promotion_num = 0;
+			if(promotion_num == promotion_json.length-1){
+				window.location.reload();
 			}
+			promotion_num++;
+			resetTimer();
+			$('#div_promotion').css('background-image', 'url(./external_image/promotion/'+ promotion_json[promotion_num]["poster"] +')');
 		}, 15 * 1000);
 	} else {
 		clearInterval(promotion_timer);
