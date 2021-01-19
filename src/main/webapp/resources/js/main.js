@@ -1,6 +1,6 @@
 const IS_DEBUG = true;
-var SETTING_URL = "http://localhost:9090";
-//var SETTING_URL = "http://guruiot.iptime.org:10000/kioskserver";
+//var SETTING_URL = "http://localhost:9090";
+var SETTING_URL = "http://guruiot.iptime.org:10000/kioskserver";
 
 function logNow(logContents){
     if(IS_DEBUG){
@@ -13,7 +13,6 @@ $(document).ready(function(){
 	initKiosk();
 	resetTimer();
 	startTimer();
-
 });
 
 var initSeconds = 60; // 타이머 초
@@ -51,8 +50,10 @@ function initJsonPromotion() {
 		url: SETTING_URL + "/event/select_event_promotion",
 		async: false,
 		success: function (result) {
+			/*result.sort(function(){ //프로모션 배열 랜덤
+				return Math.random() - Math.random();
+			});*/
 			promotion_json = result;
-			
 		}
 	});
 }
@@ -75,9 +76,10 @@ function initPromotion(play) {
 		clearInterval(promotion_timer);
 		$('#div_promotion').css('background-image', promotion_json[promotion_num]);
 		$("#div_promotion").addClass("blurEffect");
-		$('#div_promotion').html('<div id="div_promotion" style="background-color: rgba(0, 0, 0, 0.8);"></div>');
+		$('#div_promotion').html('<div id="div_promotion_black" style="background-color: rgba(0, 0, 0, 0.8);"></div>');
 	}
 }
+
 function initPollution(){
 	$.getJSON( "./resources/apival/pollution.jsp", function( pollutionData ) {
 		poll_info = 'url(./resources/image/main/dust_icon_';
@@ -151,14 +153,14 @@ function leadZero(input,digits){
 
 function initKiosk() {
 	hideMainAll();
+	
+	$("#div_promotion").css("pointer-events", "");
 	initPromotion(true);
 	
 	if(language == null) language = "korean";
 	
 	initJson(language);
 	initTicker();
-	
-	$('#div_main').attr('onclick', 'initMain();');
 }
 
 function initTicker(){
@@ -196,10 +198,12 @@ function hideMainAll(){
 	$('#div_side_detail').hide();
 	$('#div_side').hide();
 	$('#img_shadow').hide();
+	$("#div_promotion").removeClass("blurEffect");
+	$('#div_promotion_black').hide();
 }
 
 function initMain() {
-	$('#div_main').removeAttr('onclick');
+	$("#div_promotion").css("pointer-events", "none");
 	
 	initPromotion(false);
 	
@@ -428,7 +432,7 @@ function getAbbOfLanguage(lang){
 function backPage(current_depth){
 	switch (current_depth) {
 		case 0: {
-			history.go(0);
+			initKiosk();
 			break;
 		}
 		case 1: {

@@ -59,7 +59,7 @@
 			<div id="ticker_notice"><p><MARQUEE id="ticker_notice_ment" behavior="scroll"></MARQUEE></p></div>
 		</div>
 		<div id="div_main">
-			<div id="div_promotion"></div>
+			<div id="div_promotion" onclick="javascript:initMain();"></div>
 			<div id="div_contents"></div>
 			<div id="div_side">
 				<div id="div_side_top"></div>

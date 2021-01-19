@@ -172,8 +172,8 @@ function setSideDetailArea1_0(index) {
 	$('#div_contents2').css('background-image', 'url(' + global_json.culture_wonder_floor[shop_json[index].flow] + ')');
 	$('#div_shop_info').css('background-image', 'url(./resources/image/culture/culture_wonder_detail_bg.png)');
 	$('#div_flow_map').css('background-image', 'url(' + global_json.culture_wonder_shop[shop_json[index].uid-1] + ')');
-	//$('#div_wonder_logo').css('background-image', 'url(./resources/image/poi/wonder_logo_L/' + shop_json[index].logo +')');
-	$('#div_wonder_logo').css('background-image', 'url(./resources/image/poi/wonder_logo_L/folder.png)');
+	$('#div_wonder_logo').css('background-image', 'url(./resources/image/poi/wonder_logo_L/' + shop_json[index].logo +')');
+	//$('#div_wonder_logo').css('background-image', 'url(./resources/image/poi/wonder_logo_L/folder.png)');
 	$('#div_area1_0_side_detail' + index).css('background-image', 'url(./resources/image/culture/menu_culture_wonder_list_sellect_bg.png)');
 	if(!(before == null) || !(index == before)) {
 		$('#div_area1_0_side_detail' + before + '').css('background-image', 'url(./resources/image/culture/menu_culture_wonder_list_bg.png)');

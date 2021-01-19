@@ -183,6 +183,13 @@ body {
     background-size: cover;
 }
 
+#div_promotion_black {
+	position:absolute;
+	width: var(--full-width);
+    height: var(--promotion-height);
+    background-size: cover;
+}
+
 #div_bottom{
 	position:absolute;
 	width: var(--full-width);
