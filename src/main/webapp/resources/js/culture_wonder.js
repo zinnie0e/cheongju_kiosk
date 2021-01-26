@@ -1,8 +1,7 @@
 function showArea1_0() {
 	initJsonArea1_0();
 	showSideTop(11);
-	var html_string = '<div id="div_contents2">'+
-					  '<div id="div_side_detail"></div>'+
+	var html_string = '<div id="div_contents2"><div id="div_side_detail"></div>'+
 					  '<div id="div_asst_flow">';
 	for(var i = 2; i >= 0; i--) 
 		html_string += '<div class="div_asst_flow" onclick="javascript:showArea1_0Flow(' + i + ');"></div>';
@@ -29,9 +28,10 @@ function showArea1_0() {
 	//$('#div_area1_0_pin').hide();
 	$('#div_flow_map').hide();
 	$('#div_area1_0_shop').hide();
+	
 	$('#div_area1_0_shop').css('background-image', '');
-	$('#div_scroll_top').css('background-image', 'url(./resources/image/culture/menu_culture_wonder_top.png)');
-	$('#div_scroll_bottom').css('background-image', 'url(./resources/image/culture/menu_culture_wonder_bottom.png)');
+	$('#div_scroll_top').css('background-image', 'url(./resources/image/culture/menu_culture_wonder_list_top.png)');
+	$('#div_scroll_bottom').css('background-image', 'url(./resources/image/culture/menu_culture_wonder_list_bottom.png)');
 	scrollCheck();	
 }
 
@@ -103,7 +103,7 @@ function showSideDetailArea1_0(index_value) {
 	
 	if(index_value == "all"){
 		for(var i = 0; i < shop_json.length; i++){
-			html_string += '<div id="div_area1_0_side_detail' + i + '" class="div_area1_0_side_detail" onclick="javascript:setSideDetailArea1_0(' + i + ');"><div id="div_shop_name"><div id="mul">' + shop_json[i].name + '</div></div></div>';
+			html_string += '<div id="div_area1_0_side_detail' + i + '" class="div_area1_0_side_detail" onclick="javascript:setSideDetailArea1_0(' + i + ');"><div id="div_shop_name"><div class="mul">' + shop_json[i].name + '</div></div></div>';
 		}
 		
 		if($('#div_area1_0_side_detail').length >= 10) {
@@ -112,7 +112,7 @@ function showSideDetailArea1_0(index_value) {
 	} else {
 		for(var i = 0; i < shop_json.length; i++){
 			if(shop_json[i].shop_cate == index_value){
-				html_string += '<div id="div_area1_0_side_detail' + i + '" class="div_area1_0_side_detail" onclick="javascript:setSideDetailArea1_0(' + i + ');"><div id="div_shop_name"><div id="mul">' + shop_json[i].name + '</div></div></div>';
+				html_string += '<div id="div_area1_0_side_detail' + i + '" class="div_area1_0_side_detail" onclick="javascript:setSideDetailArea1_0(' + i + ');"><div id="div_shop_name"><div class="mul">' + shop_json[i].name + '</div></div></div>';
 			}
 		}
 		if($('#div_area1_0_side_detail').length <= 10) {
@@ -121,7 +121,9 @@ function showSideDetailArea1_0(index_value) {
 	}
 	$('#div_side_detail').html(html_string);
 	$('.div_area1_0_side_detail').css('background-image', 'url(./resources/image/culture/menu_culture_wonder_list_bg.png)');
-	$('#div_side_detail').css('background-image', 'url(./resources/image/culture/menu_culture_wonder_list_bg2.png)')
+	$('#div_side_detail').css('background-image', 'url(./resources/image/culture/menu_culture_wonder_list_bg2.png)');
+	
+	//textFit(document.getElementsByClassName('mul'));
 	
 	backPage(5);
 }
@@ -166,21 +168,30 @@ function setSideDetailArea1_0(index) {
 	if(shop_json[index].tel != '' && shop_json[index].tel != ' ' && shop_json[index].tel != null)
 	  html_string += '<div class="div_wonder_info">' + shop_json[index].tel + '</b></div>';
 	  html_string += '</div>';	
+	
 	$('#div_shop_info').html(html_string);
+	
 	$('#div_asst_flow').hide();
+	
 	$('#div_area1_0_flow').css('top', '575px');
 	$('#div_contents2').css('background-image', 'url(' + global_json.culture_wonder_floor[shop_json[index].flow] + ')');
 	$('#div_shop_info').css('background-image', 'url(./resources/image/culture/culture_wonder_detail_bg.png)');
-	$('#div_flow_map').css('background-image', 'url(' + global_json.culture_wonder_shop[shop_json[index].uid-1] + ')');
+	
+	kioskNum = window.location.href.slice(-1);
+	if(kioskNum == 2) $('#div_flow_map').css('background-image', 'url(' + global_json.culture_wonder_shop2[shop_json[index].uid-1] + ')');
+	else $('#div_flow_map').css('background-image', 'url(' + global_json.culture_wonder_shop1[shop_json[index].uid-1] + ')');
+	
 	$('#div_wonder_logo').css('background-image', 'url(./resources/image/poi/wonder_logo_L/' + shop_json[index].logo +')');
-	//$('#div_wonder_logo').css('background-image', 'url(./resources/image/poi/wonder_logo_L/folder.png)');
 	$('#div_area1_0_side_detail' + index).css('background-image', 'url(./resources/image/culture/menu_culture_wonder_list_sellect_bg.png)');
+	
 	if(!(before == null) || !(index == before)) {
 		$('#div_area1_0_side_detail' + before + '').css('background-image', 'url(./resources/image/culture/menu_culture_wonder_list_bg.png)');
 	}
+	
 	if((index == before)){
 		$('#div_area1_0_side_detail' + before + '').css('background-image', 'url(./resources/image/culture/menu_culture_wonder_list_sellect_bg.png)');
 	}
+	
 	before = index;
 	
 	backPage(5);
@@ -188,16 +199,17 @@ function setSideDetailArea1_0(index) {
 
 //원더아리아 각 층별 이미지
 function showArea1_0Flow(index_num) {
-
-
 	$('#div_contents2').css('background-image', 'url(' + global_json.culture_wonder_floor[index_num] + ')');
-	$('#div_flow_map').css('background-image', 'url(' + global_json.culture_wonder_floor_detail[index_num] + ')');
+	
+	kioskNum = window.location.href.slice(-1);
+	if(kioskNum == 2) $('#div_flow_map').css('background-image', 'url(' + global_json.culture_wonder_floor_detail2[index_num] + ')');
+	else $('#div_flow_map').css('background-image', 'url(' + global_json.culture_wonder_floor_detail1[index_num] + ')');
 	
 	html_string = "";
 	//층별 이미지 클릭 시 해당 층 리스트 출력
 	for(var i = 0; i < shop_json.length; i++)
 		if(shop_json[i].flow == (index_num))
-			html_string += '<div id="div_area1_0_side_detail'+i+'" class="div_area1_0_side_detail" onclick="javascript:setSideDetailArea1_0(' + i + ');">' + '<div id="div_shop_name"><div id="mul">' + shop_json[i].name + '</div></div></div>';
+			html_string += '<div id="div_area1_0_side_detail'+i+'" class="div_area1_0_side_detail" onclick="javascript:setSideDetailArea1_0(' + i + ');">' + '<div id="div_shop_name"><div class="mul">' + shop_json[i].name + '</div></div></div>';
 	$('#div_side_detail').html(html_string);
 	
 	//매장 리스트 11개 이하 스크롤 제거

@@ -3,10 +3,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <html>
 <head>
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+	<!-- <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet"> -->
+	<!-- <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap" rel="stylesheet"> -->
+	<!-- <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet"> -->
 
 	<link rel="stylesheet" href="./resources/css/main.css" type="text/css" />
 	<link rel="stylesheet" href="./resources/css/event.css" type="text/css" />
@@ -16,13 +15,16 @@
 	<link rel="stylesheet" href="./resources/css/culture_craft.css" type="text/css" />
 	<link rel="stylesheet" href="./resources/css/dongbu.css" type="text/css" />
 	
-	<!-- 슬라이더 라이브러리 -->
-	<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
-	<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-	<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
-	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+	<script src="./resources/js/library/swiper-bundle.js"></script>
+	<script src="./resources/js/library/swiper-bundle.min.js"></script>
+	<link href="./resources/css/library/swiper-bundle.css"  rel="stylesheet" type="text/css" />
+	<link href="./resources/css/library/swiper-bundle.min.css"  rel="stylesheet" type="text/css" />
 	
-	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<!-- <script src="/webjars/jquery/1.11.1/jquery.min.js"></script> -->
+	<!-- <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script> -->
+	<script src="./resources/js/library/jquery.min.js"></script>
+	
+	<script src="./resources/js/library/textFit.min.js"></script>
 	
 	<script src="./resources/js/main.js"></script>
 	<script src="./resources/js/event.js"></script>
@@ -37,7 +39,7 @@
 	<script src="./resources/js/museum.js"></script>
 	<script src="./resources/js/dongbu.js"></script>
 	
-	<title>Home</title>
+	<title>Cheongju Kiosk</title>
 </head>
 <body onclick="javascript:resetTimer();">
 	<div id="kiosk_root" class="font_kr">

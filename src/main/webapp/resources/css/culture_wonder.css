@@ -82,11 +82,13 @@
 	font-family:Noto Sans CJK KR Medium;
 }
 
-#mul {
+.mul {
 	position:absolute;
+	right: 10px;
 	left:20px;
 	top:50%;
-	transform: translate(0, -50%)
+	transform: translate(0, -50%);
+	font-size: 24px;
 }
 
 #div_wonder_logo {

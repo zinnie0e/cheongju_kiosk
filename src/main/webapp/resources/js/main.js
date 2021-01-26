@@ -1,6 +1,6 @@
 const IS_DEBUG = true;
-//var SETTING_URL = "http://localhost:9090";
-var SETTING_URL = "http://guruiot.iptime.org:10000/kioskserver";
+var SETTING_URL = "http://localhost:9090";
+//var SETTING_URL = "http://guruiot.iptime.org:10000/kioskserver";
 
 function logNow(logContents){
     if(IS_DEBUG){
@@ -15,7 +15,7 @@ $(document).ready(function(){
 	startTimer();
 });
 
-var initSeconds = 60; // 타이머 초
+var initSeconds = 30000000; // 타이머 초
 var remainSeconds;
 function resetTimer(){ // 타이머 초기화 함수
 	remainSeconds = initSeconds; 
@@ -50,12 +50,13 @@ function initJsonPromotion() {
 		url: SETTING_URL + "/event/select_event_promotion",
 		async: false,
 		success: function (result) {
-			/*result.sort(function(){ //프로모션 배열 랜덤
+			result.sort(function(){ //프로모션 배열 랜덤
 				return Math.random() - Math.random();
-			});*/
+			});
 			promotion_json = result;
 		}
 	});
+	logNow(promotion_json);
 }
 
 var promotion_timer = null;
@@ -66,11 +67,13 @@ function initPromotion(play) {
 		$('#div_promotion').css('background-image', 'url(./external_image/promotion/'+ promotion_json[promotion_num]["poster"] +')');
 		promotion_timer = setInterval(() => {
 			if(promotion_num == promotion_json.length-1){
-				window.location.reload();
+				initJsonPromotion();
+				promotion_num = -1;
 			}
 			promotion_num++;
 			resetTimer();
 			$('#div_promotion').css('background-image', 'url(./external_image/promotion/'+ promotion_json[promotion_num]["poster"] +')');
+			logNow($('#div_promotion').css('background-image'));
 		}, 15 * 1000);
 	} else {
 		clearInterval(promotion_timer);
@@ -78,6 +81,7 @@ function initPromotion(play) {
 		$("#div_promotion").addClass("blurEffect");
 		$('#div_promotion').html('<div id="div_promotion_black" style="background-color: rgba(0, 0, 0, 0.8);"></div>');
 	}
+	
 }
 
 function initPollution(){
@@ -163,10 +167,23 @@ function initKiosk() {
 	initTicker();
 }
 
-function initTicker(){
+var interval_timer = null;
+function initTicker(){ 
+	initTime();
 	initWeather();
 	initPollution();
-	initTime();
+	interval_timer = setInterval(() => {
+		logNow('시간바뀜');
+		initTime();
+	}, 60 * 1000); 
+	
+	interval_timer = setInterval(() => {
+		//logNow('기상정보바뀜');
+		initWeather();
+		initPollution();
+		window.location.reload();
+	}, 120 * 60 * 1000); 
+	
 	document.getElementById("ticker_notice_ment").innerHTML = initNotice();
 	document.getElementById("ticker_finedust").innerHTML = global_json.ticker_finedust;
 }
@@ -223,7 +240,8 @@ function showSideTop(index_num) {
 	switch (index_num) {
 		//메인
 		case 1: {
-			for(var i = 0; i < 3; i++){
+			//for(var i = 0; i < 3; i++){ 관광지 모드
+			for(var i = 0; i < 2; i++){
 				html_string += '<div class="div_main_side_top" onclick="javascript:setMainSide(this, ' + i + ');"></div>';
 			}
 			html_string += '<div style="width:100%; height:30px;"></div>';
@@ -243,8 +261,14 @@ function showSideTop(index_num) {
 		}
 		//첨단문화산업단지
 		case 2: {
-			for(var i = 0; i <= 6; i++){
-				html_string += '<div class="div_side_area0" onclick="javascript:setSideArea0(' + i + ');"></div>';
+			if(language == "korean"){
+				for(var i = 0; i <= 7; i++){
+					html_string += '<div class="div_side_area0_ko" onclick="javascript:setSideArea0(' + i + ');"></div>';
+				}
+			}else{
+				for(var i = 0; i <= 6; i++){
+					html_string += '<div class="div_side_area0_en" onclick="javascript:setSideArea0(' + i + ');"></div>';
+				}
 			}
 			setIndustrySide(0);
 			break;
@@ -376,7 +400,7 @@ function setMainSide(document, index_num) {
 			$('#div_contents').css('background-image', 'url('+ global_json.hours +')');
 			break;
 		}
-		case 2: {
+		case 2: { //청주관광지
 			setSide(3);
 			$('#div_contents').html('');
 			$('#div_contents').css('background-image', 'url('+ global_json.tour +')');
@@ -393,23 +417,15 @@ function setMainLanguage(index_num) {
 	switch (index_num) {
 		case 0: 
 			language = "korean";
-			$("#kiosk_root").removeClass("font_jp");
-            $("#kiosk_root").addClass("font_kr");
 			break;
 		case 1: 
 			language = "english";
-			$("#kiosk_root").removeClass("font_jp");
-            $("#kiosk_root").addClass("font_kr");
 			break;
 		case 2: 
 			language = "chinese";
-			 $("#kiosk_root").removeClass("font_kr");
-             $("#kiosk_root").addClass("font_ch");
 			break;
 		case 3: 
 			language = "japanese";
-			 $("#kiosk_root").removeClass("font_kr");
-             $("#kiosk_root").addClass("font_jp");
 			break;
 	}
 	initJson(language);

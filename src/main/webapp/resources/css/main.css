@@ -25,22 +25,18 @@ body {
 }
 
 /* 글꼴 가져오기 Noto Sans 구글 폰트 사용 */
-/* @import url(https://fonts.googleapis.com/earlyaccess/notosanskr.css);
-@import url(https://fonts.googleapis.com/earlyaccess/notosansjp.css); */
 
 @font-face {
-	font-family: "msyhbd";
-	src: url('./resources/font/MicrosoftYaHei-Bold-01.ttf') format("truetype");
+	font-family: 'Noto Sans KR';
+	src: url('../font/NotoSansCJKkr-Regular.otf') format("opentype");
+}
+@font-face {
+	font-family: 'Roboto';
+	src: url('../font/Roboto-Medium.ttf') format("truetype");
 }
 
-.font_jp { /* 일본어 사용시 일본어 글꼴 */
-    font-family: 'Noto Sans JP', sans-serif;
-}
 .font_kr { /* 한국어 사용시 한국어 글꼴 */
     font-family: 'Noto Sans KR', sans-serif;
-}
-.font_ch {
-	font-family: msyhbd;
 }
 
 #kiosk_root {
@@ -203,6 +199,7 @@ body {
 	position:absolute;
 	width: var(--contents-width);
     height: var(--contents-height);
+    background-size: cover;
 }
 
 #div_contents2 {
@@ -257,7 +254,8 @@ body {
 
 .div_main_side_top {
 	width: 100%;
-	height: 130px;
+	/* height: 130px; 관광지*/
+	height: 195px;
 }
 
 .div_main_side_mid {
@@ -413,3 +411,10 @@ body {
 	height: 150px;
 }
 
+.close_popup{
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	top: 40px;
+	right: 40px;
+}

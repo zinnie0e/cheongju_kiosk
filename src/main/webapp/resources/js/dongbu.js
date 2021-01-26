@@ -23,7 +23,9 @@ function showDongbuDetail(index) {
 	
 	html_string = 
 		'<div id="div_contents" onclick="javascript:showDongbu();" style="background-color: rgba(0, 0, 0, 0.7);">'+
-			'<div id="div_dongbu_detail" onclick="javascript:event.stopPropagation();resetTimer();"></div>'
+			'<div id="div_dongbu_detail" onclick="javascript:event.stopPropagation();resetTimer();">'+
+				'<div class="close_popup" onclick="javascript:showDongbu();"></div>'+
+			'</div>'
 		'<div>';
 	$('#div_contents').html(html_string);
 	

@@ -120,6 +120,7 @@ function showEvent(i, uid){ //각 이벤트 상세 내용
 	html_string += 
 		'<div id="div_contents" onclick="javascript:initEvent();" style="background-color: rgba(0, 0, 0, 0.7);">'+
 			'<div id="div_event_detail" onclick="javascript:event.stopPropagation();resetTimer();">'+
+				'<div class="close_popup" onclick="javascript:initEvent();"></div>'+
 				'<div style="position: absolute; width:820px; height: 30px; top: 65px; left: 40px;">'+
 					'<div id="event_cate_detail"><img src="'+ global_json.event_categori[event_json[i]["event_cate"]] +'"></img></div>'+
 					'<div id="event_title_detail">'+ event_json[i]["title"] +'</div>'+
