@@ -175,6 +175,7 @@ function initTicker(){
 	interval_timer = setInterval(() => {
 		logNow('시간바뀜');
 		initTime();
+		initNetwork();
 	}, 60 * 1000); 
 	
 	interval_timer = setInterval(() => {
@@ -184,8 +185,28 @@ function initTicker(){
 		window.location.reload();
 	}, 120 * 60 * 1000); 
 	
+	setInterval(() => {
+		initNetwork();
+	}, 10 * 60 * 1000); 
+	
 	document.getElementById("ticker_notice_ment").innerHTML = initNotice();
 	document.getElementById("ticker_finedust").innerHTML = global_json.ticker_finedust;
+}
+
+function initNetwork(){
+	var sendData = {online: navigator.onLine}
+	$.ajax({
+		type: "POST",
+		contentType: "application/json; charset=utf-8;",
+		async: false,
+		url: SETTING_URL + "/network/insert_network",
+		data : JSON.stringify(sendData),
+		success: function (result) {
+			logNow("network insert : " + result);
+		},
+		error: function (result) {
+		}
+	});
 }
 
 function initNotice(){
