@@ -138,3 +138,16 @@
 	color: #6b6b6b;
 	margin-bottom: 24px;
 }
+
+#div_wonder_building_flow{
+	top: 350px;
+	left: 440px;
+	width: 200px;
+	height: 540px;
+	position: absolute;
+}
+
+.div_wonder_building_flow{
+	height: 100px;
+	margin-bottom: 80px;
+}

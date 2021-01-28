@@ -2,6 +2,10 @@ function showArea1_0() {
 	initJsonArea1_0();
 	showSideTop(11);
 	var html_string = '<div id="div_contents2"><div id="div_side_detail"></div>'+
+		'<div id="div_wonder_building_flow">';
+	for(var i = 2; i >= 0; i--) 
+			html_string += '<div class="div_wonder_building_flow" onclick="javascript:showArea1_0Flow(' + i + ');"></div>';
+	html_string += '</div>'+
 					  '<div id="div_asst_flow">';
 	for(var i = 2; i >= 0; i--) 
 		html_string += '<div class="div_asst_flow" onclick="javascript:showArea1_0Flow(' + i + ');"></div>';
@@ -172,6 +176,7 @@ function setSideDetailArea1_0(index) {
 	$('#div_shop_info').html(html_string);
 	
 	$('#div_asst_flow').hide();
+	$('#div_wonder_building_flow').hide();
 	
 	$('#div_area1_0_flow').css('top', '575px');
 	$('#div_contents2').css('background-image', 'url(' + global_json.culture_wonder_floor[shop_json[index].flow] + ')');
@@ -233,6 +238,7 @@ function showArea1_0Flow(index_num) {
 	$('#div_area1_0_flow').css('top', '575px');
 	$('#div_area1_0_flow').val("open");
 	$('#div_asst_flow').hide();
+	$('#div_wonder_building_flow').hide();
 	$('#div_area1_0_shop').hide();
 	//$('#div_area1_0_pin').hide();
 	$('#div_flow_map').show();

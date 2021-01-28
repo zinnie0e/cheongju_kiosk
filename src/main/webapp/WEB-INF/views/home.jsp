@@ -67,6 +67,7 @@
 				<div id="div_side_top"></div>
 				<div id="div_side_bottom"></div>
 			</div>
+			<div id="txt_source">기상정보 : 한국환경공단 에어코리아(airkorea.or.kr)</div>
 			<div id="div_bottom"></div>
 		</div>
 		<img id="img_shadow" src="./resources/image/main/shadow.png"></img>

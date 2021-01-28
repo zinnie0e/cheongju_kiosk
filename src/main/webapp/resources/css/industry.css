@@ -168,10 +168,11 @@
 }
 
 #div_item {
-	position: relative;
+	position: absolute;
 	left: 75px;
 	width: 80px;
 	height: 20px;
+	top: 70px;
 }
 
 #div_ceo_value {
@@ -210,8 +211,9 @@
 
 #div_item_value {
 	float: left;
-	top: 71px;
+	top: 70px;
 	left: 200px;
+	position: absolute;
 }
 
 .div_img {
@@ -277,4 +279,17 @@
 
 #div_area0_map_flow1 {
 	margin-bottom: 30px;
+}
+
+#div_area0_building_flow{
+	top: 420px;
+	left: 450px;
+	width: 150px;
+	height: 540px;
+	position: absolute;
+}
+
+.div_area0_building_flow{
+	height: 100px;
+	margin-bottom: 80px;
 }

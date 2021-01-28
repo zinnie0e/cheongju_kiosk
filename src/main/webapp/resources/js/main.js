@@ -15,7 +15,7 @@ $(document).ready(function(){
 	startTimer();
 });
 
-var initSeconds = 30000000; // 타이머 초
+var initSeconds = 30; // 타이머 초
 var remainSeconds;
 function resetTimer(){ // 타이머 초기화 함수
 	remainSeconds = initSeconds; 
@@ -63,6 +63,7 @@ var promotion_timer = null;
 var promotion_num = 0;
 function initPromotion(play) {
 	if(play){
+		$('#txt_source').hide();
 		$('#div_promotion').show();
 		$('#div_promotion').css('background-image', 'url(./external_image/promotion/'+ promotion_json[promotion_num]["poster"] +')');
 		promotion_timer = setInterval(() => {
@@ -175,7 +176,6 @@ function initTicker(){
 	interval_timer = setInterval(() => {
 		logNow('시간바뀜');
 		initTime();
-		initNetwork();
 	}, 60 * 1000); 
 	
 	interval_timer = setInterval(() => {
@@ -242,6 +242,7 @@ function hideMainAll(){
 
 function initMain() {
 	$("#div_promotion").css("pointer-events", "none");
+	$('#txt_source').show();
 	
 	initPromotion(false);
 	
