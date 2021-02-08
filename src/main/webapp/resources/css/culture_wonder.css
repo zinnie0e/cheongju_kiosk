@@ -83,12 +83,15 @@
 }
 
 .mul {
+	width: 170px;
 	position:absolute;
-	right: 10px;
-	left:20px;
+	left:10px;
 	top:50%;
 	transform: translate(0, -50%);
 	font-size: 24px;
+	word-break:normal;
+	/* white-space:nowrap;  */
+	overflow:hidden;
 }
 
 #div_wonder_logo {

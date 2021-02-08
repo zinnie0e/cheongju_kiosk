@@ -17,26 +17,31 @@ function showCulture(index_num) {
 	switch (index_num) {
 		case 0: {
 			//원더아리아
+			usageJson.wonder += 1;
 			showArea1_0();
 			break;
 		}
 		case 1: {
 			//한국공예관
+			usageJson.craft += 1;
 			showCraft();
 			break;
 		}
 		case 2: {
 			//열린도서관
+			usageJson.library += 1;
 			showLibrary();
 			break;
 		}
 		case 3: {
 			//미디어센터
+			usageJson.media += 1;
 			showMedia();
 			break;
 		}
 		case 4: {
 			//산업진흥재단
+			usageJson.foundation += 1;
 			showFoundation();
 			break;
 		}

@@ -1,6 +1,6 @@
 const IS_DEBUG = true;
 var SETTING_URL = "http://localhost:9090";
-//var SETTING_URL = "http://guruiot.iptime.org:10000/kioskserver";
+//var SETTING_URL = "http://cheongjukiosk.iptime.org:10000/kioskserver";
 
 function logNow(logContents){
     if(IS_DEBUG){
@@ -8,7 +8,13 @@ function logNow(logContents){
     }
 }
 
+var onload_time;
 $(document).ready(function(){
+	onload_time = new Date();
+	onload_time.setMinutes(onload_time.getMinutes() + 5); //체크
+	
+	initUsageStt();
+	setUsageStt(new Date());
 	initJsonPromotion();
 	initKiosk();
 	resetTimer();
@@ -42,6 +48,55 @@ function initJson(language) {
 	});
 }
 
+var usageJson = new Object();
+function initUsageStt(){
+	usageJson.event = 0;
+	usageJson.industry = 0;
+	usageJson.wonder = 0;
+	usageJson.craft = 0;
+	usageJson.library = 0;
+	usageJson.media = 0;
+	usageJson.foundation = 0;
+	usageJson.museum = 0;
+	usageJson.dongbu = 0;
+	usageJson.parking = 0;
+	usageJson.hours = 0;
+}
+
+function setUsageStt(now_time){
+	var date = '';
+	date += now_time.getFullYear();
+    date += ("0" + (1 + now_time.getMonth())).slice(-2);
+    date += ("0" + now_time.getDate()).slice(-2);
+    
+	var sendData = {
+		date: date,
+		event_cnt: usageJson.event,
+		industry_cnt: usageJson.industry,
+		wonder_cnt: usageJson.wonder,
+		craft_cnt: usageJson.craft,
+		library_cnt: usageJson.library,
+		media_cnt: usageJson.media,
+		foundation_cnt: usageJson.foundation,
+		museum_cnt: usageJson.museum,
+		dongbu_cnt: usageJson.dongbu,
+		parking_cnt: usageJson.parking,
+		hours_cnt: usageJson.hours
+	};
+	
+	$.ajax({
+		type: "POST",
+		contentType: "application/json; charset=utf-8;",
+		async: false,
+		url: SETTING_URL + "/usage/update_usage",
+		data : JSON.stringify(sendData),
+		success: function (result) {
+		},
+		error: function() {
+		}
+	});
+}
+
 var promotion_json = null;
 function initJsonPromotion() {
 	$.ajax({
@@ -56,7 +111,6 @@ function initJsonPromotion() {
 			promotion_json = result;
 		}
 	});
-	logNow(promotion_json);
 }
 
 var promotion_timer = null;
@@ -68,13 +122,17 @@ function initPromotion(play) {
 		$('#div_promotion').css('background-image', 'url(./external_image/promotion/'+ promotion_json[promotion_num]["poster"] +')');
 		promotion_timer = setInterval(() => {
 			if(promotion_num == promotion_json.length-1){
+				var now_time = new Date();
+				if(onload_time <= now_time){
+					setUsageStt(now_time);
+					window.location.reload();
+				}
 				initJsonPromotion();
 				promotion_num = -1;
 			}
 			promotion_num++;
 			resetTimer();
 			$('#div_promotion').css('background-image', 'url(./external_image/promotion/'+ promotion_json[promotion_num]["poster"] +')');
-			logNow($('#div_promotion').css('background-image'));
 		}, 15 * 1000);
 	} else {
 		clearInterval(promotion_timer);
@@ -173,19 +231,15 @@ function initTicker(){
 	initTime();
 	initWeather();
 	initPollution();
-	interval_timer = setInterval(() => {
-		logNow('시간바뀜');
+	initNetwork();
+	
+	setInterval(() => {
 		initTime();
 	}, 60 * 1000); 
 	
-	interval_timer = setInterval(() => {
-		//logNow('기상정보바뀜');
+	setInterval(() => {
 		initWeather();
 		initPollution();
-		window.location.reload();
-	}, 120 * 60 * 1000); 
-	
-	setInterval(() => {
 		initNetwork();
 	}, 10 * 60 * 1000); 
 	
@@ -354,6 +408,7 @@ function showMain() {
 function setMainArea(index_num) {
 	switch (index_num) {
 		case 0: { //첨단문화산업단지
+			usageJson.industry += 1;
 			showArea0(language);
 			break;
 		}
@@ -362,14 +417,17 @@ function setMainArea(index_num) {
 			break;
 		}
 		case 2: { //복합공용주차장
+			usageJson.parking += 1;
 			showParking();
 			break;
 		}
 		case 3: { //국립현대미술관
+			usageJson.museum += 1;
 			showMuseum();
 			break;
 		}
 		case 4: { //동부창고
+			usageJson.dongbu += 1;
 			showDongbu();
 			break;
 		}
@@ -412,11 +470,13 @@ function setMainSide(document, index_num) {
 	switch (index_num) {
 		case 0: { 
 			//진행중 이벤트
+			usageJson.event += 1;
 			setSide(1);
 			initEvent();
 			break;
 		}
 		case 1: {
+			usageJson.hours += 1;
 			setSide(2);
 			$('#div_contents').html('');
 			$('#div_contents').css('background-image', 'url('+ global_json.hours +')');
