@@ -32,7 +32,9 @@ function startTimer(){ // 타이머 시작 함수
 		remainSeconds -= 1;
 		setTimeout("startTimer()",1000); //1초간격으로 재귀호출
 	}else{
-		history.go(0);
+		initKiosk();
+		resetTimer();
+		startTimer();
 	}
 }
 
