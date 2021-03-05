@@ -17,6 +17,7 @@ $(document).ready(function(){
 	setUsageStt(new Date());
 	initJsonPromotion();
 	initKiosk();
+	initTicker();
 	resetTimer();
 	startTimer();
 });
@@ -225,12 +226,11 @@ function initKiosk() {
 	if(language == null) language = "korean";
 	
 	initJson(language);
-	initTicker();
+	initTickerLang();
 }
 
 var interval_timer = null;
 function initTicker(){ 
-	initTime();
 	initWeather();
 	initPollution();
 	initNetwork();
@@ -244,9 +244,12 @@ function initTicker(){
 		initPollution();
 		initNetwork();
 	}, 10 * 60 * 1000); 
-	
+}
+
+function initTickerLang(){
 	document.getElementById("ticker_notice_ment").innerHTML = initNotice();
 	document.getElementById("ticker_finedust").innerHTML = global_json.ticker_finedust;
+	initTime();
 }
 
 function initNetwork(){
@@ -302,7 +305,7 @@ function initMain() {
 	
 	initPromotion(false);
 	
-	initTicker();
+	initTickerLang();
 	
 	$('#div_contents').show();
 	$('#div_side').show();
