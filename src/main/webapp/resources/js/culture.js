@@ -40,6 +40,12 @@ function showCulture(index_num) {
 			break;
 		}
 		case 4: {
+			//미술관
+			usageJson.museum += 1;
+			showMuseum();
+			break;
+		}
+		case 5: {
 			//산업진흥재단
 			usageJson.foundation += 1;
 			showFoundation();

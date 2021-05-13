@@ -63,6 +63,7 @@ function initUsageStt(){
 	usageJson.dongbu = 0;
 	usageJson.parking = 0;
 	usageJson.hours = 0;
+	usageJson.tour = 0;
 }
 
 function setUsageStt(now_time){
@@ -83,7 +84,8 @@ function setUsageStt(now_time){
 		museum_cnt: usageJson.museum,
 		dongbu_cnt: usageJson.dongbu,
 		parking_cnt: usageJson.parking,
-		hours_cnt: usageJson.hours
+		hours_cnt: usageJson.hours,
+		tour_cnt: usageJson.tour
 	};
 	
 	$.ajax({
@@ -318,12 +320,12 @@ function showSideTop(index_num) {
 	switch (index_num) {
 		//메인
 		case 1: {
-			//for(var i = 0; i < 3; i++){ 관광지 모드
-			for(var i = 0; i < 2; i++){
+			for(var i = 0; i < 3; i++){ //관광지 모드
+			//for(var i = 0; i < 2; i++){
 				html_string += '<div class="div_main_side_top" onclick="javascript:setMainSide(this, ' + i + ');"></div>';
 			}
-			html_string += '<div style="width:100%; height:30px;"></div>';
-			for(var i = 3; i < 8; i++){
+			//html_string += '<div style="width:100%; height:30px;"></div>';
+			for(var i = 3; i < 9; i++){
 				html_string += '<div class="div_main_side_mid" onclick="javascript:showCulture(' + (i - 3) + ');"></div>';
 			}
 			setSide(0);
@@ -340,13 +342,15 @@ function showSideTop(index_num) {
 		//첨단문화산업단지
 		case 2: {
 			if(language == "korean"){
-				for(var i = 0; i <= 7; i++){
+				for(var i = 0; i <= 6; i++){
 					html_string += '<div class="div_side_area0_ko" onclick="javascript:setSideArea0(' + i + ');"></div>';
 				}
+				html_string += '<div class="div_side_area0_ko" style="height:114px;" onclick="javascript:setSideArea0(7);"></div>';
 			}else{
-				for(var i = 0; i <= 6; i++){
+				for(var i = 0; i <= 5; i++){
 					html_string += '<div class="div_side_area0_en" onclick="javascript:setSideArea0(' + i + ');"></div>';
 				}
+				html_string += '<div class="div_side_area0_en" style="height:126px;" onclick="javascript:setSideArea0(6);"></div>';
 			}
 			setIndustrySide(0);
 			break;
@@ -465,6 +469,9 @@ function setSide(index){
 		case 8: 
 			$('#div_side_top').css('background-image', 'url('+ global_json.side_top[8] +')');
 			break;
+		case 9: 
+			$('#div_side_top').css('background-image', 'url('+ global_json.side_top[9] +')');
+			break;
 	}
 }
 
@@ -485,9 +492,9 @@ function setMainSide(document, index_num) {
 			break;
 		}
 		case 2: { //청주관광지
+			usageJson.tour += 1;
 			setSide(3);
-			$('#div_contents').html('');
-			$('#div_contents').css('background-image', 'url('+ global_json.tour +')');
+			showTour();
 			break;
 		}
 	}
@@ -561,6 +568,10 @@ function backPage(current_depth){
 		}
 		case 7: { //동부창고
 			$('#div_side_back').attr('onclick', 'showDongbu()');
+			break;
+		}
+		case 8: { //관광지
+			$('#div_side_back').attr('onclick', 'showTour()');
 			break;
 		}
 	}

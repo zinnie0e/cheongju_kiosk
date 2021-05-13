@@ -1,0 +1,108 @@
+@charset "UTF-8";
+
+:root {
+}
+
+#div_tour_area0 {
+	position:absolute;
+	top: 217px;
+	left: 522px;
+	width: 160px;
+	height: 100px;
+}
+
+#div_tour_area1 {
+	position:absolute;
+	top: 295px;
+	left: 360px;
+	width: 160px;
+	height: 100px;
+}
+
+#div_tour_area2 {
+	position:absolute;
+	top: 320px;
+	left: 598px;
+	width: 160px;
+	height: 100px;
+}
+
+#div_tour_area3 {
+	position:absolute;
+	top: 420px;
+	left: 239px;
+	width: 140px;
+	height: 100px;
+}
+
+#div_tour_area4 {
+	position:absolute;
+	top: 406px;
+	left: 394px;
+	width: 120px;
+	height: 90px;
+}
+
+#div_tour_area5 {
+	position:absolute;
+	top: 423px;
+	left: 520px;
+	width: 135px;
+	height: 90px;
+}
+
+#div_tour_area6 {
+	position:absolute;
+	top: 440px;
+	left: 661px;
+	width: 150px;
+	height: 100px;
+}
+
+#div_tour_area7 {
+	position:absolute;
+	top: 467px;
+	left: 824px;
+	width: 140px;
+	height: 100px;
+}
+
+#div_tour_area8 {
+	position:absolute;
+	top: 516px;
+	left: 381px;
+	width: 150px;
+	height: 90px;
+}
+
+#div_tour_area9 {
+	position:absolute;
+	top: 610px;
+	left: 301px;
+	width: 180px;
+	height: 100px;
+}
+
+#div_tour_area10 {
+	position:absolute;
+	top: 715px;
+	left: 411px;
+	width: 160px;
+	height: 90px;
+}
+
+#div_tour_detail{
+	position:absolute;
+	width: 900px;
+	height: 890px;
+	top: 40px;
+	left: 40px;
+}
+
+#close_popup{
+	width: 64px;
+	height: 64px;
+	position: absolute;
+	top: 22px;
+	right: 22px;
+}

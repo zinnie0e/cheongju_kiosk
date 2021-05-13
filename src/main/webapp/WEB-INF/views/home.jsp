@@ -14,6 +14,7 @@
 	<link rel="stylesheet" href="./resources/css/culture_wonder.css" type="text/css" />
 	<link rel="stylesheet" href="./resources/css/culture_craft.css" type="text/css" />
 	<link rel="stylesheet" href="./resources/css/dongbu.css" type="text/css" />
+	<link rel="stylesheet" href="./resources/css/tour.css" type="text/css" />
 	
 	<script src="./resources/js/library/swiper-bundle.js"></script>
 	<script src="./resources/js/library/swiper-bundle.min.js"></script>
@@ -38,6 +39,7 @@
 	<script src="./resources/js/parking.js"></script>
 	<script src="./resources/js/museum.js"></script>
 	<script src="./resources/js/dongbu.js"></script>
+	<script src="./resources/js/tour.js"></script>
 	
 	<title>Cheongju Kiosk</title>
 </head>
